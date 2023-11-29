@@ -7,21 +7,27 @@ public class BallProduceService : Service
     {
     }
 
-    public void CreateBall(Vector3 position, Quaternion rotation, Vector3 scale)
+    public GameEntity CreateBall(int id, Vector3 position, Quaternion rotation, Vector3 scale)
     {
         var entity = _contexts.game.CreateEntity();
+        entity.AddId(id);
         entity.AddPosition(position);
         entity.AddRotation(rotation);
         entity.AddScale(scale);
         entity.AddAsset("Ball");
+
+        return entity;
     }
     
-    public void CreateBall(Vector3 position)
+    public GameEntity CreateBall(int id, Vector3 position)
     {
         var entity = _contexts.game.CreateEntity();
+        entity.AddId(id);
         entity.AddPosition(position);
         entity.AddRotation(Quaternion.identity);
         entity.AddScale(Vector3.one);
         entity.AddAsset("Ball");
+
+        return entity;
     }
 }

@@ -28,5 +28,12 @@ public sealed class ViewService : Service, IViewService
         {
             entity.AddRigidbody(rigidbody);
         }
+
+        var view = viewObj.GetComponent<IView>();
+        if (view != null)
+        {
+            view.InitializeView(contexts, entity);
+            entity.AddView(view);
+        }
     }
 }

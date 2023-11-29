@@ -51,6 +51,7 @@ public class GameController : MonoBehaviour
     {
         services.ViewService = new ViewService(contexts);
         services.BallProduceService = new BallProduceService(contexts);
+        services.IdService = new IdService(contexts);
     }
 
     private void Configure(Contexts contexts)

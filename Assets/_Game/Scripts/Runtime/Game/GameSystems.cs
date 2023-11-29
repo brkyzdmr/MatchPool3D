@@ -7,5 +7,8 @@ public class GameSystems : Feature
         Add(new BallProduceSystem(contexts, services));
         
         Add(new ViewSystem(contexts, services));
+        Add(new ApplyPositionSystem(contexts));
+
+        Add(new SyncPositionSystem(contexts));
     }
 }

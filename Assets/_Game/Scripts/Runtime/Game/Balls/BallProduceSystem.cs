@@ -16,8 +16,12 @@ namespace _Game.Scripts.Runtime.Balls
         
         public void Initialize()
         {
-            var randomPos = new Vector3(Random.Range(0, 10), 10, Random.Range(0, 10));
-            _services.BallProduceService.CreateBall(randomPos);
+            for (int i = 0; i < 50; i++)
+            {
+                var randomPos = new Vector3(Random.Range(-5, 5), 20, Random.Range(-5, 5));
+                var id = _services.IdService.GetNext();
+                var entity = _services.BallProduceService.CreateBall(id, randomPos);
+            }
         }
     }
 }

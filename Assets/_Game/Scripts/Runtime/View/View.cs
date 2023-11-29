@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Entitas.Unity;
+using UnityEngine;
 
-public class UnityView : MonoBehaviour, IView/*, IDestroyedListener*/
+public class View : MonoBehaviour, IView/*, IDestroyedListener*/
 {
     private GameObject _gameObject;
     private Transform _transform;
@@ -14,17 +15,14 @@ public class UnityView : MonoBehaviour, IView/*, IDestroyedListener*/
         // _entity.AddDestroyedListener(this);
         //
         // Id = _entity.id.Value;
-
-#if UNITY_EDITOR
-        //gameObject.Link(_entity, contexts.game);
-#endif
+        
+        gameObject.Link(_entity);
     }
 
     public void OnDestroyed(GameEntity entity)
     {
-#if UNITY_EDITOR
-        //gameObject.Unlink();
-#endif
+
+        gameObject.Unlink();
         Destroy(gameObject);
     }
     

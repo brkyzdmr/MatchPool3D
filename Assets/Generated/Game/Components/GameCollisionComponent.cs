@@ -8,25 +8,25 @@
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public CollisionComponent collision { get { return (CollisionComponent)GetComponent(GameComponentsLookup.Collision); } }
-    public bool hasCollision { get { return HasComponent(GameComponentsLookup.Collision); } }
+    static readonly CollisionComponent collisionComponent = new CollisionComponent();
 
-    public void AddCollision(UnityEngine.Collision newCollision) {
-        var index = GameComponentsLookup.Collision;
-        var component = (CollisionComponent)CreateComponent(index, typeof(CollisionComponent));
-        component.Collision = newCollision;
-        AddComponent(index, component);
-    }
+    public bool isCollision {
+        get { return HasComponent(GameComponentsLookup.Collision); }
+        set {
+            if (value != isCollision) {
+                var index = GameComponentsLookup.Collision;
+                if (value) {
+                    var componentPool = GetComponentPool(index);
+                    var component = componentPool.Count > 0
+                            ? componentPool.Pop()
+                            : collisionComponent;
 
-    public void ReplaceCollision(UnityEngine.Collision newCollision) {
-        var index = GameComponentsLookup.Collision;
-        var component = (CollisionComponent)CreateComponent(index, typeof(CollisionComponent));
-        component.Collision = newCollision;
-        ReplaceComponent(index, component);
-    }
-
-    public void RemoveCollision() {
-        RemoveComponent(GameComponentsLookup.Collision);
+                    AddComponent(index, component);
+                } else {
+                    RemoveComponent(index);
+                }
+            }
+        }
     }
 }
 

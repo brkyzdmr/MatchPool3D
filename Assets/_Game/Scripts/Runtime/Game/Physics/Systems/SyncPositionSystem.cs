@@ -10,7 +10,7 @@ public sealed class SyncPositionSystem : IExecuteSystem {
 
     public void Execute() {
         foreach (var e in _entities) {
-            e.ReplacePosition(e.view.Value.Position);
+            e.view.Value.Position = e.position.Value;
         }
     }
 }

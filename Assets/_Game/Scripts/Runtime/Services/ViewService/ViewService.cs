@@ -13,27 +13,33 @@ public sealed class ViewService : Service, IViewService
     }
 
     // TODO: Pooling system
-    public void LoadAsset(Contexts contexts, GameEntity entity, string assetName)
-    {
-        var viewObj = Object.Instantiate(Resources.Load<GameObject>(string.Format("Prefabs/{0}", assetName)), _root);
+    public void LoadAsset(Contexts contexts, GameEntity entity, string assetName) {
+        var viewObj = Object.Instantiate(Resources.Load<GameObject>($"Prefabs/{assetName}"), _root);
 
-        if (viewObj == null)
-        {
-            throw new NullReferenceException(string.Format("Prefabs/{0} not found!", assetName));
-        }
-
-        var rigidbody = viewObj.GetComponent<Rigidbody>();
-        
-        if (rigidbody != null)
-        {
-            entity.AddRigidbody(rigidbody);
+        if (viewObj == null) {
+            throw new NullReferenceException($"Prefabs/{assetName} not found!");
         }
 
         var view = viewObj.GetComponent<IView>();
-        if (view != null)
-        {
+        if (view != null) {
             view.InitializeView(contexts, entity);
             entity.AddView(view);
         }
+
+        AddColliderToEntity(viewObj, entity);
+    }
+
+    private void AddColliderToEntity(GameObject viewObj, GameEntity entity) {
+        var boxCollider = viewObj.GetComponent<BoxCollider>();
+        if (boxCollider != null) {
+            entity.AddBoxCollider(boxCollider.center, boxCollider.size);
+        }
+
+        var sphereCollider = viewObj.GetComponent<SphereCollider>();
+        if (sphereCollider != null) {
+            entity.AddSphereCollider(sphereCollider.center, sphereCollider.radius);
+        }
+        
+        // TODO: Additional Colliders
     }
 }

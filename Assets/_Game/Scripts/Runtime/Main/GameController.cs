@@ -50,7 +50,7 @@ public class GameController : MonoBehaviour
     private void CreateServices(Contexts contexts, Services services)
     {
         services.ViewService = new ViewService(contexts);
-        services.BallProduceService = new BallProduceService(contexts);
+        services.ObjectProduceService = new ObjectProduceService(contexts);
         services.IdService = new IdService(contexts);
     }
 

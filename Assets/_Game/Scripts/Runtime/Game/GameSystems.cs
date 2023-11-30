@@ -1,14 +1,10 @@
-﻿using _Game.Scripts.Runtime.Balls;
-
-public class GameSystems : Feature
+﻿public class GameSystems : Feature
 {
     public GameSystems(Contexts contexts, Services services)
     {
         Add(new BallProduceSystem(contexts, services));
-        
         Add(new ViewSystem(contexts, services));
-        Add(new ApplyPositionSystem(contexts));
-
-        Add(new SyncPositionSystem(contexts));
+        
+        Add(new PhysicSystems(contexts, services));
     }
 }

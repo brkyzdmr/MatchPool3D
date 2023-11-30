@@ -8,25 +8,29 @@
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly CollisionComponent collisionComponent = new CollisionComponent();
+    public CollisionComponent collision { get { return (CollisionComponent)GetComponent(GameComponentsLookup.Collision); } }
+    public bool hasCollision { get { return HasComponent(GameComponentsLookup.Collision); } }
 
-    public bool isCollision {
-        get { return HasComponent(GameComponentsLookup.Collision); }
-        set {
-            if (value != isCollision) {
-                var index = GameComponentsLookup.Collision;
-                if (value) {
-                    var componentPool = GetComponentPool(index);
-                    var component = componentPool.Count > 0
-                            ? componentPool.Pop()
-                            : collisionComponent;
+    public void AddCollision(GameEntity newOtherEntity, UnityEngine.Vector3 newCollisionNormal, float newBounciness) {
+        var index = GameComponentsLookup.Collision;
+        var component = (CollisionComponent)CreateComponent(index, typeof(CollisionComponent));
+        component.OtherEntity = newOtherEntity;
+        component.CollisionNormal = newCollisionNormal;
+        component.Bounciness = newBounciness;
+        AddComponent(index, component);
+    }
 
-                    AddComponent(index, component);
-                } else {
-                    RemoveComponent(index);
-                }
-            }
-        }
+    public void ReplaceCollision(GameEntity newOtherEntity, UnityEngine.Vector3 newCollisionNormal, float newBounciness) {
+        var index = GameComponentsLookup.Collision;
+        var component = (CollisionComponent)CreateComponent(index, typeof(CollisionComponent));
+        component.OtherEntity = newOtherEntity;
+        component.CollisionNormal = newCollisionNormal;
+        component.Bounciness = newBounciness;
+        ReplaceComponent(index, component);
+    }
+
+    public void RemoveCollision() {
+        RemoveComponent(GameComponentsLookup.Collision);
     }
 }
 

@@ -10,52 +10,73 @@ public static class GameComponentsLookup {
 
     public const int Asset = 0;
     public const int AssetLoaded = 1;
-    public const int Collision = 2;
-    public const int Destroyed = 3;
-    public const int DestroyedListener = 4;
-    public const int Id = 5;
-    public const int Position = 6;
-    public const int PositionListener = 7;
-    public const int Rigidbody = 8;
-    public const int Rotation = 9;
-    public const int RotationListener = 10;
-    public const int Scale = 11;
-    public const int ScaleListener = 12;
-    public const int View = 13;
+    public const int Bounciness = 2;
+    public const int BoxCollider = 3;
+    public const int Colliding = 4;
+    public const int Collision = 5;
+    public const int Destroyed = 6;
+    public const int DestroyedListener = 7;
+    public const int Force = 8;
+    public const int Id = 9;
+    public const int Position = 10;
+    public const int PositionListener = 11;
+    public const int Radius = 12;
+    public const int RadiusListener = 13;
+    public const int Rigidbody = 14;
+    public const int Rotation = 15;
+    public const int RotationListener = 16;
+    public const int Scale = 17;
+    public const int ScaleListener = 18;
+    public const int SphereCollider = 19;
+    public const int View = 20;
 
-    public const int TotalComponents = 14;
+    public const int TotalComponents = 21;
 
     public static readonly string[] componentNames = {
         "Asset",
         "AssetLoaded",
+        "Bounciness",
+        "BoxCollider",
+        "Colliding",
         "Collision",
         "Destroyed",
         "DestroyedListener",
+        "Force",
         "Id",
         "Position",
         "PositionListener",
+        "Radius",
+        "RadiusListener",
         "Rigidbody",
         "Rotation",
         "RotationListener",
         "Scale",
         "ScaleListener",
+        "SphereCollider",
         "View"
     };
 
     public static readonly System.Type[] componentTypes = {
         typeof(AssetComponent),
         typeof(AssetLoadedComponent),
+        typeof(BouncinessComponent),
+        typeof(BoxColliderComponent),
+        typeof(CollidingComponent),
         typeof(CollisionComponent),
         typeof(DestroyedComponent),
         typeof(DestroyedListenerComponent),
+        typeof(ForceComponent),
         typeof(IdComponent),
         typeof(PositionComponent),
         typeof(PositionListenerComponent),
+        typeof(RadiusComponent),
+        typeof(RadiusListenerComponent),
         typeof(RigidbodyComponent),
         typeof(RotationComponent),
         typeof(RotationListenerComponent),
         typeof(ScaleComponent),
         typeof(ScaleListenerComponent),
+        typeof(SphereColliderComponent),
         typeof(ViewComponent)
     };
 }

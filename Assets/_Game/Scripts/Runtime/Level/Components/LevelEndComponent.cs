@@ -2,7 +2,5 @@
 using Entitas.CodeGeneration.Attributes;
 
 [Unique,Event(EventTarget.Any)]
-public sealed class LevelEndComponent : IComponent
-{
-}
+public sealed class LevelEndComponent : IComponent { }
 

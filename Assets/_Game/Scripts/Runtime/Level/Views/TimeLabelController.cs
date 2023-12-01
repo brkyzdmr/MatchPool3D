@@ -21,7 +21,7 @@ public class TimeLabelController : MonoBehaviour, IAnyTimeTickListener, IAnyLeve
     public void OnAnyTimeTick(GameEntity entity)
     {
         _passedTime++;
-        UpdateLabelTime(_startTime - _passedTime);
+        label.text = TimeService.FormatTimeDuration(_startTime - _passedTime);
 
         if (Math.Abs(_passedTime - _startTime) < 0.1f)
         {
@@ -40,19 +40,12 @@ public class TimeLabelController : MonoBehaviour, IAnyTimeTickListener, IAnyLeve
         if(!_listener.hasAnyTimeTickListener)
             _listener.AddAnyTimeTickListener(this);
 
-        var levelConfig = _contexts.config.levelConfig.value;
+        var levelConfig = LevelService.LevelsConfig;
         var level = LevelService.PlayerCurrentLevel;
         var time = levelConfig.Levels.levels[level].duration;
         _startTime = time;
         _passedTime = 0;
 
-        UpdateLabelTime(time);
-    }
-
-    private void UpdateLabelTime(float timeInSeconds)
-    {
-        int minutes = (int)timeInSeconds / 60;
-        int seconds = (int)timeInSeconds % 60;
-        label.text = $"{minutes:00}:{seconds:00}";
+        label.text = TimeService.FormatTimeDuration(time);
     }
 }

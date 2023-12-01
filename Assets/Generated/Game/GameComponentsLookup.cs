@@ -108,7 +108,7 @@ public static class GameComponentsLookup {
         typeof(LevelReadyComponent),
         typeof(LevelStatusComponent),
         typeof(LoadLevelComponent),
-        typeof(MergableObject),
+        typeof(MergableObjectComponent),
         typeof(ObjectPoolComponent),
         typeof(PositionComponent),
         typeof(PositionListenerComponent),

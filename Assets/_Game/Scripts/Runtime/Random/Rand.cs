@@ -5,7 +5,7 @@ public class Rand
 {
     public static Rand game;
 
-    readonly Random _random;
+    private readonly Random _random;
 
     public Rand(int seed) => _random = new Random(seed);
 

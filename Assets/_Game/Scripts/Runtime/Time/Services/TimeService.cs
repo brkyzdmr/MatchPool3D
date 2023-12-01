@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public partial class TimeService
+public class TimeService
 {
     public static TimeService Instance
     {
@@ -11,20 +11,15 @@ public partial class TimeService
             return _instance;
         }
     }
-    static TimeService _instance;
+    private static TimeService _instance;
 
-    const string D = "d";
-    const string H = "h";
-    const string M = "m";
-    const string S = "s";
+    private readonly ITimeProvider _timeProvider;
 
-    readonly ITimeProvider _timeProvider;
+    private int _lastCachedNow = -1;
+    private int _lastCachedUtcNow = -1;
 
-    int _lastCachedNow = -1;
-    int _lastCachedUtcNow = -1;
-
-    DateTime _cachedNow;
-    DateTime _cachedUtcNow;
+    private DateTime _cachedNow;
+    private DateTime _cachedUtcNow;
 
     public TimeService(ITimeProvider timeProvider)
     {
@@ -66,14 +61,11 @@ public partial class TimeService
         get => _timeProvider.TimeScale;
         set => _timeProvider.TimeScale = value;
     }
-
-    public string GetReadableTimeSpan(DateTime startDate, DateTime endDate)
+    
+    public static string FormatTimeDuration(float timeInSeconds)
     {
-        var timeSpan = endDate - startDate;
-        if (timeSpan.TotalDays >= 1) return (int)timeSpan.TotalDays + D + " " + timeSpan.Hours + H;
-        if (timeSpan.TotalHours >= 1) return (int)timeSpan.TotalHours + H + " " + timeSpan.Minutes + M;
-        if (timeSpan.TotalMinutes >= 1) return (int)timeSpan.TotalMinutes + M + " " + timeSpan.Seconds + S;
-
-        return Math.Max(0, timeSpan.Seconds) + S;
+        int minutes = (int)timeInSeconds / 60;
+        int seconds = (int)timeInSeconds % 60;
+        return $"{minutes:00}:{seconds:00}";
     }
 }

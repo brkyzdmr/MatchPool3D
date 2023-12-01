@@ -1,6 +1,6 @@
 using System;
 
-public partial interface ITimeProvider
+public interface ITimeProvider
 {
     DateTime Now { get; }
     DateTime UtcNow { get; }

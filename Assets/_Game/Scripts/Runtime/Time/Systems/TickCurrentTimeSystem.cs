@@ -3,12 +3,10 @@ using UnityEngine;
 
 public sealed class TickCurrentTimeSystem : IExecuteSystem, IInitializeSystem
 {
-    readonly Contexts _contexts;
-    double _lastTick;
+    private readonly Contexts _contexts;
+    private double _lastTick;
 
-    static int _cheatTime;
-    public static void AdvanceCheatTime() => _cheatTime += 60;
-    static long CalculateTotalSeconds() => TimeService.Instance.Now.ToEpochUnixTimestamp() + _cheatTime;
+    private static long CalculateTotalSeconds() => TimeService.Instance.Now.ToEpochUnixTimestamp();
 
     public TickCurrentTimeSystem(Contexts contexts)
     {

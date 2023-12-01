@@ -8,7 +8,7 @@ public static class ObjectExtension
         var entity = context.CreateEntity();
         entity.AddAsset("Prefabs/Ball");
         entity.AddPosition(position);
-
+        entity.isMergableObject = true;
         return entity;
     }
 }

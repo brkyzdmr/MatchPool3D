@@ -1,6 +1,5 @@
 ﻿using Entitas;
 using Entitas.Unity;
-using Game;
 using UnityEngine;
 
 public class View : MonoBehaviour, 

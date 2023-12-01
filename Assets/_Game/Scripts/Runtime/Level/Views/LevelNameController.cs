@@ -1,6 +1,4 @@
-﻿
-using Game;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
 public class LevelNameController : MonoBehaviour, IAnyLevelReadyListener
@@ -20,12 +18,10 @@ public class LevelNameController : MonoBehaviour, IAnyLevelReadyListener
         if (!_contexts.game.isLevelReady)
             return;
         
-
-        var levelConfig = _contexts.config.levelConfig.value;
+        var levelConfig = LevelService.LevelsConfig;
         var level = LevelService.PlayerCurrentLevel;
         var name = levelConfig.Levels.levels[level].name;
 
         label.text = $"{name}";
-        Debug.Log("Level name: " + name);
     }
 }

@@ -1,12 +1,11 @@
 using System.Collections.Generic;
 using Entitas;
-using Game;
 using UnityEngine;
 
 public sealed class InitializeLevelSystem : ReactiveSystem<GameEntity>, IInitializeSystem
 {
-    readonly Contexts _contexts;
-    Transform _playAreaContainer;
+    private readonly Contexts _contexts;
+    private Transform _playAreaContainer;
     private int _levelCount;
     
     public InitializeLevelSystem(Contexts contexts) : base(contexts.game)
@@ -16,9 +15,6 @@ public sealed class InitializeLevelSystem : ReactiveSystem<GameEntity>, IInitial
 
     public void Initialize()
     {
-        // var levelInfo = Resources.Load<TextAsset>(LevelImportTags.LevelInfo).text;
-        // _levelCount = JsonUtility.FromJson<LevelInfo>(levelInfo).LevelCount;
-        //
         SetupLevel();
     }
 
@@ -30,33 +26,17 @@ public sealed class InitializeLevelSystem : ReactiveSystem<GameEntity>, IInitial
         }
         
         var level = LevelService.PlayerCurrentLevel;
+        var config = _contexts.config.levelConfig.value;
+        _contexts.game.ReplaceCreatedObjectsCount(0);
+        _contexts.game.ReplaceRemainingObjectsCount(config.Levels.levels[level].maxProducedObjectLevel);
         _contexts.input.isInputBlock = true;
-        // var levelString = Resources.Load<TextAsset>(LevelImportTags.GetLevelName(level)).text;
-        // var data = JsonUtility.FromJson<LevelDataContainer>(levelString);
-        //
-        // CreateCubes(data, out var averagePos);
-        // CreatePlayAreaContainer(averagePos);
-        // CreatePlayer();
-        // CreateMagneticField();
+        
         CreateObjects();
         _contexts.game.isLevelReady = true;
         _contexts.input.isInputBlock = false;
-    }
-
-    private void CreatePlayAreaContainer(Vector3 averagePos)
-    {
-        // if (_playAreaContainer != null)
-        // {
-        //     _playAreaContainer.DetachChildren();
-        //     GameObject.Destroy(_playAreaContainer.gameObject);
-        // }
-        //
-        // _playAreaContainer = new GameObject("PlayAreaContainer").transform;
-        // var levelConfig = _contexts.config.levelConfig.value;
-        // _playAreaContainer.position = new Vector3(-averagePos.x + levelConfig.PlayAreaContainerOffset.x,
-        //     0 + levelConfig.PlayAreaContainerOffset.y, -averagePos.y + levelConfig.PlayAreaContainerOffset.z);
-        // _playAreaContainer.rotation = levelConfig.PlayAreaContainerRotation.GetEulerQuaternion();
-        // _contexts.game.ReplacePlayAreaParent(_playAreaContainer);
+        
+        LevelService.LevelStatus = LevelStatus.Continue;
+        _contexts.game.ReplaceLevelStatus(LevelService.LevelStatus);
     }
 
     private void CreateObjects()
@@ -80,20 +60,13 @@ public sealed class InitializeLevelSystem : ReactiveSystem<GameEntity>, IInitial
     
     protected override void Execute(List<GameEntity> entities)
     {
-        // var cubes = _contexts.game.GetEntities(GameMatcher.ColoredCube);
-        // foreach (var gameEntity in cubes)
-        // {
-        //     gameEntity.isDestroyed = true;
-        // }
-        // var player = _contexts.game.GetEntities(GameMatcher.Player);
-        // foreach (var gameEntity in player)
-        // {
-        //     gameEntity.isDestroyed = true;
-        // }
-        //
-        // _contexts.game.isLevelEnd = false;
-        // // _contexts.game.ReplaceCurrentCollectedCubes(0);
-        // // _contexts.game.ReplaceCreatedCubeCount(0);
-        // SetupLevel();
+        var mergableObjects = _contexts.game.GetEntities(GameMatcher.MergableObject);
+        foreach (var mergableObject in mergableObjects)
+        {
+            mergableObject.isDestroyed = true;
+        }
+
+        _contexts.game.isLevelEnd = false;
+        SetupLevel();
     }
 }

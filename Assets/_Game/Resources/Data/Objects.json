@@ -1,0 +1,28 @@
+{
+  "objects": [
+    {
+      "type": "type1",
+      "shop": {
+        "sprite": "Sprites/type1_shop",
+        "price": 0
+      },
+      "levels": [
+        "Prefabs/model1",
+        "Prefabs/model2",
+        "Prefabs/model3"
+      ]
+    },
+    {
+      "type": "type2",
+      "shop": {
+        "sprite": "Sprites/type1_shop",
+        "price": 0
+      },
+      "levels": [
+        "Prefabs/model1",
+        "Prefabs/model2",
+        "Prefabs/model3"
+      ]
+    }
+  ]
+}

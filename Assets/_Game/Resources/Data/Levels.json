@@ -1,0 +1,20 @@
+{
+  "levels": [
+    {
+      "name": "Tutorial",
+      "type": "onboarding",
+      "duration": -1,
+      "maxObjectLevel": 2,
+      "maxProducedObjectLevel": 1,
+      "maxProducedObjectCount": 6
+    },
+    {
+      "name": "Level 1",
+      "type": "standard",
+      "duration": 60,
+      "maxObjectLevel": 2,
+      "maxProducedObjectLevel": 1,
+      "maxProducedObjectCount": 30
+    }
+  ]
+}

@@ -11,17 +11,19 @@ public partial class GameEntity {
     public RigidbodyComponent rigidbody { get { return (RigidbodyComponent)GetComponent(GameComponentsLookup.Rigidbody); } }
     public bool hasRigidbody { get { return HasComponent(GameComponentsLookup.Rigidbody); } }
 
-    public void AddRigidbody(UnityEngine.Rigidbody newRigidbody) {
+    public void AddRigidbody(bool newIsKinematic, UnityEngine.Vector3 newVelocity) {
         var index = GameComponentsLookup.Rigidbody;
         var component = (RigidbodyComponent)CreateComponent(index, typeof(RigidbodyComponent));
-        component.Rigidbody = newRigidbody;
+        component.IsKinematic = newIsKinematic;
+        component.Velocity = newVelocity;
         AddComponent(index, component);
     }
 
-    public void ReplaceRigidbody(UnityEngine.Rigidbody newRigidbody) {
+    public void ReplaceRigidbody(bool newIsKinematic, UnityEngine.Vector3 newVelocity) {
         var index = GameComponentsLookup.Rigidbody;
         var component = (RigidbodyComponent)CreateComponent(index, typeof(RigidbodyComponent));
-        component.Rigidbody = newRigidbody;
+        component.IsKinematic = newIsKinematic;
+        component.Velocity = newVelocity;
         ReplaceComponent(index, component);
     }
 

@@ -21,13 +21,17 @@ public partial class Contexts : Entitas.IContexts {
 
     static Contexts _sharedInstance;
 
+    public ConfigContext config { get; set; }
     public GameContext game { get; set; }
+    public GameStateContext gameState { get; set; }
     public InputContext input { get; set; }
 
-    public Entitas.IContext[] allContexts { get { return new Entitas.IContext [] { game, input }; } }
+    public Entitas.IContext[] allContexts { get { return new Entitas.IContext [] { config, game, gameState, input }; } }
 
     public Contexts() {
+        config = new ConfigContext();
         game = new GameContext();
+        gameState = new GameStateContext();
         input = new InputContext();
 
         var postConstructors = System.Linq.Enumerable.Where(
@@ -58,21 +62,21 @@ public partial class Contexts : Entitas.IContexts {
 //------------------------------------------------------------------------------
 public partial class Contexts {
 
-    public const string Id = "Id";
+    public const string ObjectPool = "ObjectPool";
 
     [Entitas.CodeGeneration.Attributes.PostConstructor]
     public void InitializeEntityIndices() {
-        game.AddEntityIndex(new Entitas.PrimaryEntityIndex<GameEntity, int>(
-            Id,
-            game.GetGroup(GameMatcher.Id),
-            (e, c) => ((IdComponent)c).Value));
+        game.AddEntityIndex(new Entitas.PrimaryEntityIndex<GameEntity, string>(
+            ObjectPool,
+            game.GetGroup(GameMatcher.ObjectPool),
+            (e, c) => ((ObjectPoolComponent)c).Id));
     }
 }
 
 public static class ContextsExtensions {
 
-    public static GameEntity GetEntityWithId(this GameContext context, int Value) {
-        return ((Entitas.PrimaryEntityIndex<GameEntity, int>)context.GetEntityIndex(Contexts.Id)).GetEntity(Value);
+    public static GameEntity GetEntityWithObjectPool(this GameContext context, string Id) {
+        return ((Entitas.PrimaryEntityIndex<GameEntity, string>)context.GetEntityIndex(Contexts.ObjectPool)).GetEntity(Id);
     }
 }
 //------------------------------------------------------------------------------
@@ -90,7 +94,9 @@ public partial class Contexts {
     [Entitas.CodeGeneration.Attributes.PostConstructor]
     public void InitializeContextObservers() {
         try {
+            CreateContextObserver(config);
             CreateContextObserver(game);
+            CreateContextObserver(gameState);
             CreateContextObserver(input);
         } catch(System.Exception) {
         }

@@ -31,8 +31,8 @@ MonoBehaviour:
   m_FsrOverrideSharpness: 0
   m_FsrSharpness: 0.92
   m_MainLightRenderingMode: 1
-  m_MainLightShadowsSupported: 0
-  m_MainLightShadowmapResolution: 1024
+  m_MainLightShadowsSupported: 1
+  m_MainLightShadowmapResolution: 2048
   m_AdditionalLightsRenderingMode: 0
   m_AdditionalLightsPerObjectLimit: 1
   m_AdditionalLightShadowsSupported: 1

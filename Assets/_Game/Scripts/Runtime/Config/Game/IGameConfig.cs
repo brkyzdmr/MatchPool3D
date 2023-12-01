@@ -3,5 +3,5 @@ using Entitas.CodeGeneration.Attributes;
 [Config, Unique, ComponentName("GameConfig")]
 public interface IGameConfig
 {
-    public GameConfigData GameConfig => new GameConfigData();
+    public GameConfigData GameConfig { get; }
 }

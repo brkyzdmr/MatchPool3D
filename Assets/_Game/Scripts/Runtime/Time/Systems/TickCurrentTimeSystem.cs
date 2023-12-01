@@ -18,16 +18,16 @@ public sealed class TickCurrentTimeSystem : IExecuteSystem, IInitializeSystem
 
     public void Initialize()
     {
-        // _contexts.game.SetCurrentTime(CalculateTotalSeconds());
+        _contexts.game.SetCurrentTime(CalculateTotalSeconds());
     }
 
     public void Execute()
     {
         if (Time.realtimeSinceStartupAsDouble - 1.0f >= _lastTick)
         {
-            // _contexts.game.ReplaceCurrentTime(CalculateTotalSeconds());
-            // _lastTick = Time.realtimeSinceStartupAsDouble;
-            // _contexts.game.CreateEntity().isTimeTick = true;
+            _contexts.game.ReplaceCurrentTime(CalculateTotalSeconds());
+            _lastTick = Time.realtimeSinceStartupAsDouble;
+            _contexts.game.CreateEntity().isTimeTick = true;
         }
     }
 }

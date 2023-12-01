@@ -6,16 +6,16 @@
     {
         var data = JsonConfigReader.ReadJsonConfig<LevelsConfigData>(ConfigFilePath);
 
-        return new LevelsesConfigImplementation(data);
+        return new LevelsConfigImplementation(data);
     }
 
-    private class LevelsesConfigImplementation : ILevelsConfig
+    private class LevelsConfigImplementation : ILevelsConfig
     {
-        public LevelsConfigData Config { get; }
+        public LevelsConfigData Levels { get; }
 
-        public LevelsesConfigImplementation(LevelsConfigData config)
+        public LevelsConfigImplementation(LevelsConfigData config)
         {
-            Config = config;
+            Levels = config;
         }
     }
 }

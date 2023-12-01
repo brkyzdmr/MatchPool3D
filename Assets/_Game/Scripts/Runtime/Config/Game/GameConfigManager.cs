@@ -14,5 +14,7 @@
         public GameConfigImplementation(GameConfigData config)
         {
         }
+
+        public GameConfigData GameConfig { get; }
     }
 }

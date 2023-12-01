@@ -16,19 +16,21 @@ public sealed class InitializeLevelSystem : ReactiveSystem<GameEntity>, IInitial
 
     public void Initialize()
     {
-        CreateObjects();
         // var levelInfo = Resources.Load<TextAsset>(LevelImportTags.LevelInfo).text;
         // _levelCount = JsonUtility.FromJson<LevelInfo>(levelInfo).LevelCount;
         //
-        // SetupLevel();
+        SetupLevel();
     }
 
     private void SetupLevel()
     {
-        // if (LevelService.PlayerCurrentLevel >= _levelCount)
-        //     LevelService.PlayerCurrentLevel = Random.Range(0, _levelCount);
-        // var level = LevelService.PlayerCurrentLevel;
-        // _contexts.input.isInputBlock = true;
+        if (LevelService.PlayerCurrentLevel >= _levelCount)
+        {
+            LevelService.PlayerCurrentLevel = Random.Range(0, _levelCount);
+        }
+        
+        var level = LevelService.PlayerCurrentLevel;
+        _contexts.input.isInputBlock = true;
         // var levelString = Resources.Load<TextAsset>(LevelImportTags.GetLevelName(level)).text;
         // var data = JsonUtility.FromJson<LevelDataContainer>(levelString);
         //
@@ -36,8 +38,9 @@ public sealed class InitializeLevelSystem : ReactiveSystem<GameEntity>, IInitial
         // CreatePlayAreaContainer(averagePos);
         // CreatePlayer();
         // CreateMagneticField();
-        // _contexts.game.isLevelReady = true;
-        // _contexts.input.isInputBlock = false;
+        CreateObjects();
+        _contexts.game.isLevelReady = true;
+        _contexts.input.isInputBlock = false;
     }
 
     private void CreatePlayAreaContainer(Vector3 averagePos)
@@ -66,7 +69,7 @@ public sealed class InitializeLevelSystem : ReactiveSystem<GameEntity>, IInitial
             _contexts.game.CreateObject(randomPosition);
         }
         
-        // _contexts.game.ReplaceCreatedCubeCount(cubeCount);
+        _contexts.game.ReplaceCreatedObjectsCount(cubeCount);
     }
 
 

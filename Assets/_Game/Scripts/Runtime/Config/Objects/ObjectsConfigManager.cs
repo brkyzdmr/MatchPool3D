@@ -1,6 +1,6 @@
 ﻿public static class ObjectsConfigManager
 {
-    private const string ConfigFilePath = "Data/GameConfig";
+    private const string ConfigFilePath = "Data/Objects";
 
     public static IObjectsConfig LoadGameConfig()
     {

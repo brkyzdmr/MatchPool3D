@@ -41,7 +41,7 @@ public class TimeLabelController : MonoBehaviour, IAnyTimeTickListener, IAnyLeve
             _listener.AddAnyTimeTickListener(this);
 
         var levelConfig = LevelService.LevelsConfig;
-        var level = LevelService.PlayerCurrentLevel;
+        var level = LevelService.CurrentLevel;
         var time = levelConfig.Levels.levels[level].duration;
         _startTime = time;
         _passedTime = 0;

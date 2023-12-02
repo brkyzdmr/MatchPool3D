@@ -19,7 +19,7 @@ public class LevelNameController : MonoBehaviour, IAnyLevelReadyListener
             return;
         
         var levelConfig = LevelService.LevelsConfig;
-        var level = LevelService.PlayerCurrentLevel;
+        var level = LevelService.CurrentLevel;
         var name = levelConfig.Levels.levels[level].name;
 
         label.text = $"{name}";

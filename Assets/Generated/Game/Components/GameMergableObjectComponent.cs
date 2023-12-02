@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    static readonly MergableObjectComponent MergableObjectComponentComponent = new MergableObjectComponent();
+    static readonly MergableObjectComponent mergableObjectComponent = new MergableObjectComponent();
 
     public bool isMergableObject {
         get { return HasComponent(GameComponentsLookup.MergableObject); }
@@ -19,7 +19,7 @@ public partial class GameEntity {
                     var componentPool = GetComponentPool(index);
                     var component = componentPool.Count > 0
                             ? componentPool.Pop()
-                            : MergableObjectComponentComponent;
+                            : mergableObjectComponent;
 
                     AddComponent(index, component);
                 } else {

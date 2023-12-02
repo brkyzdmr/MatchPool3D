@@ -1,27 +1,33 @@
 {
   "objects": [
     {
-      "type": "type1",
+      "type": "ball_green",
       "shop": {
         "sprite": "Sprites/type1_shop",
         "price": 0
       },
       "levels": [
-        "Prefabs/model1",
-        "Prefabs/model2",
-        "Prefabs/model3"
+        "Prefabs/Objects/Balls/Green/GreenBall_1",
+        "Prefabs/Objects/Balls/Green/GreenBall_2",
+        "Prefabs/Objects/Balls/Green/GreenBall_3",
+        "Prefabs/Objects/Balls/Green/GreenBall_4",
+        "Prefabs/Objects/Balls/Green/GreenBall_5",
+        "Prefabs/Objects/Balls/Green/BallGreen_6"
       ]
     },
     {
-      "type": "type2",
+      "type": "ball_blue",
       "shop": {
         "sprite": "Sprites/type1_shop",
-        "price": 0
+        "price": 500
       },
       "levels": [
-        "Prefabs/model1",
-        "Prefabs/model2",
-        "Prefabs/model3"
+        "Prefabs/Objects/Balls/Blue/BlueBall_1",
+        "Prefabs/Objects/Balls/Blue/BlueBall_2",
+        "Prefabs/Objects/Balls/Blue/BlueBall_3",
+        "Prefabs/Objects/Balls/Blue/BlueBall_4",
+        "Prefabs/Objects/Balls/Blue/BlueBall_5",
+        "Prefabs/Objects/Balls/Blue/BallBlue_6"
       ]
     }
   ]

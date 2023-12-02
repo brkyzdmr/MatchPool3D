@@ -51,7 +51,7 @@ public class MenuController : MonoBehaviour, IAnyLevelStatusListener
 
     public void NextLevel()
     {
-        LevelService.PlayerCurrentLevel++;
+        LevelService.CurrentLevel++;
         Load();
     }
 

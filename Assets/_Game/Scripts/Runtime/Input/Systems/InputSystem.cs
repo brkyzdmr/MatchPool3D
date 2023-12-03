@@ -82,16 +82,20 @@ public sealed class InputSystem : IExecuteSystem
 
     private void UpdateDraggedObjectPosition(Vector2 screenPosition) 
     {
-        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, 1000))
+        if (_isDragging && _selectedEntity != null && _selectedEntity.isEnabled)
         {
-            var newPosition = new Vector3(hit.point.x, _selectedObjectY, hit.point.z);
-        
-            if (_isDragging) 
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, 1000))
             {
+                var newPosition = new Vector3(hit.point.x, _selectedObjectY, hit.point.z);
                 _selectedEntity.ReplacePosition(newPosition);
             }
         }
+        else
+        {
+            _selectedEntity = null;
+        }
     }
+
 
     private void StopDraggingObject() 
     {

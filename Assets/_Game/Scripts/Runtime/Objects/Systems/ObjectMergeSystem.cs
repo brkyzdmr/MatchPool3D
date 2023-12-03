@@ -53,9 +53,15 @@ public class ObjectMergeSystem : ReactiveSystem<GameEntity>
 
     private void MergeObjects(GameEntity entity1, GameEntity entity2)
     {
+        var maxLevel = LevelService.MaxObjectLevel;
         var nextLevel = CalculateNextLevel(entity1.@object.Level);
-        var path = ObjectService.GetObjectPath(entity1.@object.Type, nextLevel);
-        var mergedEntity = _contexts.game.CreateObject(entity1.@object.Type, nextLevel, path, entity1.collision.CollisionPoint);
+
+        if (nextLevel <= maxLevel)
+        {
+            var path = ObjectService.GetObjectPath(entity1.@object.Type, nextLevel);
+            var mergedEntity = _contexts.game.CreateObject(entity1.@object.Type, nextLevel, path,
+                entity1.collision.CollisionPoint);
+        }
 
         entity1.isDestroyed = true;
         entity2.isDestroyed = true;

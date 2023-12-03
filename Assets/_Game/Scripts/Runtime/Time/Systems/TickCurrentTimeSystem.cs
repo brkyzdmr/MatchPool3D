@@ -5,6 +5,7 @@ public sealed class TickCurrentTimeSystem : IExecuteSystem, IInitializeSystem
 {
     private readonly Contexts _contexts;
     private double _lastTick;
+    private GameEntity _lastTickEntity;
 
     private static long CalculateTotalSeconds() => TimeService.Instance.Now.ToEpochUnixTimestamp();
 
@@ -25,7 +26,14 @@ public sealed class TickCurrentTimeSystem : IExecuteSystem, IInitializeSystem
         {
             _contexts.game.ReplaceCurrentTime(CalculateTotalSeconds());
             _lastTick = Time.realtimeSinceStartupAsDouble;
-            _contexts.game.CreateEntity().isTimeTick = true;
+            
+            if (_lastTickEntity != null && !_lastTickEntity.isDestroyed)
+            {
+                _lastTickEntity.Destroy();
+            }
+            
+            _lastTickEntity = _contexts.game.CreateEntity();
+            _lastTickEntity.isTimeTick = true;
         }
     }
 }

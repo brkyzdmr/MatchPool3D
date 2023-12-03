@@ -1,6 +1,6 @@
 using Entitas;
 using Entitas.CodeGeneration.Attributes;
 
-[Event(EventTarget.Any),Cleanup(CleanupMode.DestroyEntity)]
+[Event(EventTarget.Any)]
 public sealed class TimeTickComponent : IComponent { }
 

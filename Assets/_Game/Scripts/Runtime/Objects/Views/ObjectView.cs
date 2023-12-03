@@ -23,6 +23,8 @@ public class ObjectView : View,
     {
         _rigidbody.isKinematic = isKinematic;
         _rigidbody.velocity = velocity;
+        
+        Debug.Log("isKinematic: " + isKinematic + ", Velocity: " + velocity);
     }
 
     public void OnCollider(GameEntity entity, bool isEnabled, bool isTrigger)

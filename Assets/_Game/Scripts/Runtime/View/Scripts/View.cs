@@ -46,8 +46,12 @@ public class View : MonoBehaviour,
 
     protected virtual void OnDestroy()
     {
-        if (gameObject.GetEntityLink()?.entity != null)
+        var entity = gameObject.GetEntityLink()?.entity;
+        if (entity != null)
+        {
             gameObject.Unlink();
+            entity.Destroy();
+        }
         Destroy(gameObject);
     }
 }

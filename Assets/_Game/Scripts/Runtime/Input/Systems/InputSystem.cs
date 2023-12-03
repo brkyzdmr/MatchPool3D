@@ -1,14 +1,25 @@
-﻿using Entitas;
+﻿using System.Numerics;
+using Entitas;
+using Entitas.Unity;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 public sealed class InputSystem : IExecuteSystem
 {
     readonly Contexts _contexts;
 
-    Vector2 _startTouchPosition;
-    bool _hasSwipeStarted;
-    private Vector3 direction;
+    private Vector2 _startTouchPosition;
+    private Vector2 _endTouchPosition;
+    private Vector3 _direction;
+    
+    private GameEntity _selectedEntity;
+    private bool _isDragging;
+    private GameObject _selectedObject;
+    private float _selectedObjectY;
+
+    private Vector2 _previousFramePosition;
 
     public InputSystem(Contexts contexts)
     {
@@ -28,36 +39,83 @@ public sealed class InputSystem : IExecuteSystem
         if (Input.GetMouseButtonDown(0) && !CheckOnUI())
         {
             _startTouchPosition = Input.mousePosition;
-            _hasSwipeStarted = true;
+            TrySelectObject(Input.mousePosition);
         }
 
-        if (Input.GetMouseButton(0) && _hasSwipeStarted)
+        if (_isDragging)
         {
-            var swipeDirection = (Vector2)Input.mousePosition - _startTouchPosition;
-            direction = new Vector3(swipeDirection.x / Screen.width, 0, swipeDirection.y / Screen.height);
-            _startTouchPosition = Input.mousePosition;
-            Debug.Log("Input - Swipe Started!");
+            UpdateDraggedObjectPosition(Input.mousePosition);
         }
 
-        if (Input.GetMouseButtonUp(0) && _hasSwipeStarted)
+        if (Input.GetMouseButtonUp(0))
         {
-            // _contexts.game.ReplacePlayerMoveData(Vector3.zero, Quaternion.identity);
-            _hasSwipeStarted = false;
-            Debug.Log("Input - Swipe Ended!");
+            if (_isDragging)
+            {
+                StopDraggingObject();
+            }
+            
+            _isDragging = false;
         }
+
+        _previousFramePosition = Input.mousePosition; 
     }
 
-    bool CheckOnUI()
+    private void TrySelectObject(Vector2 screenPosition)
     {
-        if (Application.isMobilePlatform)
+        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out RaycastHit hit))
         {
-            return !IsOnUI(0);
-        }
+            _selectedObject = hit.collider.transform.parent.gameObject;
+            
+            if (_selectedObject == null || _selectedObject.GetComponent<ObjectView>() == null) { return; }
 
-        return IsOnUI();
+            if (_selectedObject.GetEntityLink().entity is GameEntity entity && entity.hasRigidbody)
+            {
+                var position = _selectedObject.transform.position;
+                _selectedEntity = entity;
+                _selectedEntity.ReplacePosition(position);
+                _selectedObjectY = position.y + 1;
+                _selectedEntity.ReplaceRigidbody(true, Vector3.zero);
+                _isDragging = true;
+            }
+        }
     }
 
-    bool IsOnUI(int fingerId = -1)
+    private void UpdateDraggedObjectPosition(Vector2 screenPosition) 
+    {
+        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, 1000))
+        {
+            var newPosition = new Vector3(hit.point.x, _selectedObjectY, hit.point.z);
+        
+            if (_isDragging) 
+            {
+                _selectedEntity.ReplacePosition(newPosition);
+            }
+        }
+    }
+
+    private void StopDraggingObject() 
+    {
+        if (_selectedEntity != null)
+        {
+            _endTouchPosition = Input.mousePosition;
+            var directionalVelocity = CalculateDirectionalVelocity();
+
+            _selectedEntity.ReplaceRigidbody(false, directionalVelocity);
+            _selectedEntity = null;
+        }
+    }
+
+    private Vector3 CalculateDirectionalVelocity() 
+    {
+        var directionalVelocity = _endTouchPosition - _previousFramePosition;
+    
+        var speed = 10f; 
+        directionalVelocity = directionalVelocity.normalized * speed;
+
+        return new Vector3(directionalVelocity.x, 0, directionalVelocity.y);
+    }
+
+    bool CheckOnUI(int fingerId = -1)
     {
         if (EventSystem.current != null)
         {

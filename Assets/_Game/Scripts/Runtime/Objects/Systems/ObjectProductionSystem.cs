@@ -8,7 +8,6 @@ public class ObjectProductionSystem : IInitializeSystem, IExecuteSystem
     private TimerEntity _productionTimer;
     private readonly Contexts _contexts;
     private readonly GameContext _context;
-    private int _createdObjectCount = 0;
     private float _timerInteval = 2f;
     
     public ObjectProductionSystem(Contexts contexts)
@@ -41,13 +40,13 @@ public class ObjectProductionSystem : IInitializeSystem, IExecuteSystem
         var randomPosition = new Vector3(Random.Range(-3, 3), 10, Random.Range(-5, 5));
         var randomAvailableObjectPath = ObjectService.GetRandomAvailableObjectPath(1);
         _contexts.game.CreateObject(randomAvailableObjectPath, randomPosition);
-        _createdObjectCount += 1;
-        _contexts.game.ReplaceCreatedObjectsCount(_createdObjectCount);
+        LevelService.CreatedObjectCount += 1;
+        _contexts.game.ReplaceCreatedObjectsCount(LevelService.CreatedObjectCount);
     }
 
     private bool ShouldProduceObject()
     {
-        return _createdObjectCount != LevelService.MaxProducedObjectCount && !_productionTimer.isTimerRunning;
+        return LevelService.CreatedObjectCount != LevelService.MaxProducedObjectCount && !_productionTimer.isTimerRunning;
     }
     
     private void ResetProductionTimer()

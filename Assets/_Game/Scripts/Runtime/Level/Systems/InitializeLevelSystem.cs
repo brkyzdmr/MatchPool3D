@@ -30,6 +30,8 @@ public sealed class InitializeLevelSystem : ReactiveSystem<GameEntity>, IInitial
         _contexts.game.ReplaceCreatedObjectsCount(0);
         _contexts.game.ReplaceRemainingObjectsCount(config.Levels.levels[level].maxProducedObjectLevel);
         _contexts.input.isInputBlock = true;
+
+        LevelService.CreatedObjectCount = 0;
         
         _contexts.game.isLevelReady = true;
         _contexts.input.isInputBlock = false;

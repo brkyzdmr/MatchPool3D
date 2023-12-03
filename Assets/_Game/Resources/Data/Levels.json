@@ -3,7 +3,7 @@
     {
       "name": "Tutorial",
       "type": "onboarding",
-      "duration": 120,
+      "duration": 14,
       "maxObjectLevel": 2,
       "maxProducedObjectLevel": 1,
       "maxProducedObjectCount": 6

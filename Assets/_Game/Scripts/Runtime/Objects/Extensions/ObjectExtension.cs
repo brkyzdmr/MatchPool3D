@@ -8,6 +8,7 @@ public static class ObjectExtension
         var entity = context.CreateEntity();
         entity.AddAsset(path);
         entity.AddPosition(position);
+        entity.AddRigidbody(false, Vector3.zero);
         entity.isMergableObject = true;
         return entity;
     }

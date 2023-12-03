@@ -25,6 +25,7 @@ public static class LevelService
     public static readonly int MaxProducedObjectCount = LevelsConfig.Levels.levels[CurrentLevel].maxProducedObjectCount;
     public static readonly int MaxProducedObjectLevel = LevelsConfig.Levels.levels[CurrentLevel].maxProducedObjectLevel;
     public static readonly int MaxObjectLevel = LevelsConfig.Levels.levels[CurrentLevel].maxObjectLevel;
+    public static int CreatedObjectCount = 0;
 
     private static readonly Contexts Contexts = Contexts.sharedInstance;
     public static bool IsLevelCompleted()

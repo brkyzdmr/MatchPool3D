@@ -17,6 +17,7 @@ public sealed class GameEventSystems : Feature {
         Add(new AnyLevelEndEventSystem(contexts)); // priority: 0
         Add(new AnyLevelReadyEventSystem(contexts)); // priority: 0
         Add(new AnyLevelStatusEventSystem(contexts)); // priority: 0
+        Add(new ObjectEventSystem(contexts)); // priority: 0
         Add(new PositionEventSystem(contexts)); // priority: 0
         Add(new QuaternionRotationEventSystem(contexts)); // priority: 0
         Add(new AnyRemainingObjectsCountEventSystem(contexts)); // priority: 0

@@ -16,7 +16,7 @@ public sealed class InputSystem : IExecuteSystem
     
     private GameEntity _selectedEntity;
     private bool _isDragging;
-    private GameObject _selectedObject;
+    private ObjectView _selectedObjectView;
     private float _selectedObjectY;
 
     private Vector2 _previousFramePosition;
@@ -64,14 +64,14 @@ public sealed class InputSystem : IExecuteSystem
     {
         if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out RaycastHit hit))
         {
-            _selectedObject = hit.collider.transform.parent.gameObject;
+            _selectedObjectView = hit.collider.transform.GetComponentInParent<ObjectView>();
             
-            if (_selectedObject == null || _selectedObject.GetComponent<ObjectView>() == null) { return; }
+            if (_selectedObjectView == null || _selectedObjectView == null) { return; }
 
-            if (_selectedObject.GetEntityLink().entity is GameEntity entity && entity.hasRigidbody)
+            if (_selectedObjectView.LinkedEntity.hasRigidbody)
             {
-                var position = _selectedObject.transform.position;
-                _selectedEntity = entity;
+                var position = _selectedObjectView.transform.position;
+                _selectedEntity = _selectedObjectView.LinkedEntity;
                 _selectedEntity.ReplacePosition(position);
                 _selectedObjectY = position.y + 1;
                 _selectedEntity.ReplaceRigidbody(true, Vector3.zero);

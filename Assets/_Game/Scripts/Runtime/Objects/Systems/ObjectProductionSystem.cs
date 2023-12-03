@@ -38,8 +38,10 @@ public class ObjectProductionSystem : IInitializeSystem, IExecuteSystem
     private void CreateNewObject()
     {
         var randomPosition = new Vector3(Random.Range(-3, 3), 10, Random.Range(-5, 5));
-        var randomAvailableObjectPath = ObjectService.GetRandomAvailableObjectPath(1);
-        _contexts.game.CreateObject(randomAvailableObjectPath, randomPosition);
+        var randomAvailableObject = ObjectService.GetRandomAvailableObject();
+        var randomAvailableObjectPath = ObjectService.GetObjectPath(randomAvailableObject, 1);
+
+        _contexts.game.CreateObject(randomAvailableObject.type, 1, randomAvailableObjectPath, randomPosition);
         LevelService.CreatedObjectCount += 1;
         _contexts.game.ReplaceCreatedObjectsCount(LevelService.CreatedObjectCount);
     }

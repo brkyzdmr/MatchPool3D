@@ -1,4 +1,5 @@
-﻿using Entitas;
+﻿using System;
+using Entitas;
 using UnityEngine;
 
 public class ObjectView : View, 
@@ -19,12 +20,26 @@ public class ObjectView : View,
         _collider = GetComponentInChildren<Collider>();
     }
 
+    private void OnCollisionEnter(Collision other)
+    {
+        var otherObject = other.transform.GetComponentInParent<View>();
+        if (otherObject == null)
+        {
+            return;
+        }
+
+        GameEntity otherEntity = otherObject.LinkedEntity;
+
+        if (otherEntity != null && _linkedEntity.isEnabled) 
+        {
+            _linkedEntity.ReplaceCollision(otherEntity, other.contacts[0].point, other.relativeVelocity);
+        }
+    }
+
     public void OnRigidbody(GameEntity entity, bool isKinematic, Vector3 velocity)
     {
         _rigidbody.isKinematic = isKinematic;
         _rigidbody.velocity = velocity;
-        
-        Debug.Log("isKinematic: " + isKinematic + ", Velocity: " + velocity);
     }
 
     public void OnCollider(GameEntity entity, bool isEnabled, bool isTrigger)

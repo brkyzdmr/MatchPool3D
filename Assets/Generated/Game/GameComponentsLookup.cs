@@ -19,33 +19,36 @@ public static class GameComponentsLookup {
     public const int Asset = 8;
     public const int Collider = 9;
     public const int ColliderListener = 10;
-    public const int CreatedObjectsCount = 11;
-    public const int CurrentLevel = 12;
-    public const int CurrentMergedObjectsCount = 13;
-    public const int CurrentTime = 14;
-    public const int Destroyed = 15;
-    public const int DestroyedListener = 16;
-    public const int LevelEnd = 17;
-    public const int LevelReady = 18;
-    public const int LevelStatus = 19;
-    public const int LoadLevel = 20;
-    public const int MergableObject = 21;
-    public const int ObjectPool = 22;
-    public const int Position = 23;
-    public const int PositionListener = 24;
-    public const int QuaternionRotation = 25;
-    public const int QuaternionRotationListener = 26;
-    public const int RemainingObjectsCount = 27;
-    public const int Rigidbody = 28;
-    public const int RigidbodyListener = 29;
-    public const int Rotation = 30;
-    public const int RotationListener = 31;
-    public const int Scale = 32;
-    public const int ScaleListener = 33;
-    public const int TimeTick = 34;
-    public const int View = 35;
+    public const int Collision = 11;
+    public const int CreatedObjectsCount = 12;
+    public const int CurrentLevel = 13;
+    public const int CurrentMergedObjectsCount = 14;
+    public const int CurrentTime = 15;
+    public const int Destroyed = 16;
+    public const int DestroyedListener = 17;
+    public const int LevelEnd = 18;
+    public const int LevelReady = 19;
+    public const int LevelStatus = 20;
+    public const int LoadLevel = 21;
+    public const int MergableObject = 22;
+    public const int Object = 23;
+    public const int ObjectListener = 24;
+    public const int ObjectPool = 25;
+    public const int Position = 26;
+    public const int PositionListener = 27;
+    public const int QuaternionRotation = 28;
+    public const int QuaternionRotationListener = 29;
+    public const int RemainingObjectsCount = 30;
+    public const int Rigidbody = 31;
+    public const int RigidbodyListener = 32;
+    public const int Rotation = 33;
+    public const int RotationListener = 34;
+    public const int Scale = 35;
+    public const int ScaleListener = 36;
+    public const int TimeTick = 37;
+    public const int View = 38;
 
-    public const int TotalComponents = 36;
+    public const int TotalComponents = 39;
 
     public static readonly string[] componentNames = {
         "AnyCurrentLevelListener",
@@ -59,6 +62,7 @@ public static class GameComponentsLookup {
         "Asset",
         "Collider",
         "ColliderListener",
+        "Collision",
         "CreatedObjectsCount",
         "CurrentLevel",
         "CurrentMergedObjectsCount",
@@ -70,6 +74,8 @@ public static class GameComponentsLookup {
         "LevelStatus",
         "LoadLevel",
         "MergableObject",
+        "Object",
+        "ObjectListener",
         "ObjectPool",
         "Position",
         "PositionListener",
@@ -98,6 +104,7 @@ public static class GameComponentsLookup {
         typeof(AssetComponent),
         typeof(ColliderComponent),
         typeof(ColliderListenerComponent),
+        typeof(CollisionComponent),
         typeof(CreatedObjectsCountComponent),
         typeof(CurrentLevelComponent),
         typeof(CurrentMergedObjectsCount),
@@ -109,6 +116,8 @@ public static class GameComponentsLookup {
         typeof(LevelStatusComponent),
         typeof(LoadLevelComponent),
         typeof(MergableObjectComponent),
+        typeof(ObjectComponent),
+        typeof(ObjectListenerComponent),
         typeof(ObjectPoolComponent),
         typeof(PositionComponent),
         typeof(PositionListenerComponent),

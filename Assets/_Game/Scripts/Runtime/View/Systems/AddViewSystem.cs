@@ -2,6 +2,7 @@
 using Entitas;
 using UnityEngine;
 using static GameMatcher;
+using Object = UnityEngine.Object;
 
 public sealed class AddViewSystem : ReactiveSystem<GameEntity>
 {

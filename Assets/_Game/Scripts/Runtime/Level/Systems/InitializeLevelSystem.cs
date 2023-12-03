@@ -6,7 +6,6 @@ public sealed class InitializeLevelSystem : ReactiveSystem<GameEntity>, IInitial
 {
     private readonly Contexts _contexts;
     private Transform _playAreaContainer;
-    private int _levelCount;
     
     public InitializeLevelSystem(Contexts contexts) : base(contexts.game)
     {
@@ -20,15 +19,13 @@ public sealed class InitializeLevelSystem : ReactiveSystem<GameEntity>, IInitial
 
     private void SetupLevel()
     {
-        if (LevelService.CurrentLevel >= _levelCount)
+        if (LevelService.CurrentLevel >= LevelService.TotalLevelCount)
         {
-            LevelService.CurrentLevel = Random.Range(0, _levelCount);
+            LevelService.CurrentLevel = Random.Range(0, LevelService.TotalLevelCount);
         }
         
-        var level = LevelService.CurrentLevel;
-        var config = _contexts.config.levelConfig.value;
         _contexts.game.ReplaceCreatedObjectsCount(0);
-        _contexts.game.ReplaceRemainingObjectsCount(config.Levels.levels[level].maxProducedObjectLevel);
+        _contexts.game.ReplaceRemainingObjectsCount(0);
         _contexts.input.isInputBlock = true;
 
         LevelService.CreatedObjectCount = 0;
@@ -40,8 +37,6 @@ public sealed class InitializeLevelSystem : ReactiveSystem<GameEntity>, IInitial
         _contexts.game.ReplaceLevelStatus(LevelService.LevelStatus);
     }
     
-
-
     protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context) =>
         context.CreateCollector(GameMatcher.LoadLevel);
     
@@ -56,6 +51,7 @@ public sealed class InitializeLevelSystem : ReactiveSystem<GameEntity>, IInitial
         }
 
         _contexts.game.isLevelEnd = false;
+        TimeService.Instance.ResumeTime();
         SetupLevel();
     }
 }

@@ -25,6 +25,7 @@ public static class LevelService
     public static readonly int MaxProducedObjectCount = LevelsConfig.Levels.levels[CurrentLevel].maxProducedObjectCount;
     public static readonly int MaxProducedObjectLevel = LevelsConfig.Levels.levels[CurrentLevel].maxProducedObjectLevel;
     public static readonly int MaxObjectLevel = LevelsConfig.Levels.levels[CurrentLevel].maxObjectLevel;
+    public static readonly int TotalLevelCount = LevelsConfig.Levels.levels.Count;
     public static int CreatedObjectCount = 0;
 
     private static readonly Contexts Contexts = Contexts.sharedInstance;
@@ -42,6 +43,5 @@ public static class LevelService
     public static void SetLevelStatus(LevelStatus status)
     {
         Contexts.game.ReplaceLevelStatus(status);
-        Debug.Log("Level Status Changed: " + status);
     }
 }

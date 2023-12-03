@@ -22,6 +22,8 @@ public sealed class TickCurrentTimeSystem : IExecuteSystem, IInitializeSystem
 
     public void Execute()
     {
+        if (TimeService.Instance.IsTimePaused) { return; }
+        
         if (Time.realtimeSinceStartupAsDouble - 1.0f >= _lastTick)
         {
             _contexts.game.ReplaceCurrentTime(CalculateTotalSeconds());

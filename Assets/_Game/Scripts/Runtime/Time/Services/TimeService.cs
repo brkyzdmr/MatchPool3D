@@ -61,11 +61,23 @@ public class TimeService
         get => _timeProvider.TimeScale;
         set => _timeProvider.TimeScale = value;
     }
-    
+
+    public bool IsTimePaused { get; private set; }
+
     public static string FormatTimeDuration(float timeInSeconds)
     {
         int minutes = (int)timeInSeconds / 60;
         int seconds = (int)timeInSeconds % 60;
         return $"{minutes:00}:{seconds:00}";
+    }
+    
+    public void PauseTime()
+    {
+        IsTimePaused = true;
+    }
+
+    public void ResumeTime()
+    {
+        IsTimePaused = false;
     }
 }

@@ -44,6 +44,7 @@ public class ObjectProductionSystem : IInitializeSystem, IExecuteSystem
         _contexts.game.CreateObject(randomAvailableObject.type, 1, randomAvailableObjectPath, randomPosition);
         LevelService.CreatedObjectCount += 1;
         _contexts.game.ReplaceCreatedObjectsCount(LevelService.CreatedObjectCount);
+        _contexts.game.ReplaceRemainingObjectsCount(_contexts.game.remainingObjectsCount.Value + 1);
     }
 
     private bool ShouldProduceObject()

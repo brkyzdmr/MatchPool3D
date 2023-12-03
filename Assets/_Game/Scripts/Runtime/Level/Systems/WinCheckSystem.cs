@@ -13,7 +13,7 @@ public class WinCheckSystem : ReactiveSystem<GameEntity>
     }
 
     protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context) =>
-        context.CreateCollector(GameMatcher.CurrentMergedObjectsCount);
+        context.CreateCollector(GameMatcher.RemainingObjectsCount);
 
     protected override bool Filter(GameEntity entity) => _contexts.game.hasRemainingObjectsCount;
 
@@ -22,6 +22,9 @@ public class WinCheckSystem : ReactiveSystem<GameEntity>
         if (LevelService.IsLevelCompleted())
         {
             LevelService.SetLevelStatus(LevelStatus.Win);
+            _contexts.game.isLevelReady = false;
+            _contexts.game.isLevelEnd = true;
+            TimeService.Instance.PauseTime();
         }
     }
 }

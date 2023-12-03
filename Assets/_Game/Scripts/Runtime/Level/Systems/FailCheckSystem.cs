@@ -22,6 +22,9 @@ public class FailCheckSystem : ReactiveSystem<GameEntity>
         if (!LevelService.IsLevelCompleted())
         {
             LevelService.SetLevelStatus(LevelStatus.Fail);
+            _contexts.game.isLevelReady = false;
+            _contexts.game.isLevelEnd = true;
+            TimeService.Instance.PauseTime();
         }
     }
 }

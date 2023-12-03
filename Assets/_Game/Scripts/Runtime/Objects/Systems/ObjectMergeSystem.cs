@@ -61,10 +61,12 @@ public class ObjectMergeSystem : ReactiveSystem<GameEntity>
             var path = ObjectService.GetObjectPath(entity1.@object.Type, nextLevel);
             var mergedEntity = _contexts.game.CreateObject(entity1.@object.Type, nextLevel, path,
                 entity1.collision.CollisionPoint);
+            _contexts.game.ReplaceRemainingObjectsCount(_contexts.game.remainingObjectsCount.Value + 1);
         }
 
         entity1.isDestroyed = true;
         entity2.isDestroyed = true;
+        _contexts.game.ReplaceRemainingObjectsCount(_contexts.game.remainingObjectsCount.Value - 2);
     }
 
     private int CalculateNextLevel(int currentLevel)

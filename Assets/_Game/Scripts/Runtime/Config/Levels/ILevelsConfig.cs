@@ -1,6 +1,6 @@
 ﻿using Entitas.CodeGeneration.Attributes;
 
-[Config, Unique, ComponentName("LevelConfig")]
+[Config, Unique, ComponentName("LevelsConfig")]
 public interface ILevelsConfig
 {
     public LevelsConfigData Levels { get; }

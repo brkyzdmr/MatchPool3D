@@ -2,7 +2,7 @@
 {
     private const string ConfigFilePath = "Data/Levels";
 
-    public static ILevelsConfig LoadGameConfig()
+    public static ILevelsConfig LoadLevelsConfig()
     {
         var data = JsonConfigReader.ReadJsonConfig<LevelsConfigData>(ConfigFilePath);
 

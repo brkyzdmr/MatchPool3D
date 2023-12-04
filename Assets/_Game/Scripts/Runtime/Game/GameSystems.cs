@@ -1,13 +1,13 @@
 ﻿public sealed class GameSystems : Feature
 {
-    public GameSystems(Contexts contexts)
+    public GameSystems(Contexts contexts, Services services)
     {
-        //Level
+        // Game Features
         Add(new TimeFeature(contexts));
-        Add(new LevelFeature(contexts));
-        Add(new InputFeature(contexts));
+        Add(new LevelFeature(contexts, services));
+        Add(new InputFeature(contexts, services));
         Add(new ViewFeature(contexts));
-        Add(new ObjectFeature(contexts));
+        Add(new ObjectFeature(contexts, services));
 
         // (Generated)
         Add(new GameEventSystems(contexts));

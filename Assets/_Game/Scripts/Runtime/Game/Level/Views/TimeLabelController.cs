@@ -9,10 +9,12 @@ public class TimeLabelController : MonoBehaviour, IAnyTimeTickListener, IAnyLeve
     private float _passedTime;
     private Contexts _contexts;
     private GameEntity _listener;
+    private ILevelService _levelService;
 
     void Start()
     {
         _contexts = Contexts.sharedInstance;
+        _levelService = Services.GetService<ILevelService>();
         _listener = _contexts.game.CreateEntity();
         _listener.AddAnyTimeTickListener(this);
         _listener.AddAnyLevelReadyListener(this);
@@ -40,8 +42,8 @@ public class TimeLabelController : MonoBehaviour, IAnyTimeTickListener, IAnyLeve
         if(!_listener.hasAnyTimeTickListener)
             _listener.AddAnyTimeTickListener(this);
         
-        var levelConfig = LevelService.LevelsConfig;
-        var level = LevelService.CurrentLevel;
+        var levelConfig = _levelService.LevelsConfig;
+        var level = _levelService.CurrentLevel;
         var time = levelConfig.Levels.levels[level].duration;
         _startTime = time;
         _passedTime = 0;

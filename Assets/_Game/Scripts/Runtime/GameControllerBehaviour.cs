@@ -6,14 +6,12 @@ using UnityEngine;
 public class GameControllerBehaviour : MonoBehaviour
 {
     private Contexts _contexts;
-    private Services _services;
     private GameController _gameController;
 
     void Awake()
     {
         _contexts = Contexts.sharedInstance;
-        _services = new Services();
-        
+
         LoadConfigurations();
         CreateServices();
         Configure();
@@ -30,15 +28,15 @@ public class GameControllerBehaviour : MonoBehaviour
 
     private void CreateServices()
     {
-        _services.SaveService = new SaveService(_contexts);
-        _services.LevelService = new LevelService(_contexts, _services);
-        _services.InputService = new UnityInputService(_contexts);
-        _services.ObjectService = new ObjectService(_contexts);
+        Services.RegisterService<ISaveService>(new SaveService(_contexts));
+        Services.RegisterService<ILevelService>(new LevelService(_contexts));
+        Services.RegisterService<IInputService>(new UnityInputService(_contexts));
+        Services.RegisterService<IObjectService>(new ObjectService(_contexts));
     }
 
     private void Configure()
     {
         DOTween.SetTweensCapacity(500, 50);
-        _gameController = new GameController(_contexts, _services);
+        _gameController = new GameController(_contexts);
     }
 }

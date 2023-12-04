@@ -8,10 +8,10 @@ public class WinCheckSystem : ReactiveSystem<GameEntity>
     private readonly Contexts _contexts;
     private readonly ILevelService _levelService;
 
-    public WinCheckSystem(Contexts contexts, Services services) : base(contexts.game)
+    public WinCheckSystem(Contexts contexts) : base(contexts.game)
     {
         _contexts = contexts;
-        _levelService = services.LevelService;
+        _levelService = Services.GetService<ILevelService>();
     }
 
     protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context) =>

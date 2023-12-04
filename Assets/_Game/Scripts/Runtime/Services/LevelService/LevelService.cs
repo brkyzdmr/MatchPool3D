@@ -2,14 +2,18 @@
 
 public class LevelService : Service, ILevelService
 {
-    private ILevelsConfig _levelsConfig;
     private readonly Contexts _contexts;
-    private readonly Services _services;
 
-    public LevelService(Contexts contexts, Services services) : base(contexts)
+    public LevelService(Contexts contexts) : base(contexts)
     {
         _contexts = contexts;
-        _services = services;
+    }
+
+    private ISaveService SaveService => Services.GetService<ISaveService>();
+
+    public ILevelsConfig LevelsConfig
+    {
+        get => _contexts.config.levelsConfig.value;
     }
 
     public LevelStatus LevelStatus
@@ -20,24 +24,24 @@ public class LevelService : Service, ILevelService
 
     public int CurrentLevel
     {
-        get => _services.SaveService.GetInt(SaveService.CurrentLevelKey, 0);
+        get => SaveService.GetInt(SaveService.CurrentLevelKey, 0);
         set
         {
-            _services.SaveService.SetInt(SaveService.CurrentLevelKey, value);
+            SaveService.SetInt(SaveService.CurrentLevelKey, value);
             RefreshData();
         }
     }
 
     public int TotalGold
     {
-        get => _services.SaveService.GetInt(SaveService.TotalGoldKey, 0);
-        set => _services.SaveService.SetInt(SaveService.TotalGoldKey, value);
+        get => SaveService.GetInt(SaveService.TotalGoldKey, 0);
+        set => SaveService.SetInt(SaveService.TotalGoldKey, value);
     }
 
     public int AvailableObjects
     {
-        get => _services.SaveService.GetInt(SaveService.AvailableObjectsKey, 1);
-        set => _services.SaveService.SetInt(SaveService.AvailableObjectsKey, value);
+        get => SaveService.GetInt(SaveService.AvailableObjectsKey, 1);
+        set => SaveService.SetInt(SaveService.AvailableObjectsKey, value);
     }
 
     public int MaxProducedObjectCount { get; set; }
@@ -51,7 +55,7 @@ public class LevelService : Service, ILevelService
     {
         var createdObjectsCount = _contexts.game.createdObjectsCount.Value;
         var remainingObjectsCount = _contexts.game.remainingObjectsCount.Value;
-        var levelObjectsCount = _levelsConfig.Levels.levels[CurrentLevel].maxProducedObjectCount;
+        var levelObjectsCount = LevelsConfig.Levels.levels[CurrentLevel].maxProducedObjectCount;
 
         return (createdObjectsCount == levelObjectsCount) && (remainingObjectsCount == 0);
     }
@@ -63,10 +67,9 @@ public class LevelService : Service, ILevelService
 
     public void RefreshData()
     {
-        _levelsConfig = _contexts.config.levelsConfig.value;
-        MaxProducedObjectCount = _levelsConfig.Levels.levels[CurrentLevel].maxProducedObjectCount;
-        MaxProducedObjectLevel = _levelsConfig.Levels.levels[CurrentLevel].maxProducedObjectLevel;
-        MaxObjectLevel = _levelsConfig.Levels.levels[CurrentLevel].maxObjectLevel;
-        TotalLevelCount = _levelsConfig.Levels.levels.Count;
+        MaxProducedObjectCount = LevelsConfig.Levels.levels[CurrentLevel].maxProducedObjectCount;
+        MaxProducedObjectLevel = LevelsConfig.Levels.levels[CurrentLevel].maxProducedObjectLevel;
+        MaxObjectLevel = LevelsConfig.Levels.levels[CurrentLevel].maxObjectLevel;
+        TotalLevelCount = LevelsConfig.Levels.levels.Count;
     }
 }

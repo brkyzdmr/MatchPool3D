@@ -7,10 +7,12 @@ public class MenuController : MonoBehaviour, IAnyLevelStatusListener
 
     private Contexts _contexts;
     private GameEntity _listener;
+    private ILevelService _levelService;
 
     void Start()
     {
         _contexts = Contexts.sharedInstance;
+        _levelService = Services.GetService<ILevelService>();
         _listener = _contexts.game.CreateEntity();
         _listener.AddAnyLevelStatusListener(this);
     }
@@ -51,6 +53,7 @@ public class MenuController : MonoBehaviour, IAnyLevelStatusListener
 
     public void NextLevel()
     {
+        _levelService.CurrentLevel += 1;
         Load();
     }
 

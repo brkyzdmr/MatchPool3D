@@ -1,9 +1,9 @@
 ﻿
 public sealed class ObjectFeature : Feature
 {
-    public ObjectFeature(Contexts contexts, Services services)
+    public ObjectFeature(Contexts contexts)
     {
-        Add(new ObjectProductionSystem(contexts, services));
-        Add(new ObjectMergeSystem(contexts, services));
+        Add(new ObjectProductionSystem(contexts));
+        Add(new ObjectMergeSystem(contexts));
     }
 }

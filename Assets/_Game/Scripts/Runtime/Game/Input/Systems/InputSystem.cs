@@ -21,10 +21,10 @@ public sealed class InputSystem : IExecuteSystem
 
     private Vector2 _previousFramePosition;
 
-    public InputSystem(Contexts contexts, Services services)
+    public InputSystem(Contexts contexts)
     {
         _contexts = contexts;
-        _inputService = services.InputService;
+        _inputService = Services.GetService<IInputService>();
     }
 
     public void Execute()

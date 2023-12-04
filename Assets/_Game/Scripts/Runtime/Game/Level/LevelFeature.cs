@@ -1,9 +1,9 @@
 public sealed class LevelFeature : Feature
 {
-    public LevelFeature(Contexts contexts, Services services)
+    public LevelFeature(Contexts contexts)
     {
-        Add(new InitializeLevelSystem(contexts, services));
-        Add(new WinCheckSystem(contexts, services));
-        Add(new FailCheckSystem(contexts, services));
+        Add(new InitializeLevelSystem(contexts));
+        Add(new WinCheckSystem(contexts));
+        Add(new FailCheckSystem(contexts));
     }
 }

@@ -1,4 +1,4 @@
-﻿public abstract class Service
+﻿public abstract class Service : IService
 {
     protected readonly Contexts Contexts;
 
@@ -7,7 +7,5 @@
         Contexts = contexts;
     }
 
-    protected virtual void DropState()
-    {
-    }
+    public virtual void DropState() { }
 }

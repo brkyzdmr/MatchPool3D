@@ -5,13 +5,16 @@ using UnityEngine;
 public class ObjectMergeSystem : ReactiveSystem<GameEntity>
 {
     private readonly Contexts _contexts;
-    private readonly Services _services;
     private readonly float _mergeVelocityThreshold = 1f;
+    private ILevelService _levelService;
+    private IObjectService _objectService;
 
-    public ObjectMergeSystem(Contexts contexts, Services services) : base(contexts.game)
+    public ObjectMergeSystem(Contexts contexts) : base(contexts.game)
     {
         _contexts = contexts;
-        _services = services;
+
+        _levelService = Services.GetService<ILevelService>();
+        _objectService = Services.GetService<IObjectService>();
     }
 
     protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
@@ -55,12 +58,12 @@ public class ObjectMergeSystem : ReactiveSystem<GameEntity>
 
     private void MergeObjects(GameEntity entity1, GameEntity entity2)
     {
-        var maxLevel = _services.LevelService.MaxObjectLevel;
+        var maxLevel = _levelService.MaxObjectLevel;
         var nextLevel = CalculateNextLevel(entity1.@object.Level);
 
         if (nextLevel <= maxLevel)
         {
-            var path = _services.ObjectService.GetObjectPath(entity1.@object.Type, nextLevel);
+            var path = _objectService.GetObjectPath(entity1.@object.Type, nextLevel);
             var mergedEntity = _contexts.game.CreateObject(entity1.@object.Type, nextLevel, path,
                 entity1.collision.CollisionPoint);
             _contexts.game.ReplaceRemainingObjectsCount(_contexts.game.remainingObjectsCount.Value + 1);

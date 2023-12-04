@@ -6,14 +6,14 @@ public class GameController
     private readonly Systems _systems;
     private readonly Contexts _contexts;
 
-    public GameController(Contexts contexts, Services services)
+    public GameController(Contexts contexts)
     {
         _contexts = contexts;
         var random = new Random(DateTime.UtcNow.Millisecond);
         UnityEngine.Random.InitState(random.Next());
         Rand.game = new Rand(random.Next());
 
-        _systems = new GameSystems(contexts, services);
+        _systems = new GameSystems(contexts);
     }
 
     public void ReplaceObjectsConfig(IObjectsConfig objectsConfig)

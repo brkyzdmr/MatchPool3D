@@ -2,12 +2,22 @@ using UnityEngine;
 
 public class SaveService : Service, ISaveService
 {
-    public const string CurrentLevelKey = "CurrentLevel";
-    public const string TotalGoldKey = "TotalGold";
-    public const string AvailableObjectsKey = "AvailableObjects";
-
     public SaveService(Contexts contexts) : base(contexts)
     {
+    }
+
+    public string CurrentLevelKey
+    {
+        get => "CurrentLevel";
+    }
+
+    public string TotalGoldKey 
+    {
+        get => "TotalGold";
+    }
+    public string AvailableObjectsKey 
+    {
+        get => "AvailableObjects";
     }
 
     public int GetInt(string key, int defaultValue)

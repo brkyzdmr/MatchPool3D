@@ -1,8 +1,8 @@
 ﻿public sealed class InputFeature : Feature
 {
-    public InputFeature(Contexts contexts, Services services)
+    public InputFeature(Contexts contexts)
     {
-        Add(new InputSystem(contexts, services));
+        Add(new InputSystem(contexts));
     }
 }
 

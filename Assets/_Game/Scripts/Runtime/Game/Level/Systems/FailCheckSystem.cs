@@ -8,10 +8,10 @@ public class FailCheckSystem : ReactiveSystem<GameEntity>
     private readonly Contexts _contexts;
     private readonly ILevelService _levelService;
 
-    public FailCheckSystem(Contexts contexts, Services services) : base(contexts.game)
+    public FailCheckSystem(Contexts contexts) : base(contexts.game)
     {
         _contexts = contexts;
-        _levelService = services.LevelService;
+        _levelService = Services.GetService<ILevelService>();
     }
 
     protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context) =>

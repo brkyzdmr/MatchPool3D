@@ -1,5 +1,6 @@
 ﻿public interface ILevelService
 {
+    ILevelsConfig LevelsConfig { get; }
     LevelStatus LevelStatus { get; set; }
     int CurrentLevel { get; set; }
     int TotalGold { get; set; }

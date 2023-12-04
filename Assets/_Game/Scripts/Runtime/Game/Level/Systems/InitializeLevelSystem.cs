@@ -8,10 +8,10 @@ public sealed class InitializeLevelSystem : ReactiveSystem<GameEntity>, IInitial
     private Transform _playAreaContainer;
     private readonly ILevelService _levelService;
 
-    public InitializeLevelSystem(Contexts contexts, Services services) : base(contexts.game)
+    public InitializeLevelSystem(Contexts contexts) : base(contexts.game)
     {
         _contexts = contexts;
-        _levelService = services.LevelService;
+        _levelService = Services.GetService<ILevelService>();
     }
 
     public void Initialize()

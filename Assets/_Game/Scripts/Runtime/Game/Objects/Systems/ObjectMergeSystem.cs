@@ -19,7 +19,6 @@ public class ObjectMergeSystem : ReactiveSystem<GameEntity>
 
     protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
     {
-        // Collect entities that have collided with other entities.
         return context.CreateCollector(
             Matcher<GameEntity>.AllOf(
                 GameMatcher.Collision,
@@ -58,9 +57,9 @@ public class ObjectMergeSystem : ReactiveSystem<GameEntity>
 
     private void MergeObjects(GameEntity entity1, GameEntity entity2)
     {
-        var maxLevel = _levelService.MaxObjectLevel;
+        var maxLevel = _contexts.game.maxObjectLevel.Value;
         var nextLevel = CalculateNextLevel(entity1.@object.Level);
-
+        
         if (nextLevel <= maxLevel)
         {
             var path = _objectService.GetObjectPath(entity1.@object.Type, nextLevel);
@@ -68,7 +67,7 @@ public class ObjectMergeSystem : ReactiveSystem<GameEntity>
                 entity1.collision.CollisionPoint);
             _contexts.game.ReplaceRemainingObjectsCount(_contexts.game.remainingObjectsCount.Value + 1);
         }
-
+        
         entity1.isDestroyed = true;
         entity2.isDestroyed = true;
         _contexts.game.ReplaceRemainingObjectsCount(_contexts.game.remainingObjectsCount.Value - 2);

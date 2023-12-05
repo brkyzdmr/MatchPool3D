@@ -40,18 +40,17 @@ public class ObjectProductionSystem : IInitializeSystem, IExecuteSystem
     private void CreateNewObject()
     {
         var randomPosition = new Vector3(Random.Range(-3, 3), 10, Random.Range(-5, 5));
-        var randomAvailableObject = _objectService.GetRandomAvailableObject(_levelService.AvailableObjects);
+        var randomAvailableObject = _objectService.GetRandomAvailableObject(_contexts.game.availableObjects.Value);
         var randomAvailableObjectPath = _objectService.GetObjectPath(randomAvailableObject, 1);
 
         _contexts.game.CreateObject(randomAvailableObject.type, 1, randomAvailableObjectPath, randomPosition);
-        _levelService.CreatedObjectCount += 1;
-        _contexts.game.ReplaceCreatedObjectsCount(_levelService.CreatedObjectCount);
+        _contexts.game.ReplaceCreatedObjectsCount(_contexts.game.createdObjectsCount.Value + 1);
         _contexts.game.ReplaceRemainingObjectsCount(_contexts.game.remainingObjectsCount.Value + 1);
     }
 
     private bool ShouldProduceObject()
     {
-        return _levelService.CreatedObjectCount != _levelService.MaxProducedObjectCount && !_productionTimer.isTimerRunning;
+        return _contexts.game.createdObjectsCount.Value != _contexts.game.maxProducedObjectCount.Value && !_productionTimer.isTimerRunning;
     }
     
     private void ResetProductionTimer()

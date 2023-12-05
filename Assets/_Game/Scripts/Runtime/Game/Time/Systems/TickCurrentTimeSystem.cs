@@ -6,13 +6,15 @@ public sealed class TickCurrentTimeSystem : IExecuteSystem, IInitializeSystem
     private readonly Contexts _contexts;
     private double _lastTick;
     private GameEntity _lastTickEntity;
+    private ITimeService _timeService;
 
-    private static long CalculateTotalSeconds() => TimeService.Instance.Now.ToEpochUnixTimestamp();
+    private long CalculateTotalSeconds() => _timeService.Now.ToEpochUnixTimestamp();
 
     public TickCurrentTimeSystem(Contexts contexts)
     {
         _contexts = contexts;
         _lastTick = Time.realtimeSinceStartupAsDouble;
+        _timeService = Services.GetService<ITimeService>();
     }
 
     public void Initialize()
@@ -22,7 +24,7 @@ public sealed class TickCurrentTimeSystem : IExecuteSystem, IInitializeSystem
 
     public void Execute()
     {
-        if (TimeService.Instance.IsTimePaused) { return; }
+        if (_timeService.IsTimePaused) { return; }
         
         if (Time.realtimeSinceStartupAsDouble - 1.0f >= _lastTick)
         {

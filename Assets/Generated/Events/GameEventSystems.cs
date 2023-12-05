@@ -10,19 +10,19 @@ public sealed class GameEventSystems : Feature {
 
     public GameEventSystems(Contexts contexts) {
         Add(new ColliderEventSystem(contexts)); // priority: 0
-        Add(new AnyCurrentLevelEventSystem(contexts)); // priority: 0
-        Add(new AnyCurrentLevelRemovedEventSystem(contexts)); // priority: 0
         Add(new AnyCurrentMergedObjectsCountEventSystem(contexts)); // priority: 0
         Add(new DestroyedEventSystem(contexts)); // priority: 0
         Add(new AnyLevelEndEventSystem(contexts)); // priority: 0
         Add(new AnyLevelReadyEventSystem(contexts)); // priority: 0
         Add(new AnyLevelStatusEventSystem(contexts)); // priority: 0
+        Add(new AnyLoadEventSystem(contexts)); // priority: 0
         Add(new ObjectEventSystem(contexts)); // priority: 0
         Add(new PositionEventSystem(contexts)); // priority: 0
         Add(new QuaternionRotationEventSystem(contexts)); // priority: 0
         Add(new AnyRemainingObjectsCountEventSystem(contexts)); // priority: 0
         Add(new RigidbodyEventSystem(contexts)); // priority: 0
         Add(new RotationEventSystem(contexts)); // priority: 0
+        Add(new AnySaveEventSystem(contexts)); // priority: 0
         Add(new ScaleEventSystem(contexts)); // priority: 0
         Add(new AnyTimeTickEventSystem(contexts)); // priority: 0
     }

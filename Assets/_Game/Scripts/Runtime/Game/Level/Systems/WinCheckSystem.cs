@@ -7,11 +7,13 @@ public class WinCheckSystem : ReactiveSystem<GameEntity>
 {
     private readonly Contexts _contexts;
     private readonly ILevelService _levelService;
+    private readonly ITimeService _timeService;
 
     public WinCheckSystem(Contexts contexts) : base(contexts.game)
     {
         _contexts = contexts;
         _levelService = Services.GetService<ILevelService>();
+        _timeService = Services.GetService<ITimeService>();
     }
 
     protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context) =>
@@ -26,7 +28,7 @@ public class WinCheckSystem : ReactiveSystem<GameEntity>
             _levelService.SetLevelStatus(LevelStatus.Win);
             _contexts.game.isLevelReady = false;
             _contexts.game.isLevelEnd = true;
-            TimeService.Instance.PauseTime();
+            _timeService.PauseTime();
         }
     }
 }

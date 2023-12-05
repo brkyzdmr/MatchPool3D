@@ -2,23 +2,13 @@ using UnityEngine;
 
 public class SaveService : Service, ISaveService
 {
-    public SaveService(Contexts contexts) : base(contexts)
-    {
-    }
+    public SaveService(Contexts contexts) : base(contexts) { }
+    
+    public string CurrentLevelKey => "CurrentLevel";
 
-    public string CurrentLevelKey
-    {
-        get => "CurrentLevel";
-    }
+    public string TotalGoldKey => "TotalGold";
 
-    public string TotalGoldKey 
-    {
-        get => "TotalGold";
-    }
-    public string AvailableObjectsKey 
-    {
-        get => "AvailableObjects";
-    }
+    public string AvailableObjectsKey => "AvailableObjects";
 
     public int GetInt(string key, int defaultValue)
     {
@@ -28,5 +18,6 @@ public class SaveService : Service, ISaveService
     public void SetInt(string key, int value)
     {
         PlayerPrefs.SetInt(key, value);
+        PlayerPrefs.Save();
     }
 }

@@ -21,10 +21,7 @@ public class LevelNameController : MonoBehaviour, IAnyLevelReadyListener
         if (!_contexts.game.isLevelReady)
             return;
 
-        var levelConfig = _levelService.LevelsConfig;
-        var level = _levelService.CurrentLevel;
-        var name = levelConfig.Levels.levels[level].name;
-        
-        label.text = $"{name}";
+        var levelName = _contexts.game.levelName.Value;
+        label.text = $"{levelName}";
     }
 }

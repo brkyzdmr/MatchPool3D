@@ -1,75 +1,68 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 public class LevelService : Service, ILevelService
 {
     private readonly Contexts _contexts;
-
+    
     public LevelService(Contexts contexts) : base(contexts)
     {
         _contexts = contexts;
     }
-
-    private ISaveService SaveService => Services.GetService<ISaveService>();
-
-    public ILevelsConfig LevelsConfig
-    {
-        get => _contexts.config.levelsConfig.value;
-    }
-
-    public LevelStatus LevelStatus
-    {
-        get => _contexts.game.levelStatus.Value;
-        set => _contexts.game.ReplaceLevelStatus(value);
-    }
-
-    public int CurrentLevel
-    {
-        get => SaveService.GetInt(SaveService.CurrentLevelKey, 0);
-        set
-        {
-            SaveService.SetInt(SaveService.CurrentLevelKey, value);
-            RefreshData();
-        }
-    }
-
-    public int TotalGold
-    {
-        get => SaveService.GetInt(SaveService.TotalGoldKey, 0);
-        set => SaveService.SetInt(SaveService.TotalGoldKey, value);
-    }
-
-    public int AvailableObjects
-    {
-        get => SaveService.GetInt(SaveService.AvailableObjectsKey, 1);
-        set => SaveService.SetInt(SaveService.AvailableObjectsKey, value);
-    }
-
-    public int MaxProducedObjectCount { get; set; }
-    public int MaxProducedObjectLevel { get; set; }
-    public int MaxObjectLevel { get; set; }
-    public int TotalLevelCount { get; set; }
-    public int CreatedObjectCount { get; set; }
     
+    public ILevelsConfig LevelsConfig => _contexts.config.levelsConfig.value;
 
     public bool IsLevelCompleted()
     {
-        var createdObjectsCount = _contexts.game.createdObjectsCount.Value;
-        var remainingObjectsCount = _contexts.game.remainingObjectsCount.Value;
-        var levelObjectsCount = LevelsConfig.Levels.levels[CurrentLevel].maxProducedObjectCount;
-
-        return (createdObjectsCount == levelObjectsCount) && (remainingObjectsCount == 0);
+        return _contexts.game.createdObjectsCount.Value == _contexts.game.maxProducedObjectCount.Value
+               && _contexts.game.remainingObjectsCount.Value == 0;
     }
 
     public void SetLevelStatus(LevelStatus status)
     {
-        Contexts.game.ReplaceLevelStatus(status);
+        _contexts.game.ReplaceLevelStatus(status);
     }
 
     public void RefreshData()
     {
-        MaxProducedObjectCount = LevelsConfig.Levels.levels[CurrentLevel].maxProducedObjectCount;
-        MaxProducedObjectLevel = LevelsConfig.Levels.levels[CurrentLevel].maxProducedObjectLevel;
-        MaxObjectLevel = LevelsConfig.Levels.levels[CurrentLevel].maxObjectLevel;
-        TotalLevelCount = LevelsConfig.Levels.levels.Count;
+        if (_contexts.game.currentLevelIndex.Value < LevelsConfig.Levels.levels.Count)
+        {
+            LoadLevelData(_contexts.game.currentLevelIndex.Value);
+        }
+        else
+        {
+            LoadRandomLevel();
+        }
+    }
+
+    private void LoadLevelData(int levelIndex)
+    {
+        var levelData = LevelsConfig.Levels.levels[levelIndex];
+        SetLevelData(levelData, levelData.name);
+    }
+    
+    private void LoadRandomLevel()
+    {
+        var standardLevels = LevelsConfig.Levels.levels.Where(level => level.type == "standard").ToList();
+        var randomLevel = standardLevels[Random.Range(0, standardLevels.Count)];
+        // var actualIndexOfRandomLevel = LevelsConfig.Levels.levels.IndexOf(randomLevel);
+        
+        SetLevelData(randomLevel, GetRandomLevelName());
+    }
+
+    private void SetLevelData(LevelsConfigData.LevelData levelData, string levelName)
+    {
+        _contexts.game.ReplaceLevelName(levelName);
+        _contexts.game.ReplaceLevelDuration(levelData.duration);
+        _contexts.game.ReplaceMaxProducedObjectCount(levelData.maxProducedObjectCount);
+        _contexts.game.ReplaceMaxProducedObjectLevel(levelData.maxProducedObjectLevel);
+        _contexts.game.ReplaceMaxObjectLevel(levelData.maxObjectLevel);
+    }
+
+    private string GetRandomLevelName()
+    {
+        var currentLevel = _contexts.game.currentLevelIndex.Value;
+        return "Level " + currentLevel;
     }
 }

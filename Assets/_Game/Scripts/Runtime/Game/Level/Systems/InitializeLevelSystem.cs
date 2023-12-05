@@ -7,37 +7,38 @@ public sealed class InitializeLevelSystem : ReactiveSystem<GameEntity>, IInitial
     private readonly Contexts _contexts;
     private Transform _playAreaContainer;
     private readonly ILevelService _levelService;
+    private readonly ITimeService _timeService;
 
     public InitializeLevelSystem(Contexts contexts) : base(contexts.game)
     {
         _contexts = contexts;
         _levelService = Services.GetService<ILevelService>();
+        _timeService = Services.GetService<ITimeService>();
     }
 
     public void Initialize()
     {
-        _levelService.RefreshData();
         SetupLevel();
     }
 
     private void SetupLevel()
     {
-        if (_levelService.CurrentLevel >= _levelService.TotalLevelCount)
+        _levelService.RefreshData();
+        if (_contexts.game.currentLevelIndex.Value >= _contexts.config.levelsConfig.value.Levels.levels.Count)
         {
-            _levelService.CurrentLevel = Random.Range(0, _levelService.TotalLevelCount);
+            _contexts.game.currentLevelIndex.Value = Random.Range(0, _contexts.config.levelsConfig.value.Levels.levels.Count);
         }
         
         _contexts.game.ReplaceCreatedObjectsCount(0);
         _contexts.game.ReplaceRemainingObjectsCount(0);
         _contexts.input.isInputBlock = true;
-
-        _levelService.CreatedObjectCount = 0;
+        
+        _contexts.game.createdObjectsCount.Value = 0;
         
         _contexts.game.isLevelReady = true;
         _contexts.input.isInputBlock = false;
-        
-        _levelService.LevelStatus = LevelStatus.Continue;
-        _contexts.game.ReplaceLevelStatus(_levelService.LevelStatus);
+
+        _contexts.game.ReplaceLevelStatus(LevelStatus.Continue);
     }
     
     protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context) =>
@@ -56,7 +57,7 @@ public sealed class InitializeLevelSystem : ReactiveSystem<GameEntity>, IInitial
         Debug.Log("Level Loaded!");
 
         _contexts.game.isLevelEnd = false;
-        TimeService.Instance.ResumeTime();
+        _timeService.ResumeTime();
         SetupLevel();
     }
 }

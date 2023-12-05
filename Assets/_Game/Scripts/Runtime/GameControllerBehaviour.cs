@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using Sirenix.OdinInspector;
@@ -17,8 +18,26 @@ public class GameControllerBehaviour : MonoBehaviour
         Configure();
     }
 
-    public void Start() => _gameController.Initialize();
+    public void Start()
+    {
+        _gameController.Initialize();
+    }
+
     public void Update() => _gameController.Execute();
+
+    private void OnApplicationFocus(bool hasFocus)
+    {
+        if (!hasFocus)
+        {
+            SaveGameData();
+        }
+    }
+
+    private void OnApplicationQuit()
+    {
+        SaveGameData();
+    }
+
     private void LoadConfigurations()
     {
         _contexts.config.ReplaceObjectsConfig(ObjectsConfigManager.LoadGameConfig());
@@ -32,11 +51,18 @@ public class GameControllerBehaviour : MonoBehaviour
         Services.RegisterService<ILevelService>(new LevelService(_contexts));
         Services.RegisterService<IInputService>(new UnityInputService(_contexts));
         Services.RegisterService<IObjectService>(new ObjectService(_contexts));
+        Services.RegisterService<ITimeService>(new TimeService(_contexts));
     }
 
     private void Configure()
     {
         DOTween.SetTweensCapacity(500, 50);
         _gameController = new GameController(_contexts);
+    }
+    
+
+    private void SaveGameData()
+    {
+        _contexts.game.isSave = true;
     }
 }

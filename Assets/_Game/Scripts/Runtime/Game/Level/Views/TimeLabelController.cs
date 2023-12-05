@@ -2,7 +2,7 @@
 using TMPro;
 using UnityEngine;
 
-public class TimeLabelController : MonoBehaviour, IAnyTimeTickListener, IAnyLevelReadyListener
+public class TimeLabelController : MonoBehaviour, IAnyTimeTickListener, IAnyLevelReadyListener, IAnyRemainingLevelTimeListener
 {
     [SerializeField] private TMP_Text label;
     private float _startTime;
@@ -21,12 +21,15 @@ public class TimeLabelController : MonoBehaviour, IAnyTimeTickListener, IAnyLeve
         _listener = _contexts.game.CreateEntity();
         _listener.AddAnyTimeTickListener(this);
         _listener.AddAnyLevelReadyListener(this);
+        _listener.AddAnyRemainingLevelTimeListener(this);
     }
 
     public void OnAnyTimeTick(GameEntity entity)
     {
         _passedTime++;
-        label.text = _timeService.FormatTimeDuration(_startTime - _passedTime);
+        var remainingTime = _startTime - _passedTime;
+        _contexts.game.ReplaceRemainingLevelTime((int) remainingTime);
+        label.text = _timeService.FormatTimeDuration(remainingTime);
 
         if (Math.Abs(_passedTime - _startTime) < 0.1f)
         {
@@ -50,5 +53,10 @@ public class TimeLabelController : MonoBehaviour, IAnyTimeTickListener, IAnyLeve
         _passedTime = 0;
         
         label.text = _timeService.FormatTimeDuration(time);
+    }
+
+    public void OnAnyRemainingLevelTime(GameEntity entity, int value)
+    {
+        label.text = _timeService.FormatTimeDuration(value);
     }
 }

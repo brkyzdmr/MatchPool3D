@@ -8,6 +8,7 @@ public class ObjectMergeSystem : ReactiveSystem<GameEntity>
     private readonly float _mergeVelocityThreshold = 1f;
     private ILevelService _levelService;
     private IObjectService _objectService;
+    private IGameService _gameService;
 
     public ObjectMergeSystem(Contexts contexts) : base(contexts.game)
     {
@@ -15,6 +16,7 @@ public class ObjectMergeSystem : ReactiveSystem<GameEntity>
 
         _levelService = Services.GetService<ILevelService>();
         _objectService = Services.GetService<IObjectService>();
+        _gameService = Services.GetService<IGameService>();
     }
 
     protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
@@ -57,8 +59,12 @@ public class ObjectMergeSystem : ReactiveSystem<GameEntity>
 
     private void MergeObjects(GameEntity entity1, GameEntity entity2)
     {
+        
         var maxLevel = _contexts.game.maxObjectLevel.Value;
         var nextLevel = CalculateNextLevel(entity1.@object.Level);
+        var totalGold = _contexts.game.totalGold.Value;
+        var goldPerStandardMerge = _gameService.GameConfig.GameConfig.goldPerStandardMerge;
+        var goldPerFinalMerge = _gameService.GameConfig.GameConfig.goldPerFinalMerge;
         
         if (nextLevel <= maxLevel)
         {
@@ -66,10 +72,18 @@ public class ObjectMergeSystem : ReactiveSystem<GameEntity>
             var mergedEntity = _contexts.game.CreateObject(entity1.@object.Type, nextLevel, path,
                 entity1.collision.CollisionPoint);
             _contexts.game.ReplaceRemainingObjectsCount(_contexts.game.remainingObjectsCount.Value + 1);
+            _contexts.game.ReplaceTotalGold(totalGold + goldPerStandardMerge);
+        }
+        else
+        {
+            _contexts.game.ReplaceTotalGold(totalGold + goldPerFinalMerge);
         }
         
         entity1.isDestroyed = true;
         entity2.isDestroyed = true;
+
+        Debug.Log("Object merged!" + goldPerStandardMerge);
+        _contexts.game.isGoldEarned = true;
         _contexts.game.ReplaceRemainingObjectsCount(_contexts.game.remainingObjectsCount.Value - 2);
     }
 

@@ -1,6 +1,8 @@
-﻿public static class GameConfigManager
+﻿using UnityEngine;
+
+public static class GameConfigManager
 {
-    private const string ConfigFilePath = "Data/Levels";
+    private const string ConfigFilePath = "Data/GameConfig";
 
     public static IGameConfig LoadGameConfig()
     {
@@ -11,10 +13,11 @@
 
     private class GameConfigImplementation : IGameConfig
     {
+        public GameConfigData GameConfig { get; }
+
         public GameConfigImplementation(GameConfigData config)
         {
+            GameConfig = config;
         }
-
-        public GameConfigData GameConfig { get; }
     }
 }

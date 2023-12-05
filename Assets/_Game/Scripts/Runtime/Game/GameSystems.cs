@@ -9,7 +9,9 @@
         Add(new InputFeature(contexts));
         Add(new ViewFeature(contexts));
         Add(new ObjectFeature(contexts));
-
+        Add(new GoldFeature(contexts));
+        Add(new ShopFeature(contexts));
+        
         // (Generated)
         Add(new GameEventSystems(contexts));
         // Add(new GameCleanupSystems(contexts));

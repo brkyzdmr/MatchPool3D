@@ -9,63 +9,69 @@
 public static class GameComponentsLookup {
 
     public const int AnyCurrentMergedObjectsCountListener = 0;
-    public const int AnyLevelEndListener = 1;
-    public const int AnyLevelReadyListener = 2;
-    public const int AnyLevelStatusListener = 3;
-    public const int AnyLoadListener = 4;
-    public const int AnyRemainingObjectsCountListener = 5;
-    public const int AnySaveListener = 6;
-    public const int AnyTimeTickListener = 7;
-    public const int Asset = 8;
-    public const int AvailableObjects = 9;
-    public const int Collider = 10;
-    public const int ColliderListener = 11;
-    public const int Collision = 12;
-    public const int CreatedObjectsCount = 13;
-    public const int CurrentLevelIndex = 14;
-    public const int CurrentLevelName = 15;
-    public const int CurrentMergedObjectsCount = 16;
-    public const int CurrentTime = 17;
-    public const int Destroyed = 18;
-    public const int DestroyedListener = 19;
-    public const int LevelDuration = 20;
-    public const int LevelEnd = 21;
-    public const int LevelName = 22;
-    public const int LevelReady = 23;
-    public const int LevelStatus = 24;
-    public const int Load = 25;
-    public const int LoadLevel = 26;
-    public const int MaxObjectLevel = 27;
-    public const int MaxProducedObjectCount = 28;
-    public const int MaxProducedObjectLevel = 29;
-    public const int MergableObject = 30;
-    public const int Object = 31;
-    public const int ObjectListener = 32;
-    public const int ObjectPool = 33;
-    public const int Position = 34;
-    public const int PositionListener = 35;
-    public const int QuaternionRotation = 36;
-    public const int QuaternionRotationListener = 37;
-    public const int RemainingObjectsCount = 38;
-    public const int Rigidbody = 39;
-    public const int RigidbodyListener = 40;
-    public const int Rotation = 41;
-    public const int RotationListener = 42;
-    public const int Save = 43;
-    public const int Scale = 44;
-    public const int ScaleListener = 45;
-    public const int TimeTick = 46;
-    public const int TotalGold = 47;
-    public const int View = 48;
+    public const int AnyGoldEarnedListener = 1;
+    public const int AnyLevelEndListener = 2;
+    public const int AnyLevelReadyListener = 3;
+    public const int AnyLevelStatusListener = 4;
+    public const int AnyLoadListener = 5;
+    public const int AnyRemainingLevelTimeListener = 6;
+    public const int AnyRemainingObjectsCountListener = 7;
+    public const int AnySaveListener = 8;
+    public const int AnyTimeTickListener = 9;
+    public const int Asset = 10;
+    public const int AvailableObjects = 11;
+    public const int Collider = 12;
+    public const int ColliderListener = 13;
+    public const int Collision = 14;
+    public const int CreatedObjectsCount = 15;
+    public const int CurrentLevelIndex = 16;
+    public const int CurrentLevelName = 17;
+    public const int CurrentMergedObjectsCount = 18;
+    public const int CurrentTime = 19;
+    public const int Destroyed = 20;
+    public const int DestroyedListener = 21;
+    public const int GoldEarned = 22;
+    public const int LevelDuration = 23;
+    public const int LevelEnd = 24;
+    public const int LevelName = 25;
+    public const int LevelReady = 26;
+    public const int LevelStatus = 27;
+    public const int Load = 28;
+    public const int LoadLevel = 29;
+    public const int MaxObjectLevel = 30;
+    public const int MaxProducedObjectCount = 31;
+    public const int MaxProducedObjectLevel = 32;
+    public const int MergableObject = 33;
+    public const int Object = 34;
+    public const int ObjectListener = 35;
+    public const int ObjectPool = 36;
+    public const int Position = 37;
+    public const int PositionListener = 38;
+    public const int QuaternionRotation = 39;
+    public const int QuaternionRotationListener = 40;
+    public const int RemainingLevelTime = 41;
+    public const int RemainingObjectsCount = 42;
+    public const int Rigidbody = 43;
+    public const int RigidbodyListener = 44;
+    public const int Rotation = 45;
+    public const int RotationListener = 46;
+    public const int Save = 47;
+    public const int Scale = 48;
+    public const int ScaleListener = 49;
+    public const int TimeTick = 50;
+    public const int TotalGold = 51;
+    public const int View = 52;
 
-    public const int TotalComponents = 49;
+    public const int TotalComponents = 53;
 
     public static readonly string[] componentNames = {
         "AnyCurrentMergedObjectsCountListener",
+        "AnyGoldEarnedListener",
         "AnyLevelEndListener",
         "AnyLevelReadyListener",
         "AnyLevelStatusListener",
         "AnyLoadListener",
+        "AnyRemainingLevelTimeListener",
         "AnyRemainingObjectsCountListener",
         "AnySaveListener",
         "AnyTimeTickListener",
@@ -81,6 +87,7 @@ public static class GameComponentsLookup {
         "CurrentTime",
         "Destroyed",
         "DestroyedListener",
+        "GoldEarned",
         "LevelDuration",
         "LevelEnd",
         "LevelName",
@@ -99,6 +106,7 @@ public static class GameComponentsLookup {
         "PositionListener",
         "QuaternionRotation",
         "QuaternionRotationListener",
+        "RemainingLevelTime",
         "RemainingObjectsCount",
         "Rigidbody",
         "RigidbodyListener",
@@ -114,10 +122,12 @@ public static class GameComponentsLookup {
 
     public static readonly System.Type[] componentTypes = {
         typeof(AnyCurrentMergedObjectsCountListenerComponent),
+        typeof(AnyGoldEarnedListenerComponent),
         typeof(AnyLevelEndListenerComponent),
         typeof(AnyLevelReadyListenerComponent),
         typeof(AnyLevelStatusListenerComponent),
         typeof(AnyLoadListenerComponent),
+        typeof(AnyRemainingLevelTimeListenerComponent),
         typeof(AnyRemainingObjectsCountListenerComponent),
         typeof(AnySaveListenerComponent),
         typeof(AnyTimeTickListenerComponent),
@@ -133,6 +143,7 @@ public static class GameComponentsLookup {
         typeof(CurrentTimeComponent),
         typeof(DestroyedComponent),
         typeof(DestroyedListenerComponent),
+        typeof(GoldEarnedComponent),
         typeof(LevelDurationComponent),
         typeof(LevelEndComponent),
         typeof(LevelNameComponent),
@@ -151,6 +162,7 @@ public static class GameComponentsLookup {
         typeof(PositionListenerComponent),
         typeof(QuaternionRotationComponent),
         typeof(QuaternionRotationListenerComponent),
+        typeof(RemainingLevelTimeComponent),
         typeof(RemainingObjectsCountComponent),
         typeof(RigidbodyComponent),
         typeof(RigidbodyListenerComponent),

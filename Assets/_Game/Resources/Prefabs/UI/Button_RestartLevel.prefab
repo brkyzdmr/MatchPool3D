@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 411177707028302179, guid: 0cb2940d0271a534baabfed6e3c2939a,
         type: 3}
       propertyPath: m_text
-      value: Next Level!
+      value: Restart Level
       objectReference: {fileID: 0}
     - target: {fileID: 1266594116150116096, guid: 0cb2940d0271a534baabfed6e3c2939a,
         type: 3}
@@ -120,7 +120,7 @@ PrefabInstance:
     - target: {fileID: 2397444541806904072, guid: 0cb2940d0271a534baabfed6e3c2939a,
         type: 3}
       propertyPath: m_Name
-      value: Button_NextLevel
+      value: Button_RestartLevel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0cb2940d0271a534baabfed6e3c2939a, type: 3}

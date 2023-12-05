@@ -4,15 +4,19 @@ public class MenuController : MonoBehaviour, IAnyLevelStatusListener
 {
     [SerializeField] private GameObject failedPanel;
     [SerializeField] private GameObject completePanel;
+    [SerializeField] private GameObject pausePanel;
+    [SerializeField] private GameObject shopPanel;
 
     private Contexts _contexts;
     private GameEntity _listener;
+    private ITimeService _timeService;
     private ILevelService _levelService;
 
     void Start()
     {
         _contexts = Contexts.sharedInstance;
         _levelService = Services.GetService<ILevelService>();
+        _timeService = Services.GetService<ITimeService>();
         _listener = _contexts.game.CreateEntity();
         _listener.AddAnyLevelStatusListener(this);
     }
@@ -22,50 +26,64 @@ public class MenuController : MonoBehaviour, IAnyLevelStatusListener
         switch (status)
         {
             case LevelStatus.Continue:
-                DeactivatePanels();
+                DeactivateAllPanels();
                 break;
             case LevelStatus.Win:
-                ShowCompletePanel();
+                ActivatePanel(completePanel);
                 break;
             case LevelStatus.Fail:
-                ShowFailedPanel();
+                ActivatePanel(failedPanel);
+                break;
+            case LevelStatus.Pause:
+                ActivatePanel(pausePanel);
                 break;
         }
     }
-    
-    private void DeactivatePanels()
+
+    private void DeactivateAllPanels()
     {
-        failedPanel.SetActive(false);
-        completePanel.SetActive(false);
+        foreach (var panel in GetAllPanels())
+        {
+            panel.SetActive(false);
+        }
     }
 
-    private void ShowCompletePanel()
+    private GameObject[] GetAllPanels()
     {
-        failedPanel.SetActive(false);
-        completePanel.SetActive(true);
+        return new GameObject[] { failedPanel, completePanel, pausePanel, shopPanel };
     }
 
-    private void ShowFailedPanel()
+    private void ActivatePanel(GameObject panel)
     {
-        failedPanel.SetActive(true);
-        completePanel.SetActive(false);
+        DeactivateAllPanels();
+        panel.SetActive(true);
     }
 
     public void NextLevel()
     {
         _contexts.game.ReplaceCurrentLevelIndex(_contexts.game.currentLevelIndex.Value + 1);
-        Load();
+        RestartLevel();
     }
 
     public void TryAgain()
     {
-        Load();
+        RestartLevel();
     }
 
-    private void Load()
+    private void RestartLevel()
     {
-        failedPanel.SetActive(false);
-        completePanel.SetActive(false);
+        DeactivateAllPanels();
         _contexts.game.CreateEntity().isLoadLevel = true;
+    }
+
+    public void ResumeGame()
+    {
+        _levelService.SetLevelStatus(LevelStatus.Continue);
+        _timeService.ResumeTime();
+    }
+    public void PauseGame()
+    {
+        _levelService.SetLevelStatus(LevelStatus.Pause);
+        _timeService.PauseTime();
     }
 }

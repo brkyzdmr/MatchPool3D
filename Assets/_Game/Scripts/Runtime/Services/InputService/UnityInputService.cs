@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class UnityInputService : Service, IInputService
 {
@@ -21,14 +23,28 @@ public class UnityInputService : Service, IInputService
 
     public bool IsPointerOverUI(int fingerId = -1)
     {
-        if (UnityEngine.EventSystems.EventSystem.current != null)
+        if (EventSystem.current != null)
         {
-            if (fingerId == -1)
+            if (EventSystem.current.IsPointerOverGameObject(fingerId))
             {
-                return UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject();
+                PointerEventData pointerEventData = new PointerEventData(EventSystem.current)
+                {
+                    position = Input.mousePosition
+                };
+                List<RaycastResult> raycastResults = new List<RaycastResult>();
+                EventSystem.current.RaycastAll(pointerEventData, raycastResults);
+
+                foreach (var result in raycastResults)
+                {
+                    if (result.gameObject.CompareTag("ExcludedUI")) 
+                    {
+                        return false; 
+                    }
+                }
+
+                return true; 
             }
-            return UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject(fingerId);
         }
-        return false;
+        return false; 
     }
 }

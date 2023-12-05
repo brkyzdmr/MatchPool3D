@@ -1160,7 +1160,7 @@ GameObject:
   - component: {fileID: 1123185806}
   m_Layer: 5
   m_Name: Level
-  m_TagString: Untagged
+  m_TagString: ExcludedUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1405,7 +1405,7 @@ GameObject:
   - component: {fileID: 1606743271}
   m_Layer: 5
   m_Name: Time
-  m_TagString: Untagged
+  m_TagString: ExcludedUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1685,7 +1685,7 @@ GameObject:
   - component: {fileID: 1881646659}
   m_Layer: 5
   m_Name: Text_Time
-  m_TagString: Untagged
+  m_TagString: ExcludedUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1842,7 +1842,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 0
 --- !u!114 &1940638541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1958,7 +1958,7 @@ GameObject:
   - component: {fileID: 2138158285}
   m_Layer: 5
   m_Name: Text_LevelName
-  m_TagString: Untagged
+  m_TagString: ExcludedUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

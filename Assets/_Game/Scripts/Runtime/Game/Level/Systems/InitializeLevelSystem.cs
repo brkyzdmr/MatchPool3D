@@ -24,11 +24,7 @@ public sealed class InitializeLevelSystem : ReactiveSystem<GameEntity>, IInitial
     private void SetupLevel()
     {
         _levelService.RefreshData();
-        if (_contexts.game.currentLevelIndex.Value >= _contexts.config.levelsConfig.value.Levels.levels.Count)
-        {
-            _contexts.game.currentLevelIndex.Value = Random.Range(0, _contexts.config.levelsConfig.value.Levels.levels.Count);
-        }
-        
+
         _contexts.game.ReplaceCreatedObjectsCount(0);
         _contexts.game.ReplaceRemainingObjectsCount(0);
         _contexts.input.isInputBlock = true;

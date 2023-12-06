@@ -87,4 +87,9 @@ public class MenuController : MonoBehaviour, IAnyLevelStatusListener
         _levelService.SetLevelStatus(LevelStatus.Pause);
         _timeService.PauseTime();
     }
+
+    public void OpenShopPanel()
+    {
+        ActivatePanel(shopPanel);
+    }
 }

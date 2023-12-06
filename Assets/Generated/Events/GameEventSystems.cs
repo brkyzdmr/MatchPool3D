@@ -13,6 +13,7 @@ public sealed class GameEventSystems : Feature {
         Add(new AnyCurrentMergedObjectsCountEventSystem(contexts)); // priority: 0
         Add(new DestroyedEventSystem(contexts)); // priority: 0
         Add(new AnyGoldEarnedEventSystem(contexts)); // priority: 0
+        Add(new AnyItemPurchasedEventSystem(contexts)); // priority: 0
         Add(new AnyLevelEndEventSystem(contexts)); // priority: 0
         Add(new AnyLevelReadyEventSystem(contexts)); // priority: 0
         Add(new AnyLevelRestartEventSystem(contexts)); // priority: 0
@@ -20,6 +21,7 @@ public sealed class GameEventSystems : Feature {
         Add(new AnyLoadEventSystem(contexts)); // priority: 0
         Add(new ObjectEventSystem(contexts)); // priority: 0
         Add(new PositionEventSystem(contexts)); // priority: 0
+        Add(new AnyPurchaseActionEventSystem(contexts)); // priority: 0
         Add(new QuaternionRotationEventSystem(contexts)); // priority: 0
         Add(new AnyRemainingLevelTimeEventSystem(contexts)); // priority: 0
         Add(new AnyRemainingObjectsCountEventSystem(contexts)); // priority: 0

@@ -830,6 +830,41 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 846525261}
     m_Modifications:
+    - target: {fileID: 2391506814266339875, guid: 2aec45112b435f64bafadc2ec7f34ea1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2391506814266339875, guid: 2aec45112b435f64bafadc2ec7f34ea1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2391506814266339875, guid: 2aec45112b435f64bafadc2ec7f34ea1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 937359490}
+    - target: {fileID: 2391506814266339875, guid: 2aec45112b435f64bafadc2ec7f34ea1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2391506814266339875, guid: 2aec45112b435f64bafadc2ec7f34ea1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TryAgain
+      objectReference: {fileID: 0}
+    - target: {fileID: 2391506814266339875, guid: 2aec45112b435f64bafadc2ec7f34ea1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MenuController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2391506814266339875, guid: 2aec45112b435f64bafadc2ec7f34ea1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5434159946018425805, guid: 2aec45112b435f64bafadc2ec7f34ea1,
         type: 3}
       propertyPath: m_Pivot.x

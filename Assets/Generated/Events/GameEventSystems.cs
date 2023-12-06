@@ -15,6 +15,7 @@ public sealed class GameEventSystems : Feature {
         Add(new AnyGoldEarnedEventSystem(contexts)); // priority: 0
         Add(new AnyLevelEndEventSystem(contexts)); // priority: 0
         Add(new AnyLevelReadyEventSystem(contexts)); // priority: 0
+        Add(new AnyLevelRestartEventSystem(contexts)); // priority: 0
         Add(new AnyLevelStatusEventSystem(contexts)); // priority: 0
         Add(new AnyLoadEventSystem(contexts)); // priority: 0
         Add(new ObjectEventSystem(contexts)); // priority: 0

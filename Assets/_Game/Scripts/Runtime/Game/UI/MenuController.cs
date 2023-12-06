@@ -74,6 +74,7 @@ public class MenuController : MonoBehaviour, IAnyLevelStatusListener
     {
         DeactivateAllPanels();
         _contexts.game.CreateEntity().isLoadLevel = true;
+        _contexts.game.CreateEntity().isLevelRestart = true;
     }
 
     public void ResumeGame()

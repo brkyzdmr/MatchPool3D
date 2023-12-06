@@ -39,8 +39,8 @@ public sealed class InitializeLevelSystem : ReactiveSystem<GameEntity>, IInitial
     
     protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context) =>
         context.CreateCollector(GameMatcher.LoadLevel);
-    
-    protected override bool Filter(GameEntity entity) => _contexts.game.isLevelEnd;
+
+    protected override bool Filter(GameEntity entity) => _contexts.game.isLevelEnd || _contexts.game.isLevelRestart;
     
     protected override void Execute(List<GameEntity> entities)
     {
@@ -51,8 +51,10 @@ public sealed class InitializeLevelSystem : ReactiveSystem<GameEntity>, IInitial
         }
         
         Debug.Log("Level Loaded!");
-
+        
+        _contexts.game.isLevelReady = false;
         _contexts.game.isLevelEnd = false;
+        _contexts.game.isLevelRestart = false;
         _timeService.ResumeTime();
         SetupLevel();
     }

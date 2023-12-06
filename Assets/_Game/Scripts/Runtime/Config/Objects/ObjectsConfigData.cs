@@ -15,6 +15,7 @@ public class ObjectsConfigData
         [System.Serializable]
         public class ShopData
         {
+            public string name;
             public string sprite;
             public int price;
         }

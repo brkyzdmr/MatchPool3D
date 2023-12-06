@@ -3,7 +3,8 @@
     {
       "type": "ball_green",
       "shop": {
-        "sprite": "Sprites/type1_shop",
+        "name": "Green Ball",
+        "sprite": "Sprites/Objects/Balls/Ball_Green",
         "price": 0
       },
       "levels": [
@@ -18,8 +19,9 @@
     {
       "type": "ball_blue",
       "shop": {
-        "sprite": "Sprites/type1_shop",
-        "price": 500
+        "name": "Blue Ball",
+        "sprite": "Sprites/Objects/Balls/Ball_Blue",
+        "price": 10
       },
       "levels": [
         "Prefabs/Objects/Balls/Blue/BlueBall_1",

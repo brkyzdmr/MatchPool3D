@@ -4,7 +4,7 @@
       "name": "Tutorial",
       "type": "onboarding",
       "duration": 30,
-      "maxObjectLevel": 2,
+      "maxObjectLevel": 1,
       "maxProducedObjectLevel": 1,
       "maxProducedObjectCount": 8
     },
@@ -13,7 +13,7 @@
       "type": "standard",
       "duration": 40,
       "maxObjectLevel": 1,
-      "maxProducedObjectLevel": 2,
+      "maxProducedObjectLevel": 1,
       "maxProducedObjectCount": 14
     },
     {
@@ -21,7 +21,7 @@
       "type": "standard",
       "duration": 40,
       "maxObjectLevel": 1,
-      "maxProducedObjectLevel": 2,
+      "maxProducedObjectLevel": 1,
       "maxProducedObjectCount": 16
     }
   ]

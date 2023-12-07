@@ -54,8 +54,7 @@ public class ObjectProductionSystem : IInitializeSystem, IExecuteSystem
 
     private Vector3 GetRandomPosition() => 
         new Vector3(Random.Range(-3, 3), 6, Random.Range(-5, 5));
-
-    // TODO: Refactor this
+    
     private (ObjectsConfigData.ObjectData, int) GetNextAvailableObject()
     {
         var objects = _contexts.game.generatedObjects.GeneratedObjects;
@@ -63,25 +62,20 @@ public class ObjectProductionSystem : IInitializeSystem, IExecuteSystem
         // Filter the objects that have a non-zero count
         var availableObjects = objects.Where(obj => obj.Item3 > 0).ToList();
 
-        // If no available objects, handle the situation (e.g., throw exception or return a default value)
         if (!availableObjects.Any())
         {
             throw new InvalidOperationException("No available objects.");
         }
-
-        // Randomly select an object from the available ones
+        
         var rndValue = Rand.game.Int(availableObjects.Count);
         var selectedObject = availableObjects[rndValue];
-
-        // Decrease the objectCount of the selected object
-        int objectIndex = objects.IndexOf(selectedObject); // fix it
+        int objectIndex = objects.IndexOf(selectedObject); 
+        
         objects[objectIndex] = (selectedObject.Item1, selectedObject.Item2, selectedObject.Item3 - 1);
 
-        // Return the ObjectData and level of the selected object
-        return (selectedObject.Item1, selectedObject.Item2);
+        return (selectedObject.Item1, selectedObject.Item2); // ObjectData, level
     }
-
-
+    
     private void UpdateObjectCounters()
     {
         _contexts.game.ReplaceCreatedObjectsCount(_contexts.game.createdObjectsCount.Value + 1);

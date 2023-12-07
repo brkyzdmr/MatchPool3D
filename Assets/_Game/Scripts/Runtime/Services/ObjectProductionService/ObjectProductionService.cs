@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Random = System.Random;
@@ -26,7 +27,7 @@ public class ObjectProductionService : Service, IObjectProductionService
         for (int i = 0; i < availableObjectsCount; i++)
         {
             var objectData = availableObjects[i];
-            Random random = new Random(_contexts.game.currentLevelIndex.Value * i);
+            Random random = new Random(_contexts.game.currentLevelIndex.Value * (i + 1));
             int initialObjectCount = CalculateInitialObjectCount(maxObjectLevelAllowed, baseObjectCount, random);
 
             // Add the initial object count
@@ -38,13 +39,8 @@ public class ObjectProductionService : Service, IObjectProductionService
         
         int totalCreatedObjects = generatedObjects.Sum(item => item.Item3);
         _contexts.game.ReplaceMaxProducedObjectCount(totalCreatedObjects);
+        _contexts.game.ReplaceDebugLog("Total: x" + totalCreatedObjects);
         return generatedObjects;
-    }
-
-    private void AddObjectToList(List<(ObjectsConfigData.ObjectData, int, int)> objectList, ObjectsConfigData.ObjectData objectData, int level, int count)
-    {
-        objectList.Add((objectData, level, count));
-        Debug.Log($"{objectData.type}-{level}: x{count}");
     }
 
     private int CalculateInitialObjectCount(int maxLevel, int baseCount, Random random)
@@ -52,7 +48,7 @@ public class ObjectProductionService : Service, IObjectProductionService
         var initialObjectCount = 0;
         if (maxLevel == 0)
         {
-            initialObjectCount = baseCount;
+            initialObjectCount = (baseCount / 2) % 2 == 0 ? baseCount : baseCount + 2;
         }
         else
         {
@@ -62,13 +58,34 @@ public class ObjectProductionService : Service, IObjectProductionService
         return initialObjectCount % 2 != 0 ? initialObjectCount + 1 : initialObjectCount;
     }
 
+    private void AddObjectToList(List<(ObjectsConfigData.ObjectData, int, int)> objectList, ObjectsConfigData.ObjectData objectData, int level, int count)
+    {
+        objectList.Add((objectData, level, count));
+        Debug.Log($"{objectData.type}-{level}: x{count}");
+    }
+
     private void GenerateObjectsForHigherLevels(List<(ObjectsConfigData.ObjectData, int, int)> objectList, ObjectsConfigData.ObjectData objectData, int maxLevel, int remainingCount, Random random)
     {
+        var previousLevelCounts = new List<int>();
         var previousCounts = new List<int>();
-        int objectsCount = remainingCount;
 
-        for (int level = 1; level < maxLevel; level++)
+        int objectsCount = remainingCount;
+        
+
+        for (int level = 1; level <= maxLevel; level++)
         {
+            previousLevelCounts.Add(objectList.FirstOrDefault(item => item.Item1 == objectData && item.Item2 == level - 1).Item3);
+
+            Debug.Log(string.Join(", ", previousLevelCounts));
+            var restPreviousLevelCount = 0;
+
+            for (int previousLevel = 0; previousLevel < previousLevelCounts.Count; previousLevel++)
+            {
+                restPreviousLevelCount += (int)(previousLevelCounts[previousLevel] / Math.Pow(2, previousLevelCounts.Count - previousLevel));
+            }
+            
+            previousCounts.Add(restPreviousLevelCount);
+            
             int currentLevelCount = CalculateLevelObjectCount(level, maxLevel, objectsCount, previousCounts, random);
             AddObjectToList(objectList, objectData, level, currentLevelCount);
             objectsCount -= currentLevelCount;
@@ -78,8 +95,9 @@ public class ObjectProductionService : Service, IObjectProductionService
     private int CalculateLevelObjectCount(int currentLevel, int maxLevel, int remainingCount, List<int> previousCounts, Random random)
     {
         int count = currentLevel == maxLevel ? remainingCount : (int)(remainingCount / (random.NextDouble() * (3 - 1.8) + 1.8));
+        
         count = AdjustCountBasedOnPreviousSum(previousCounts, count);
-        previousCounts.Add(count);
+
         return count;
     }
     

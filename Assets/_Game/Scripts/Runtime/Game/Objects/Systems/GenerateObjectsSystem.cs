@@ -2,7 +2,7 @@
 using Entitas;
 using UnityEngine;
 
-public sealed class ObjectsWillProducedSystem : ReactiveSystem<GameEntity>
+public sealed class GenerateObjectsSystem : ReactiveSystem<GameEntity>
 {
     private readonly Contexts _contexts;
     private Transform _playAreaContainer;
@@ -10,7 +10,7 @@ public sealed class ObjectsWillProducedSystem : ReactiveSystem<GameEntity>
     private readonly ITimeService _timeService;
     private readonly IObjectService _objectService;
 
-    public ObjectsWillProducedSystem(Contexts contexts) : base(contexts.game)
+    public GenerateObjectsSystem(Contexts contexts) : base(contexts.game)
     {
         _contexts = contexts;
         _levelService = Services.GetService<ILevelService>();
@@ -20,9 +20,9 @@ public sealed class ObjectsWillProducedSystem : ReactiveSystem<GameEntity>
     private void SetupObjects()
     {
         var availableObjects = _objectService.GetAllAvailableObjects();
-        var objectList = _objectService.CalculateObjectsWillProduced(availableObjects);
+        var objectList = _objectService.GenerateObjects(availableObjects);
         
-        _contexts.game.ReplaceObjectsWillProduced(objectList);
+        _contexts.game.ReplaceGeneratedObjects(objectList);
     }
     
     protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context) =>

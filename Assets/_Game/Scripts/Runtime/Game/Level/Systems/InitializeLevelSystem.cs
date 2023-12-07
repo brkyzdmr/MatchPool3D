@@ -27,8 +27,8 @@ public sealed class InitializeLevelSystem : ReactiveSystem<GameEntity>, IInitial
 
         _contexts.game.ReplaceCreatedObjectsCount(0);
         _contexts.game.ReplaceRemainingObjectsCount(0);
-        _contexts.input.isInputBlock = true;
         
+        _contexts.input.isInputBlock = true;
         _contexts.game.createdObjectsCount.Value = 0;
         
         _contexts.game.isLevelReady = true;

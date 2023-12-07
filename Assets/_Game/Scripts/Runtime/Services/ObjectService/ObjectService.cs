@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = System.Random;
 
 public class ObjectService : Service, IObjectService
 {
@@ -34,45 +35,104 @@ public class ObjectService : Service, IObjectService
         
         return !availableObjects.Any() ? null : availableObjects[UnityEngine.Random.Range(0, availableObjects.Count)];
     }
-    
-    public Dictionary<int, ObjectsConfigData.ObjectData> CalculateObjectsWillProduced(List<ObjectsConfigData.ObjectData> availableObjects)
+
+    public List<(ObjectsConfigData.ObjectData, int, int)> GenerateObjects(List<ObjectsConfigData.ObjectData> availableObjects)
     {
-        var objectStack = new Dictionary<int, ObjectsConfigData.ObjectData>(); // object level, object data
         var maxObjectLevel = _contexts.game.maxObjectLevel.Value;
-        var maxProducedObjectCount = _contexts.game.maxProducedObjectCount.Value;
+        var availableObjectsCount = availableObjects.Count;
+        var maxProducedObjectCount = _contexts.game.maxProducedObjectCount.Value / availableObjectsCount;
         var maxProducedObjectLevel = _contexts.game.maxProducedObjectLevel.Value;
 
-        // Group objects by type
-        var groupedObjects = availableObjects.GroupBy(obj => obj.type);
+        List<(ObjectsConfigData.ObjectData, int, int)> generatedObjects = new List<(ObjectsConfigData.ObjectData, int, int)>();
+        // objectdata, level, count
 
-        foreach (var group in groupedObjects)
+        for (int i = 0; i < availableObjectsCount; i++)
         {
-            int objectCount = group.Count();
-            int level = 1;
-            while (objectCount > 0 && objectStack.Count < maxProducedObjectCount)
+            Random random = new Random(_contexts.game.currentLevelIndex.Value * i);
+            var previousLevelCounts = new List<int>();
+            var lowestLevelCount = 0;
+            
+            if (maxProducedObjectLevel == 1)
             {
-                if (level > maxProducedObjectLevel)
+                if ((maxProducedObjectLevel / 2) % 2 == 0)
                 {
-                    break; // Skip if the level exceeds the maximum allowed level
+                    lowestLevelCount = maxProducedObjectCount;
+                }
+                else
+                {
+                    lowestLevelCount = maxProducedObjectCount + 2;
+                }
+            }
+            else
+            {
+                lowestLevelCount = (int)(maxProducedObjectCount / (random.NextDouble() * (3 - 1.3) + 1.3));
+            }
+
+            if (lowestLevelCount % 2 != 0)
+            {
+                lowestLevelCount += 1;
+            }
+            
+            generatedObjects.Add((availableObjects[i], 0, lowestLevelCount));
+
+            Debug.Log(generatedObjects[i].Item1.type + "-" + 0 + ": x" + lowestLevelCount);
+
+            var objectsCount = maxProducedObjectCount - lowestLevelCount;
+            var previousObjectsCount = new List<int>();
+            
+
+            for (int level = 1; level < maxProducedObjectLevel; level++)
+            {
+                var previosLevelCount1 = generatedObjects.Count(item => item.Item1 == availableObjects[i] && item.Item2 == level - 1);
+                previousLevelCounts.Add(previosLevelCount1);
+                var previousLevelCount2 = 0;
+
+                // var currentObjectCount = generatedObjects.Count(item => item.Item1 == availableObjects[i]);
+
+                for (int j = 0; j < previosLevelCount1; j++)
+                {
+                    previousLevelCount2 += (int)(previousLevelCounts[i] / (int)(Math.Pow(2, (previosLevelCount1 - i))));
+                }
+                
+                previousObjectsCount.Add(previousLevelCount2);
+
+                var currentLevelCount = 0;
+                if (level == maxProducedObjectLevel)
+                {
+                    currentLevelCount = objectsCount;
+                }
+                else
+                {
+                    currentLevelCount = (int)(objectsCount / (random.NextDouble() * (3 - 1.8) + 1.8));
                 }
 
-                int objectsAtCurrentLevel = (int)Math.Pow(2, level - 1);
-                int producibleObjectsCount = Math.Min(objectCount / objectsAtCurrentLevel, maxProducedObjectCount - objectStack.Count);
-
-                if (producibleObjectsCount > 0)
+                if (previousObjectsCount.Sum() % 2 == 0)
                 {
-                    objectStack[level] = group.First(); // Assuming each level has a unique object representation
-                    objectCount -= producibleObjectsCount * objectsAtCurrentLevel;
+                    if (currentLevelCount % 2 != 0)
+                    {
+                        currentLevelCount += 1;
+                    }
+                }
+                else
+                {
+                    if (currentLevelCount % 2 == 0)
+                    {
+                        currentLevelCount += 1;
+                    }
                 }
 
-                level++;
+                var currentObjects = (availableObjects[i], level, currentLevelCount);
+                Debug.Log(currentObjects.Item1.type + "-" + level + ": x" + currentLevelCount);
+                
+                generatedObjects.Add((availableObjects[i], level, currentLevelCount));
+                objectsCount -= currentLevelCount;
             }
         }
 
-        return objectStack;
+        return generatedObjects;
     }
 
-    
+
     public void SetAvailableObjectByType(string objectType, bool isAvailable)
     {
         var objectIndex = _objectsConfig.Config.objects.FindIndex(o => o.type == objectType);

@@ -33,24 +33,24 @@ public static class GameComponentsLookup {
     public const int CurrentTime = 22;
     public const int Destroyed = 23;
     public const int DestroyedListener = 24;
-    public const int GoldEarned = 25;
-    public const int ItemPurchased = 26;
-    public const int LevelDuration = 27;
-    public const int LevelEnd = 28;
-    public const int LevelName = 29;
-    public const int LevelReady = 30;
-    public const int LevelRestart = 31;
-    public const int LevelStatus = 32;
-    public const int Load = 33;
-    public const int LoadLevel = 34;
-    public const int MaxObjectLevel = 35;
-    public const int MaxProducedObjectCount = 36;
-    public const int MaxProducedObjectLevel = 37;
-    public const int MergableObject = 38;
-    public const int Object = 39;
-    public const int ObjectListener = 40;
-    public const int ObjectPool = 41;
-    public const int ObjectsWillProduced = 42;
+    public const int GeneratedObjects = 25;
+    public const int GoldEarned = 26;
+    public const int ItemPurchased = 27;
+    public const int LevelDuration = 28;
+    public const int LevelEnd = 29;
+    public const int LevelName = 30;
+    public const int LevelReady = 31;
+    public const int LevelRestart = 32;
+    public const int LevelStatus = 33;
+    public const int Load = 34;
+    public const int LoadLevel = 35;
+    public const int MaxObjectLevel = 36;
+    public const int MaxProducedObjectCount = 37;
+    public const int MaxProducedObjectLevel = 38;
+    public const int MergableObject = 39;
+    public const int Object = 40;
+    public const int ObjectListener = 41;
+    public const int ObjectPool = 42;
     public const int Position = 43;
     public const int PositionListener = 44;
     public const int PurchaseAction = 45;
@@ -98,6 +98,7 @@ public static class GameComponentsLookup {
         "CurrentTime",
         "Destroyed",
         "DestroyedListener",
+        "GeneratedObjects",
         "GoldEarned",
         "ItemPurchased",
         "LevelDuration",
@@ -115,7 +116,6 @@ public static class GameComponentsLookup {
         "Object",
         "ObjectListener",
         "ObjectPool",
-        "ObjectsWillProduced",
         "Position",
         "PositionListener",
         "PurchaseAction",
@@ -162,6 +162,7 @@ public static class GameComponentsLookup {
         typeof(CurrentTimeComponent),
         typeof(DestroyedComponent),
         typeof(DestroyedListenerComponent),
+        typeof(GeneratedObjectsComponent),
         typeof(GoldEarnedComponent),
         typeof(ItemPurchasedComponent),
         typeof(LevelDurationComponent),
@@ -179,7 +180,6 @@ public static class GameComponentsLookup {
         typeof(ObjectComponent),
         typeof(ObjectListenerComponent),
         typeof(ObjectPoolComponent),
-        typeof(ObjectsWillProducedComponent),
         typeof(PositionComponent),
         typeof(PositionListenerComponent),
         typeof(PurchaseActionComponent),

@@ -46,8 +46,8 @@ public class ObjectProductionSystem : IInitializeSystem, IExecuteSystem
         var randomPosition = GetRandomPosition();
         var nextAvailableObject = GetNextAvailableObject();
 
-        var objectPath = _objectService.GetObjectPath(nextAvailableObject.Value, nextAvailableObject.Key);
-        _contexts.game.CreateObject(nextAvailableObject.Value.type, nextAvailableObject.Key, objectPath, randomPosition);
+        var objectPath = _objectService.GetObjectPath(nextAvailableObject.Item1, nextAvailableObject.Item2);
+        _contexts.game.CreateObject(nextAvailableObject.Item1.type, nextAvailableObject.Item2, objectPath, randomPosition);
 
         UpdateObjectCounters();
     }
@@ -55,19 +55,32 @@ public class ObjectProductionSystem : IInitializeSystem, IExecuteSystem
     private Vector3 GetRandomPosition() => 
         new Vector3(Random.Range(-3, 3), 6, Random.Range(-5, 5));
 
-    private KeyValuePair<int, ObjectsConfigData.ObjectData> GetNextAvailableObject()
+    // TODO: Refactor this
+    private (ObjectsConfigData.ObjectData, int) GetNextAvailableObject()
     {
-        var objects = _contexts.game.objectsWillProduced.Objects;
+        var objects = _contexts.game.generatedObjects.GeneratedObjects;
 
-        if (!objects.Any())
+        // Filter the objects that have a non-zero count
+        var availableObjects = objects.Where(obj => obj.Item3 > 0).ToList();
+
+        // If no available objects, handle the situation (e.g., throw exception or return a default value)
+        if (!availableObjects.Any())
         {
-            throw new InvalidOperationException("No available objects to produce.");
+            throw new InvalidOperationException("No available objects.");
         }
 
-        _lastProducedObjectIndex = (_lastProducedObjectIndex + 1) % objects.Count; 
+        // Randomly select an object from the available ones
+        var rndValue = Rand.game.Int(availableObjects.Count);
+        var selectedObject = availableObjects[rndValue];
 
-        return objects.ElementAt(_lastProducedObjectIndex);
+        // Decrease the objectCount of the selected object
+        int objectIndex = objects.IndexOf(selectedObject); // fix it
+        objects[objectIndex] = (selectedObject.Item1, selectedObject.Item2, selectedObject.Item3 - 1);
+
+        // Return the ObjectData and level of the selected object
+        return (selectedObject.Item1, selectedObject.Item2);
     }
+
 
     private void UpdateObjectCounters()
     {

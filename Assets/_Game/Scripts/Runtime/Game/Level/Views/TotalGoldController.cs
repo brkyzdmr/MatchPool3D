@@ -4,7 +4,7 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
-public class TotalGoldController : MonoBehaviour, IAnyLoadListener, IAnyGoldEarnedListener, IAnyLevelEndListener
+public class TotalGoldController : MonoBehaviour, IAnyGoldEarnedListener, IAnyLevelEndListener, IAnyLevelReadyListener
 {
     [SerializeField] private TMP_Text label;
     [SerializeField] private AnimationCurve goldEarnedScaleCurve;
@@ -18,15 +18,10 @@ public class TotalGoldController : MonoBehaviour, IAnyLoadListener, IAnyGoldEarn
         _contexts = Contexts.sharedInstance;
         _listener = _contexts.game.CreateEntity();
         _listener.AddAnyGoldEarnedListener(this);
-        _listener.AddAnyLoadListener(this);
         _listener.AddAnyLevelEndListener(this);
-        UpdateTotalGoldText();
+        _listener.AddAnyLevelReadyListener(this);
     }
-
-    public void OnAnyLoad(GameEntity entity)
-    {
-        UpdateTotalGoldText();
-    }
+    
 
     public void OnAnyGoldEarned(GameEntity entity)
     {
@@ -66,5 +61,10 @@ public class TotalGoldController : MonoBehaviour, IAnyLoadListener, IAnyGoldEarn
             _contexts.game.ReplaceRemainingLevelTime(_contexts.game.remainingLevelTime.Value - 1);
             currentDelay *= decayFactor;
         }
+    }
+
+    public void OnAnyLevelReady(GameEntity entity)
+    {
+        UpdateTotalGoldText();
     }
 }

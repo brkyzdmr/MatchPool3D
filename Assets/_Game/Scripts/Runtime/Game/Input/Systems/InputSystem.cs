@@ -112,10 +112,13 @@ public sealed class InputSystem : IExecuteSystem
     private Vector3 CalculateDirectionalVelocity() 
     {
         var directionalVelocity = _endTouchPosition - _previousFramePosition;
-    
-        var speed = 10f; 
-        directionalVelocity = directionalVelocity.normalized * speed;
+        var direction = directionalVelocity.normalized;
+        var magnitude = directionalVelocity.magnitude;
+        var maxSpeed = _contexts.config.gameConfig.value.GameConfig.objectsMaxSpeed;
+        
+        magnitude = Mathf.Clamp(magnitude, 0, maxSpeed);
+        var scaledVelocity = direction * magnitude;
 
-        return new Vector3(directionalVelocity.x, 0, directionalVelocity.y);
+        return new Vector3(scaledVelocity.x, 0, scaledVelocity.y);
     }
 }

@@ -5,7 +5,6 @@ using UnityEngine;
 public class ObjectMergeSystem : ReactiveSystem<GameEntity>
 {
     private readonly Contexts _contexts;
-    private readonly float _mergeVelocityThreshold = 1f;
     private ILevelService _levelService;
     private IObjectService _objectService;
     private IGameService _gameService;
@@ -41,16 +40,19 @@ public class ObjectMergeSystem : ReactiveSystem<GameEntity>
             if (!entity.hasCollision || entity.isDestroyed) { continue; }
 
             var collisionData = entity.collision;
+            var mergeVelocityThreshold = _contexts.config.gameConfig.value.GameConfig.mergeVelocityThreshold;
+
 
             if (collisionData.OtherEntity != null &&
                 collisionData.OtherEntity.isEnabled && 
-                collisionData.RelativeVelocity.magnitude > _mergeVelocityThreshold)
+                collisionData.RelativeVelocity.magnitude > mergeVelocityThreshold)
             {
                 var thisObject = entity.@object;
                 var otherObject = collisionData.OtherEntity.@object;
 
                 if (thisObject.Type == otherObject.Type && thisObject.Level == otherObject.Level)
                 {
+                    Debug.Log(collisionData.RelativeVelocity.magnitude);
                     MergeObjects(entity, collisionData.OtherEntity);
                 }
             }
@@ -59,7 +61,6 @@ public class ObjectMergeSystem : ReactiveSystem<GameEntity>
 
     private void MergeObjects(GameEntity entity1, GameEntity entity2)
     {
-        
         var maxLevel = _contexts.game.maxObjectLevel.Value;
         var nextLevel = CalculateNextLevel(entity1.@object.Level);
         var totalGold = _contexts.game.totalGold.Value;
@@ -71,6 +72,8 @@ public class ObjectMergeSystem : ReactiveSystem<GameEntity>
             var path = _objectService.GetObjectPath(entity1.@object.Type, nextLevel);
             var mergedEntity = _contexts.game.CreateObject(entity1.@object.Type, nextLevel, path,
                 entity1.collision.CollisionPoint);
+
+            mergedEntity.ReplaceRigidbody(false,  entity1.collision.RelativeVelocity * 2);
             _contexts.game.ReplaceRemainingObjectsCount(_contexts.game.remainingObjectsCount.Value + 1);
             _contexts.game.ReplaceTotalGold(totalGold + goldPerStandardMerge);
         }
@@ -82,7 +85,7 @@ public class ObjectMergeSystem : ReactiveSystem<GameEntity>
         entity1.isDestroyed = true;
         entity2.isDestroyed = true;
 
-        Debug.Log("Object merged!" + goldPerStandardMerge);
+        // Debug.Log("Object merged!" + goldPerStandardMerge);
         _contexts.game.isGoldEarned = true;
         _contexts.game.ReplaceRemainingObjectsCount(_contexts.game.remainingObjectsCount.Value - 2);
     }

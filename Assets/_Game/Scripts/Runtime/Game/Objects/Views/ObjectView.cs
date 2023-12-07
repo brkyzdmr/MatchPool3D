@@ -9,15 +9,20 @@ public class ObjectView : View,
     private MeshRenderer _renderer;
     private Rigidbody _rigidbody;
     private Collider _collider;
+    private GameConfigData _gameConfig;
+
     public override void Link(Contexts contexts,IEntity entity)
     {
         base.Link(contexts,entity);
+        _gameConfig = contexts.config.gameConfig.value.GameConfig;
         _linkedEntity.AddRigidbodyListener(this);
         _linkedEntity.AddColliderListener(this);
 
         _renderer = GetComponentInChildren<MeshRenderer>();
         _rigidbody = GetComponent<Rigidbody>();
         _collider = GetComponentInChildren<Collider>();
+        
+        SetPhysicsData();
     }
 
     private void OnCollisionEnter(Collision other)
@@ -46,5 +51,14 @@ public class ObjectView : View,
     {
         _collider.enabled = isEnabled;
         _collider.isTrigger = isTrigger;
+    }
+
+    private void SetPhysicsData()
+    {
+        var objectMass = _gameConfig.objectsMass;
+        var objectBounciness = _gameConfig.objectsBounciness;
+
+        _rigidbody.mass = objectMass;
+        _collider.material.bounciness = objectBounciness;
     }
 }

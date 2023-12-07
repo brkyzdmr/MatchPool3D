@@ -12,7 +12,7 @@
       "name": "Level 1",
       "type": "standard",
       "duration": 40,
-      "maxObjectLevel": 3,
+      "maxObjectLevel": 1,
       "maxProducedObjectLevel": 2,
       "maxProducedObjectCount": 14
     },
@@ -20,7 +20,7 @@
       "name": "Level 2",
       "type": "standard",
       "duration": 40,
-      "maxObjectLevel": 3,
+      "maxObjectLevel": 1,
       "maxProducedObjectLevel": 2,
       "maxProducedObjectCount": 16
     }

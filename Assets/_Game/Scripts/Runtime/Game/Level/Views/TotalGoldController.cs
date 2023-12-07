@@ -42,7 +42,6 @@ public class TotalGoldController : MonoBehaviour, IAnyLoadListener, IAnyGoldEarn
     {
         var totalGold = _contexts.game.totalGold.Value;
         label.text = $"{totalGold}";
-        // Debug.Log("Total Gold: " + totalGold);
         _contexts.game.isGoldEarned = false;
     }
 
@@ -53,7 +52,6 @@ public class TotalGoldController : MonoBehaviour, IAnyLoadListener, IAnyGoldEarn
 
     private IEnumerator IncrementGoldAtLevelEnd()
     {
-        // Debug.Log("Level End: Coin Rush!");
         var remainingTimeSeconds = _contexts.game.remainingLevelTime.Value;
         var goldPerSecond = Services.GetService<IGameService>().GameConfig.GameConfig.goldPerLevelSecondsLeft;
 

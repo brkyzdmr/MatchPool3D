@@ -3,6 +3,7 @@
     public GameSystems(Contexts contexts)
     {
         // Game Features
+        Add(new UtilsFeature(contexts));
         Add(new SaveFeature(contexts));
         Add(new TimeFeature(contexts));
         Add(new LevelFeature(contexts));

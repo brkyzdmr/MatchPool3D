@@ -34,8 +34,7 @@ public sealed class GenerateObjectsSystem : ReactiveSystem<GameEntity>
     
     protected override void Execute(List<GameEntity> entities)
     {
-        Debug.Log("Objects list refreshed!");
-
+        _contexts.game.ReplaceDebugLog("Objects list refreshed!");   
         SetupObjects();
     }
 }

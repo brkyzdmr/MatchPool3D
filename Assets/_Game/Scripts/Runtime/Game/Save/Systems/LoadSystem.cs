@@ -32,7 +32,7 @@ public class LoadSystem : ReactiveSystem<GameEntity>, IInitializeSystem
 
     private void LoadData()
     {
-        Debug.Log("Load!");
+        _contexts.game.ReplaceDebugLog("Load!");
 
         _contexts.game.ReplaceCurrentLevelIndex(_saveService.GetInt(_saveService.CurrentLevelKey, 0));
         _contexts.game.ReplaceTotalGold(_saveService.GetInt(_saveService.TotalGoldKey, 0));

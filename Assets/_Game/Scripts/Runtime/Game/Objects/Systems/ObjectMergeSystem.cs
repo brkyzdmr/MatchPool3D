@@ -52,7 +52,8 @@ public class ObjectMergeSystem : ReactiveSystem<GameEntity>
 
                 if (thisObject.Type == otherObject.Type && thisObject.Level == otherObject.Level)
                 {
-                    Debug.Log(collisionData.RelativeVelocity.magnitude);
+                    _contexts.game.ReplaceDebugLog(collisionData.RelativeVelocity.magnitude.ToString());
+
                     MergeObjects(entity, collisionData.OtherEntity);
                 }
             }
@@ -85,7 +86,6 @@ public class ObjectMergeSystem : ReactiveSystem<GameEntity>
         entity1.isDestroyed = true;
         entity2.isDestroyed = true;
 
-        // Debug.Log("Object merged!" + goldPerStandardMerge);
         _contexts.game.isGoldEarned = true;
         _contexts.game.ReplaceRemainingObjectsCount(_contexts.game.remainingObjectsCount.Value - 2);
     }

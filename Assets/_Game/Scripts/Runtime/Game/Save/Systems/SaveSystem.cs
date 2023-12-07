@@ -20,7 +20,8 @@ public class SaveSystem : ReactiveSystem<GameEntity>
 
     protected override void Execute(List<GameEntity> entities)
     {
-        Debug.Log("Save!");
+        _contexts.game.ReplaceDebugLog("Save!");
+        
         _saveService.SetInt(_saveService.CurrentLevelKey, _contexts.game.currentLevelIndex.Value);
         _saveService.SetInt(_saveService.TotalGoldKey, _contexts.game.totalGold.Value);
         _saveService.SetInt(_saveService.AvailableObjectsKey, _contexts.game.availableObjects.Value);

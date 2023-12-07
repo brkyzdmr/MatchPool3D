@@ -31,46 +31,47 @@ public static class GameComponentsLookup {
     public const int CurrentLevelName = 20;
     public const int CurrentMergedObjectsCount = 21;
     public const int CurrentTime = 22;
-    public const int Destroyed = 23;
-    public const int DestroyedListener = 24;
-    public const int GeneratedObjects = 25;
-    public const int GoldEarned = 26;
-    public const int ItemPurchased = 27;
-    public const int LevelDuration = 28;
-    public const int LevelEnd = 29;
-    public const int LevelName = 30;
-    public const int LevelReady = 31;
-    public const int LevelRestart = 32;
-    public const int LevelStatus = 33;
-    public const int Load = 34;
-    public const int LoadLevel = 35;
-    public const int MaxObjectLevel = 36;
-    public const int MaxProducedObjectCount = 37;
-    public const int MaxProducedObjectLevel = 38;
-    public const int MergableObject = 39;
-    public const int Object = 40;
-    public const int ObjectListener = 41;
-    public const int ObjectPool = 42;
-    public const int Position = 43;
-    public const int PositionListener = 44;
-    public const int PurchaseAction = 45;
-    public const int QuaternionRotation = 46;
-    public const int QuaternionRotationListener = 47;
-    public const int RemainingLevelTime = 48;
-    public const int RemainingObjectsCount = 49;
-    public const int Rigidbody = 50;
-    public const int RigidbodyListener = 51;
-    public const int Rotation = 52;
-    public const int RotationListener = 53;
-    public const int Save = 54;
-    public const int Scale = 55;
-    public const int ScaleListener = 56;
-    public const int ShopItem = 57;
-    public const int TimeTick = 58;
-    public const int TotalGold = 59;
-    public const int View = 60;
+    public const int DebugLog = 23;
+    public const int Destroyed = 24;
+    public const int DestroyedListener = 25;
+    public const int GeneratedObjects = 26;
+    public const int GoldEarned = 27;
+    public const int ItemPurchased = 28;
+    public const int LevelDuration = 29;
+    public const int LevelEnd = 30;
+    public const int LevelName = 31;
+    public const int LevelReady = 32;
+    public const int LevelRestart = 33;
+    public const int LevelStatus = 34;
+    public const int Load = 35;
+    public const int LoadLevel = 36;
+    public const int MaxObjectLevel = 37;
+    public const int MaxProducedObjectCount = 38;
+    public const int MaxProducedObjectLevel = 39;
+    public const int MergableObject = 40;
+    public const int Object = 41;
+    public const int ObjectListener = 42;
+    public const int ObjectPool = 43;
+    public const int Position = 44;
+    public const int PositionListener = 45;
+    public const int PurchaseAction = 46;
+    public const int QuaternionRotation = 47;
+    public const int QuaternionRotationListener = 48;
+    public const int RemainingLevelTime = 49;
+    public const int RemainingObjectsCount = 50;
+    public const int Rigidbody = 51;
+    public const int RigidbodyListener = 52;
+    public const int Rotation = 53;
+    public const int RotationListener = 54;
+    public const int Save = 55;
+    public const int Scale = 56;
+    public const int ScaleListener = 57;
+    public const int ShopItem = 58;
+    public const int TimeTick = 59;
+    public const int TotalGold = 60;
+    public const int View = 61;
 
-    public const int TotalComponents = 61;
+    public const int TotalComponents = 62;
 
     public static readonly string[] componentNames = {
         "AnyCurrentMergedObjectsCountListener",
@@ -96,6 +97,7 @@ public static class GameComponentsLookup {
         "CurrentLevelName",
         "CurrentMergedObjectsCount",
         "CurrentTime",
+        "DebugLog",
         "Destroyed",
         "DestroyedListener",
         "GeneratedObjects",
@@ -160,6 +162,7 @@ public static class GameComponentsLookup {
         typeof(CurrentLevelNameComponent),
         typeof(CurrentMergedObjectsCount),
         typeof(CurrentTimeComponent),
+        typeof(DebugLogComponent),
         typeof(DestroyedComponent),
         typeof(DestroyedListenerComponent),
         typeof(GeneratedObjectsComponent),

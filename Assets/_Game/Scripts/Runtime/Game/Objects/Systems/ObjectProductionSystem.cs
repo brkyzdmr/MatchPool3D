@@ -88,9 +88,11 @@ public class ObjectProductionSystem : IInitializeSystem, IExecuteSystem
         _contexts.game.ReplaceRemainingObjectsCount(_contexts.game.remainingObjectsCount.Value + 1);
     }
 
-    private bool ShouldProduceObject() =>
-        _contexts.game.createdObjectsCount.Value < _contexts.game.maxProducedObjectCount.Value &&
-        !_productionTimer.isTimerRunning;
+    private bool ShouldProduceObject()
+    {
+        return _contexts.game.createdObjectsCount.Value < _contexts.game.maxProducedObjectCount.Value &&
+               !_productionTimer.isTimerRunning;
+    }
 
     private void ResetProductionTimer()
     {

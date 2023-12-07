@@ -9,18 +9,20 @@ public sealed class GenerateObjectsSystem : ReactiveSystem<GameEntity>
     private readonly ILevelService _levelService;
     private readonly ITimeService _timeService;
     private readonly IObjectService _objectService;
+    private readonly IObjectProductionService _objectProductionService;
 
     public GenerateObjectsSystem(Contexts contexts) : base(contexts.game)
     {
         _contexts = contexts;
         _levelService = Services.GetService<ILevelService>();
         _objectService = Services.GetService<IObjectService>();
+        _objectProductionService = Services.GetService<IObjectProductionService>();
     }
 
     private void SetupObjects()
     {
         var availableObjects = _objectService.GetAllAvailableObjects();
-        var objectList = _objectService.GenerateObjects(availableObjects);
+        var objectList = _objectProductionService.GenerateObjects(availableObjects);
         
         _contexts.game.ReplaceGeneratedObjects(objectList);
     }

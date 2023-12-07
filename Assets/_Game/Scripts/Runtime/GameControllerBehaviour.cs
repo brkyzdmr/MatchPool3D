@@ -52,6 +52,7 @@ public class GameControllerBehaviour : MonoBehaviour
         Services.RegisterService<ILevelService>(new LevelService(_contexts));
         Services.RegisterService<IInputService>(new UnityInputService(_contexts));
         Services.RegisterService<IObjectService>(new ObjectService(_contexts));
+        Services.RegisterService<IObjectProductionService>(new ObjectProductionService(_contexts));
         Services.RegisterService<ITimeService>(new TimeService(_contexts));
         Services.RegisterService<IShopService>(new ShopService(_contexts));
     }

@@ -42,7 +42,7 @@ public class TotalGoldController : MonoBehaviour, IAnyLoadListener, IAnyGoldEarn
     {
         var totalGold = _contexts.game.totalGold.Value;
         label.text = $"{totalGold}";
-        Debug.Log("Total Gold: " + totalGold);
+        // Debug.Log("Total Gold: " + totalGold);
         _contexts.game.isGoldEarned = false;
     }
 
@@ -53,16 +53,20 @@ public class TotalGoldController : MonoBehaviour, IAnyLoadListener, IAnyGoldEarn
 
     private IEnumerator IncrementGoldAtLevelEnd()
     {
-        Debug.Log("Level End: Coin Rush!");
+        // Debug.Log("Level End: Coin Rush!");
         var remainingTimeSeconds = _contexts.game.remainingLevelTime.Value;
         var goldPerSecond = Services.GetService<IGameService>().GameConfig.GameConfig.goldPerLevelSecondsLeft;
 
+        float decayFactor = Mathf.Pow(0.5f, 1.0f / (remainingTimeSeconds - 1));
+        float currentDelay = 0.1f;
+
         for (int i = 0; i < remainingTimeSeconds; i++)
         {
-            yield return new WaitForSecondsRealtime(0.05f * (remainingTimeSeconds - i));
+            yield return new WaitForSecondsRealtime(currentDelay);
             _contexts.game.ReplaceTotalGold(_contexts.game.totalGold.Value + goldPerSecond);
             _contexts.game.isGoldEarned = true;
             _contexts.game.ReplaceRemainingLevelTime(_contexts.game.remainingLevelTime.Value - 1);
+            currentDelay *= decayFactor;
         }
     }
 }

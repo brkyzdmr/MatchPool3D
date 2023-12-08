@@ -50,7 +50,7 @@ public class TimeLabelController : MonoBehaviour, IAnyTimeTickListener, IAnyLeve
     {
         var remainingTime = _contexts.game.remainingLevelTime.Value;
         
-        if (remainingTime < 4)
+        if (remainingTime >= 0 && remainingTime < 4)
         {
             ChangeLabelColor(Color.red);
             AnimateLabel();

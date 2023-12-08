@@ -20,7 +20,7 @@ MonoBehaviour:
   unscaledTimeScale: 1
   useSmoothDeltaTime: 0
   maxSmoothUnscaledTime: 0.15
-  rewindCallbackMode: 0
+  rewindCallbackMode: 1
   showUnityEditorReport: 0
   logBehaviour: 0
   drawGizmos: 1
@@ -31,12 +31,12 @@ MonoBehaviour:
   defaultEaseType: 6
   defaultEaseOvershootOrAmplitude: 1.70158
   defaultEasePeriod: 0
-  defaultAutoKill: 1
+  defaultAutoKill: 0
   defaultLoopType: 0
   debugMode: 0
   debugStoreTargetId: 1
   showPreviewPanel: 1
-  storeSettingsLocation: 0
+  storeSettingsLocation: 1
   modules:
     showPanel: 0
     audioEnabled: 1

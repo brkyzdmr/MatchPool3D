@@ -42,12 +42,15 @@ public class TotalGoldController : MonoBehaviour, IAnyGoldEarnedListener, IAnyLe
 
     public void OnAnyLevelEnd(GameEntity entity)
     {
-        StartCoroutine(IncrementGoldAtLevelEnd());
+        var remainingTimeSeconds = _contexts.game.remainingLevelTime.Value;
+        if (remainingTimeSeconds > 0)
+        {
+            StartCoroutine(IncrementGoldAtLevelEnd(remainingTimeSeconds));
+        }
     }
 
-    private IEnumerator IncrementGoldAtLevelEnd()
+    private IEnumerator IncrementGoldAtLevelEnd(int remainingTimeSeconds)
     {
-        var remainingTimeSeconds = _contexts.game.remainingLevelTime.Value;
         var goldPerSecond = Services.GetService<IGameService>().GameConfig.GameConfig.goldPerLevelSecondsLeft;
 
         float decayFactor = Mathf.Pow(0.5f, 1.0f / (remainingTimeSeconds - 1));

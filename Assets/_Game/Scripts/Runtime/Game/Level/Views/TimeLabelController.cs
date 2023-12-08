@@ -67,8 +67,11 @@ public class TimeLabelController : MonoBehaviour, IAnyTimeTickListener, IAnyLeve
 
     public void OnAnyLevelReady(GameEntity entity)
     {
-        if (!_contexts.game.isLevelReady || !_listener.hasAnyTimeTickListener)
+        if (!_contexts.game.isLevelReady)
             return;
+        
+        if(!_listener.hasAnyTimeTickListener)
+            _listener.AddAnyTimeTickListener(this);
 
         ChangeLabelColor(_defaultColor);
         SetupTimeForLevel();

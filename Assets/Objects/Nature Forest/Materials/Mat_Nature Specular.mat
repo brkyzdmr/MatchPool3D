@@ -14,7 +14,6 @@ Material:
   - ANIME_SOFT
   - BASE_SATURATION
   - DIFFUSE
-  - FOG
   - MATCAP_PERSPECTIVE
   - OUTLINE
   - OUTLINE_PASS_DISABLED
@@ -40,7 +39,7 @@ Material:
   m_InvalidKeywords:
   - SPECULAR_ENABLE
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -168,7 +167,7 @@ Material:
     m_Floats:
     - _AmbientBrightness: 1
     - _Anime: 0
-    - _AnimeSoftness: 0.01
+    - _AnimeSoftness: 0.1401
     - _AnimeThreshold1: 0.45
     - _AnimeThreshold2: 0.85
     - _BlendOp: 0
@@ -196,7 +195,7 @@ Material:
     - _DiffuseWrap: 0.129
     - _DstBlend: 0
     - _Flat: 0
-    - _Fog: 1
+    - _Fog: 0
     - _GlossMapScale: 0.452
     - _Glossiness: 0.4
     - _GlossyReflections: 1

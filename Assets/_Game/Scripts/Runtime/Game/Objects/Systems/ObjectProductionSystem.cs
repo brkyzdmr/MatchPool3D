@@ -47,8 +47,7 @@ public class ObjectProductionSystem : IInitializeSystem, IExecuteSystem
         var nextAvailableObject = GetNextAvailableObject();
 
         var objectPath = _objectService.GetObjectPath(nextAvailableObject.Item1, nextAvailableObject.Item2);
-        _contexts.game.CreateObject(nextAvailableObject.Item1.type, nextAvailableObject.Item2, objectPath, randomPosition);
-
+        var obj = _contexts.game.CreateObject(nextAvailableObject.Item1.type, nextAvailableObject.Item2, objectPath, randomPosition);
         UpdateObjectCounters();
     }
 

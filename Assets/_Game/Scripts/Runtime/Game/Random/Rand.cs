@@ -1,5 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
+using Random = System.Random;
 
 public class Rand
 {
@@ -16,4 +17,13 @@ public class Rand
     public float Float() => (float)_random.NextDouble();
     public float Float(float minValue, float maxValue) => minValue + (maxValue - minValue) * Float();
     public T Element<T>(IList<T> elements) => elements[Int(0, elements.Count)];
+    
+    public Vector3 Rotation()
+    {
+        return new Vector3(
+            Float(0f, 360f), 
+            Float(0f, 360f), 
+            Float(0f, 360f)  
+        );
+    }
 }

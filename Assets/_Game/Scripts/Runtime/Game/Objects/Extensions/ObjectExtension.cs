@@ -11,6 +11,7 @@ public static class ObjectExtension
         entity.AddRigidbody(false, Vector3.zero);
         entity.AddObject(type, level);
         entity.isMergableObject = true;
+        
         return entity;
     }
 }

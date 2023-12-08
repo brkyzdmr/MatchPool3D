@@ -22,6 +22,8 @@ public class ObjectView : View,
         _rigidbody = GetComponent<Rigidbody>();
         _collider = GetComponentInChildren<Collider>();
         
+        transform.rotation = Quaternion.Euler(Rand.game.Rotation());
+        
         SetPhysicsData();
     }
 

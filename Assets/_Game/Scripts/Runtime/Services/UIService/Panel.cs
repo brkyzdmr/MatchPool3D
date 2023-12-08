@@ -15,6 +15,7 @@ public class Panel : MonoBehaviour
 
     public Type panelType;
     public bool isAlwaysPopup;
+    public bool isNeverRemove;
     [HideInInspector] public bool isCurrentlyPopup;
     [HideInInspector] public bool isCurrentlyOpen;
     public GameObject filterImage;

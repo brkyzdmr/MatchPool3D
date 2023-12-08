@@ -8,7 +8,7 @@ public class PausePanel : Panel
     [Header("Pause Panel Settings")]
     [SerializeField] private Button continueButton;
     [SerializeField] private Button restartButton;
-    // [SerializeField] private Button nextLevelButton;
+    [SerializeField] private Button shopButton;
 
     private Tween _continueButtonTween;
     private ILevelService _levelService;
@@ -19,12 +19,21 @@ public class PausePanel : Panel
 
         continueButton.onClick.AddListener(OnContinueButtonClicked);
         restartButton.onClick.AddListener(OnRestartButtonClicked);
+        shopButton.onClick.AddListener(OnShopButtonClicked);
     }
 
     public void OnEnable()
     {
         ResetPausePanel();
         // _continueButtonTween = continueButton.transform.DOScale(1.1f, 0.5f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
+    }
+
+    private void OnContinueButtonClicked()
+    {
+        // _continueButtonTween?.Kill();
+        continueButton.interactable = false;
+        
+        _levelService.ResumeGame();
     }
 
     private void OnRestartButtonClicked()
@@ -35,12 +44,9 @@ public class PausePanel : Panel
         _levelService.RestartGame();
     }
 
-    private void OnContinueButtonClicked()
+    private void OnShopButtonClicked()
     {
-        // _continueButtonTween?.Kill();
-        continueButton.interactable = false;
-        
-        _levelService.ResumeGame();
+        _levelService.SetLevelStatus(LevelStatus.Shop);
     }
 
     private void ResetPausePanel()

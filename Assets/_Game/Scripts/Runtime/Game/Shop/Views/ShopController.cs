@@ -7,6 +7,8 @@ using Entitas;
 public class ShopController : MonoBehaviour, IAnyItemPurchasedListener
 {
     [SerializeField] private GameObject shopItemPrefab;
+    [SerializeField] private Transform contentHolder;
+    
 
     private Contexts _contexts;
     private IObjectService _objectService;
@@ -41,7 +43,7 @@ public class ShopController : MonoBehaviour, IAnyItemPurchasedListener
 
     private void CreateShopItemUI(GameEntity shopItemEntity)
     {
-        var shopItemGO = Instantiate(shopItemPrefab, transform);
+        var shopItemGO = Instantiate(shopItemPrefab, contentHolder);
         var shopItemUI = shopItemGO.GetComponent<IShopItem>();
         var shopItemIcon = _objectService.GetObjectSpriteByType(shopItemEntity.shopItem.Type);
         shopItemUI.SetItem(shopItemEntity.shopItem.Type, shopItemIcon, shopItemEntity.shopItem.Name,

@@ -10,11 +10,13 @@ public class ShopPanel : Panel
 
     private Tween _restartButtonTween;
     private ILevelService _levelService;
+    private IUIService _uiService;
 
     private void Start()
     {
         _levelService = Services.GetService<ILevelService>();
-        
+        _uiService = Services.GetService<IUIService>();
+
         returnToMenuButton.onClick.AddListener(OnReturnToMenuButtonClicked);
     }
 
@@ -31,8 +33,8 @@ public class ShopPanel : Panel
     {
         // _restartButtonTween?.Kill();
         returnToMenuButton.interactable = false;
-        
-        _levelService.SetLevelStatus(LevelStatus.Pause);
+
+        _uiService.ReturnToPreviousPanel();
     }
 
     private void ResetShopPanel()

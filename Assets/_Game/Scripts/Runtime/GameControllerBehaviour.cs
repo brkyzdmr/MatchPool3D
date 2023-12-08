@@ -47,13 +47,14 @@ public class GameControllerBehaviour : MonoBehaviour
 
     private void CreateServices()
     {
+        Services.RegisterService<ITimeService>(new TimeService(_contexts));
         Services.RegisterService<ISaveService>(new SaveService(_contexts));
         Services.RegisterService<IGameService>(new GameService(_contexts));
         Services.RegisterService<ILevelService>(new LevelService(_contexts));
         Services.RegisterService<IInputService>(new UnityInputService(_contexts));
         Services.RegisterService<IObjectService>(new ObjectService(_contexts));
         Services.RegisterService<IObjectProductionService>(new ObjectProductionService(_contexts));
-        Services.RegisterService<ITimeService>(new TimeService(_contexts));
+        Services.RegisterService<IUIService>(new UIService(_contexts));
         Services.RegisterService<IShopService>(new ShopService(_contexts));
     }
 

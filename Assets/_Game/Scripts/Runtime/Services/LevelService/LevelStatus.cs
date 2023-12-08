@@ -4,5 +4,6 @@ public enum LevelStatus
     Continue,
     Pause,
     Win,
-    Fail
+    Fail,
+    Shop
 }

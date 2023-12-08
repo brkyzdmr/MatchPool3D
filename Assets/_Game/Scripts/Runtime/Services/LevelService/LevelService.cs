@@ -5,10 +5,12 @@ using UnityEngine;
 public class LevelService : Service, ILevelService
 {
     private readonly Contexts _contexts;
-    
+    private readonly ITimeService _timeService;
+
     public LevelService(Contexts contexts) : base(contexts)
     {
         _contexts = contexts;
+        _timeService = Services.GetService<ITimeService>();
     }
     
     public ILevelsConfig LevelsConfig => _contexts.config.levelsConfig.value;
@@ -64,5 +66,29 @@ public class LevelService : Service, ILevelService
     {
         var currentLevel = _contexts.game.currentLevelIndex.Value;
         return "Level " + currentLevel;
+    }
+    
+    public void ResumeGame()
+    {
+        SetLevelStatus(LevelStatus.Continue);
+        _timeService.ResumeTime();
+    }
+
+    public void PauseGame()
+    {
+        SetLevelStatus(LevelStatus.Pause);
+        _timeService.PauseTime();
+    }
+
+    public void RestartGame()
+    {
+        _contexts.game.CreateEntity().isLoadLevel = true;
+        _contexts.game.CreateEntity().isLevelRestart = true;
+    }
+
+    public void NextLevel()
+    {
+        _contexts.game.ReplaceCurrentLevelIndex(_contexts.game.currentLevelIndex.Value + 1);
+        RestartGame();
     }
 }

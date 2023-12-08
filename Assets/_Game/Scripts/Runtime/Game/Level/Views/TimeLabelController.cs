@@ -1,21 +1,27 @@
 ﻿using System;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
 public class TimeLabelController : MonoBehaviour, IAnyTimeTickListener, IAnyLevelReadyListener, IAnyRemainingLevelTimeListener
 {
     [SerializeField] private TMP_Text label;
+    [SerializeField] private AnimationCurve countdownAnimationCurve;
+    
     private float _startTime;
     private float _passedTime;
     private Contexts _contexts;
     private GameEntity _listener;
     private ILevelService _levelService;
     private ITimeService _timeService;
+    private Color _defaultColor;
+    private Tween _countdownTween;
 
     void Start()
     {
         InitializeServices();
         RegisterListeners();
+        _defaultColor = label.color;
     }
 
     private void InitializeServices()
@@ -37,6 +43,26 @@ public class TimeLabelController : MonoBehaviour, IAnyTimeTickListener, IAnyLeve
     {
         UpdatePassedTime();
         HandleTimeUpdate();
+        CheckLastSeconds();
+    }
+
+    private void CheckLastSeconds()
+    {
+        var remainingTime = _contexts.game.remainingLevelTime.Value;
+        
+        if (remainingTime < 4)
+        {
+            ChangeLabelColor(Color.red);
+            AnimateLabel();
+        }
+    }
+
+    private void AnimateLabel()
+    {
+        _countdownTween?.Kill();
+        _countdownTween = label.DOScale(1.35f, 0.58f)
+            .SetEase(countdownAnimationCurve)
+            .SetUpdate(true);
     }
 
     public void OnAnyLevelReady(GameEntity entity)
@@ -44,6 +70,7 @@ public class TimeLabelController : MonoBehaviour, IAnyTimeTickListener, IAnyLeve
         if (!_contexts.game.isLevelReady || !_listener.hasAnyTimeTickListener)
             return;
 
+        ChangeLabelColor(_defaultColor);
         SetupTimeForLevel();
     }
 
@@ -64,6 +91,11 @@ public class TimeLabelController : MonoBehaviour, IAnyTimeTickListener, IAnyLeve
 
         UpdateLabel(remainingTime);
         CheckTimeCompletion(remainingTime);
+    }
+
+    private void ChangeLabelColor(Color color)
+    {
+        label.color = color;
     }
 
     private void UpdateLabel(float value)

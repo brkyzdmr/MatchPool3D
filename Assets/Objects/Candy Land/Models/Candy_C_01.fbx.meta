@@ -1,0 +1,124 @@
+fileFormatVersion: 2
+guid: 428102e35e9829940a3d625620bae955
+timeCreated: 1588086559
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Bush_Candy_C_01_LOD0
+    100002: Bush_Candy_C_01_LOD1
+    100004: Bush_Candy_C_01_LOD2
+    100006: Bush_Candy_C_01_LOD3
+    100008: //RootNode
+    100010: Candy_C_01_LOD0
+    100012: Candy_C_01_LOD1
+    100014: Candy_C_01_LOD2
+    100016: Candy_C_01_LOD3
+    400000: Bush_Candy_C_01_LOD0
+    400002: Bush_Candy_C_01_LOD1
+    400004: Bush_Candy_C_01_LOD2
+    400006: Bush_Candy_C_01_LOD3
+    400008: //RootNode
+    400010: Candy_C_01_LOD0
+    400012: Candy_C_01_LOD1
+    400014: Candy_C_01_LOD2
+    400016: Candy_C_01_LOD3
+    2300000: Bush_Candy_C_01_LOD0
+    2300002: Bush_Candy_C_01_LOD1
+    2300004: Bush_Candy_C_01_LOD2
+    2300006: Bush_Candy_C_01_LOD3
+    2300008: Candy_C_01_LOD0
+    2300010: Candy_C_01_LOD1
+    2300012: Candy_C_01_LOD2
+    2300014: Candy_C_01_LOD3
+    3300000: Bush_Candy_C_01_LOD0
+    3300002: Bush_Candy_C_01_LOD1
+    3300004: Bush_Candy_C_01_LOD2
+    3300006: Bush_Candy_C_01_LOD3
+    3300008: Candy_C_01_LOD0
+    3300010: Candy_C_01_LOD1
+    3300012: Candy_C_01_LOD2
+    3300014: Candy_C_01_LOD3
+    4300000: Candy_C_01_LOD0
+    4300002: Bush_Candy_C_01_LOD0
+    4300004: Candy_C_01_LOD1
+    4300006: Bush_Candy_C_01_LOD1
+    4300008: Candy_C_01_LOD2
+    4300010: Bush_Candy_C_01_LOD2
+    4300012: Candy_C_01_LOD3
+    4300014: Bush_Candy_C_01_LOD3
+    20500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 1
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages:
+    - 0.25
+    - 0.125
+    - 0.0625
+    - 0.01
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

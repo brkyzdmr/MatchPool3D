@@ -1,0 +1,213 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: face
+  m_Shader: {fileID: 4800000, guid: 124e8c1d64ac24c13aa406f05ca2d222, type: 3}
+  m_ShaderKeywords: AMBIENT ANIME ANIME_SOFT ANIME_SOFTNESS DIFFUSE DIFFUSE_ADD FOG
+    MATCAP_CONTRAST MATCAP_PERSPECTIVE OUTLINE SHADOWS_ENABLED _DETAILBLEND_MULTIPLY
+    _DETAILUV_UV1 _HEIGHTCOLORSBLEND_ALPHA_BLEND _LAYER1BLEND_ALPHA_BLEND _LAYER2BLEND_ALPHA_BLEND
+    _LAYER3BLEND_ALPHA_BLEND _LIGHTMAPUV_UV1 _MATCAPBLEND_MULTIPLY _PLANTTYPE_PLANT
+    _RIMBLEND_ADDITIVE _SHADOWOVERLAYANIMATION_SCROLL _SPECULARUV_UV1
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _DetailTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissiveTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FalloffSampler:
+        m_Texture: {fileID: 2800000, guid: a1d5b2277eb3f6245900378e6fa97575, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _HeightColorsTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Layer1Tex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Layer2Tex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Layer3Tex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _LightmapDirectionTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _LightmapTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 3cf2e516b5353d5499c41818747b4155, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MatCapTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ReflectionTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _RimLightSampler:
+        m_Texture: {fileID: 2800000, guid: a18067604964b5a4d8fd5552ed0d789e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ShadowOverlayTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecularTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TransparencyMaskTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _Ambient: 1
+    - _AmbientBrightness: 1
+    - _Anime: 1
+    - _AnimeBrightness1: 1
+    - _AnimeBrightness2: 1.35
+    - _AnimeBrightness3: 2
+    - _AnimeSoftness: 0.01
+    - _AnimeThreshold1: 0.4
+    - _AnimeThreshold2: 0.875
+    - _BlendOp: 0
+    - _Brightness: 1
+    - _Contrast: 1
+    - _Cull: 2
+    - _DestBlend: 10
+    - _DetailBlend: 2
+    - _DetailBrightness: 1
+    - _DetailContrast: 1
+    - _DetailLighting: 0
+    - _DetailUV: 0
+    - _DetailVertexColors: 0
+    - _Diffuse: 1
+    - _DiffuseAdditional: 1
+    - _DiffuseBrightness: 1
+    - _DiffuseContrast: 1
+    - _DiffusePerPixel: 0
+    - _DiffuseWrap: 0.4
+    - _EdgeThickness: 0.5
+    - _FalloffPower: 1
+    - _Flat: 0
+    - _Fog: 1
+    - _HeightColors: 0
+    - _HeightColorsAlpha: 1
+    - _HeightColorsBlend: 0
+    - _HeightColorsEdgeThickness: 1
+    - _HeightColorsHeight: 0
+    - _HeightColorsSpace: 0
+    - _HeightColorsThickness: 0
+    - _IgnoreMainTexAlpha: 0
+    - _Layer1Alpha: 1
+    - _Layer1Blend: 0
+    - _Layer1Brightness: 1
+    - _Layer1VertexColor: 0
+    - _Layer2Alpha: 1
+    - _Layer2Blend: 0
+    - _Layer2Brightness: 1
+    - _Layer2VertexColor: 0
+    - _Layer3Alpha: 1
+    - _Layer3Blend: 0
+    - _Layer3Brightness: 1
+    - _Layer3VertexColor: 0
+    - _LightmapBrightness: 1
+    - _LightmapHDR: 0
+    - _LightmapUV: 0
+    - _MatCapBlend: 0
+    - _MatCapBrightness: 0.85
+    - _MatCapContrast: 0.25
+    - _MatCapPerspective: 1
+    - _MatCapStatic: 0
+    - _NormalStrength: 1
+    - _NormalUV: 0
+    - _OptFallback: 0
+    - _OptFog: 0
+    - _OptLightmapping: 0
+    - _OptPointLights: 0
+    - _OptShadow: 0
+    - _Outline: 1
+    - _OutlineWidth: 0.002
+    - _Plant: 0
+    - _PlantBaseHeight: 0
+    - _PlantPhaseVariation: 0.3
+    - _PlantSwayAmount: 0.15
+    - _PlantSwaySpeed: 1
+    - _PlantType: 0
+    - _Preset: 0
+    - _ReflectionBrightness: 1
+    - _Rim: 0
+    - _RimAmount: 1
+    - _RimBlend: 1
+    - _RimContrast: 1
+    - _RimInverse: 0
+    - _ShadowDarkness: 0
+    - _ShadowOverlayAnimation: 0
+    - _ShadowOverlayBrightness: 1
+    - _ShadowOverlaySpeedU: 0.1
+    - _ShadowOverlaySpeedV: 0.03
+    - _ShadowOverlaySwayAmount: 0.01
+    - _ShadowsEnabled: 1
+    - _SourceBlend: 5
+    - _Specular: 0
+    - _SpecularBrightness: 0.1
+    - _SpecularHair: 0
+    - _SpecularSmoothness: 10
+    - _SpecularUV: 0
+    - _TransparencyMaskAmount: 1
+    - _TransparencyMaskContrast: 1
+    - _VertexColors: 0
+    - _VertexColorsContrast: 1
+    - _VertexExtrude: 0
+    - _ZOffset: 0
+    - _ZTest: 4
+    - _ZWrite: 1
+    m_Colors:
+    - _AnimeColor1: {r: 1.1879184, g: 1.0985444, b: 1.0254202, a: 1}
+    - _AnimeColor2: {r: 1.35, g: 1.35, b: 1.35, a: 1}
+    - _AnimeColor3: {r: 1.7814789, g: 1.7814789, b: 1.7814789, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _DetailColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Emissive: {r: 0, g: 0, b: 0, a: 0}
+    - _HeightColorsColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Layer1Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Layer2Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Layer3Color: {r: 1, g: 1, b: 1, a: 1}
+    - _LightmapColor: {r: 1, g: 1, b: 1, a: 1}
+    - _MatCapRot: {r: 0, g: 0, b: 0, a: 0}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 0.7058824}
+    - _RimColor: {r: 1, g: 0, b: 0, a: 1}
+    - _RimDirection: {r: 0, g: 0, b: 0, a: 0}
+    - _ShadowColor: {r: 0.29803923, g: 0.29803923, b: 0.29803923, a: 1}
+    - _SpecularColor: {r: 1, g: 0.9866694, b: 0.8160377, a: 1}

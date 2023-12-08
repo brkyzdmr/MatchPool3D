@@ -1,35 +1,83 @@
 {
   "objects": [
     {
-      "type": "ball_green",
+      "type": "fruits",
       "shop": {
-        "name": "Green Ball",
+        "name": "Garden Fruits",
         "sprite": "Sprites/Objects/Balls/Ball_Green",
         "price": 0
       },
       "levels": [
-        "Prefabs/Objects/Balls/Green/GreenBall_1",
-        "Prefabs/Objects/Balls/Green/GreenBall_2",
-        "Prefabs/Objects/Balls/Green/GreenBall_3",
-        "Prefabs/Objects/Balls/Green/GreenBall_4",
-        "Prefabs/Objects/Balls/Green/GreenBall_5",
-        "Prefabs/Objects/Balls/Green/BallGreen_6"
+        "Prefabs/Objects/Garden/Fruits/F_Strawberry_0",
+        "Prefabs/Objects/Garden/Fruits/F_Kiwi_1",
+        "Prefabs/Objects/Garden/Fruits/F_Orange_2",
+        "Prefabs/Objects/Garden/Fruits/F_Banana_3",
+        "Prefabs/Objects/Garden/Fruits/F_Pineapple_4",
+        "Prefabs/Objects/Garden/Fruits/F_Watermelon_5"
       ]
     },
     {
-      "type": "ball_blue",
+      "type": "vegetables",
       "shop": {
-        "name": "Blue Ball",
+        "name": "Garden Vegetables",
         "sprite": "Sprites/Objects/Balls/Ball_Blue",
-        "price": 10
+        "price": 2000
       },
       "levels": [
-        "Prefabs/Objects/Balls/Blue/BlueBall_1",
-        "Prefabs/Objects/Balls/Blue/BlueBall_2",
-        "Prefabs/Objects/Balls/Blue/BlueBall_3",
-        "Prefabs/Objects/Balls/Blue/BlueBall_4",
-        "Prefabs/Objects/Balls/Blue/BlueBall_5",
-        "Prefabs/Objects/Balls/Blue/BallBlue_6"
+        "Prefabs/Objects/Garden/Vegetables/V_Garlic_0",
+        "Prefabs/Objects/Garden/Vegetables/V_Lemon_1",
+        "Prefabs/Objects/Garden/Vegetables/V_Tomato_2",
+        "Prefabs/Objects/Garden/Vegetables/V_Cucumber_3",
+        "Prefabs/Objects/Garden/Vegetables/V_Broccoli_4",
+        "Prefabs/Objects/Garden/Vegetables/V_Aubergine_5"
+      ]
+    },
+    {
+      "type": "chocolates",
+      "shop": {
+        "name": "Chocolates",
+        "sprite": "Sprites/Objects/Balls/Ball_Blue",
+        "price": 7000
+      },
+      "levels": [
+        "Prefabs/Objects/Candy/Chocolates/C_Chocmilk_0",
+        "Prefabs/Objects/Candy/Chocolates/C_Chocmilk_1",
+        "Prefabs/Objects/Candy/Chocolates/C_Biscuit_2",
+        "Prefabs/Objects/Candy/Chocolates/C_Truffle_3",
+        "Prefabs/Objects/Candy/Chocolates/C_Pudding_4",
+        "Prefabs/Objects/Candy/Chocolates/C_SwissRoll_5"
+      ]
+    },
+    {
+      "type": "grains",
+      "shop": {
+        "name": "Grains",
+        "sprite": "Sprites/Objects/Balls/Ball_Blue",
+        "price": 12000
+      },
+      "levels": [
+        "Prefabs/Objects/Candy/Grains/G_Loaf_0",
+        "Prefabs/Objects/Candy/Grains/G_Pretzel_1",
+        "Prefabs/Objects/Candy/Grains/G_Simit_2",
+        "Prefabs/Objects/Candy/Grains/G_Waffle_3",
+        "Prefabs/Objects/Candy/Grains/G_Bread_4",
+        "Prefabs/Objects/Candy/Grains/G_Breadstick_5"
+      ]
+    },
+    {
+      "type": "sweets",
+      "shop": {
+        "name": "Sweets",
+        "sprite": "Sprites/Objects/Balls/Ball_Blue",
+        "price": 21000
+      },
+      "levels": [
+        "Prefabs/Objects/Candy/Chocolates/S_Gummy_0",
+        "Prefabs/Objects/Candy/Chocolates/S_Candy_1",
+        "Prefabs/Objects/Candy/Chocolates/S_Mint_2",
+        "Prefabs/Objects/Candy/Chocolates/S_Mint_3",
+        "Prefabs/Objects/Candy/Chocolates/S_Gummy_4",
+        "Prefabs/Objects/Candy/Chocolates/S_Donut_5"
       ]
     }
   ]

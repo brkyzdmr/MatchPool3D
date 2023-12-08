@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using Sirenix.OdinInspector;
+using Udo.PoolManager;
 using UnityEngine;
 
 public class GameControllerBehaviour : MonoBehaviour
@@ -48,6 +49,10 @@ public class GameControllerBehaviour : MonoBehaviour
     private void CreateServices()
     {
         Services.RegisterService<ITimeService>(new TimeService(_contexts));
+        Services.RegisterService<IObjectPoolService>(new ObjectPoolService(_contexts));
+        Services.RegisterService<IVibrationService>(new VibrationService(_contexts));
+        Services.RegisterService<ISoundService>(new SoundService(_contexts));
+        Services.RegisterService<IParticleService>(new ParticleService(_contexts));
         Services.RegisterService<ISaveService>(new SaveService(_contexts));
         Services.RegisterService<IGameService>(new GameService(_contexts));
         Services.RegisterService<ILevelService>(new LevelService(_contexts));

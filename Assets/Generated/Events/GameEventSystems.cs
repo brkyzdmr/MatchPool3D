@@ -13,6 +13,8 @@ public sealed class GameEventSystems : Feature {
         Add(new AnyCurrentMergedObjectsCountEventSystem(contexts)); // priority: 0
         Add(new DestroyedEventSystem(contexts)); // priority: 0
         Add(new AnyGoldEarnedEventSystem(contexts)); // priority: 0
+        Add(new AnyGoldRushEndEventSystem(contexts)); // priority: 0
+        Add(new AnyGoldRushStartEventSystem(contexts)); // priority: 0
         Add(new AnyItemPurchasedEventSystem(contexts)); // priority: 0
         Add(new AnyLevelEndEventSystem(contexts)); // priority: 0
         Add(new AnyLevelReadyEventSystem(contexts)); // priority: 0

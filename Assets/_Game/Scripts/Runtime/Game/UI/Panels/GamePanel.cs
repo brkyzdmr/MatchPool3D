@@ -21,21 +21,16 @@ public class GamePanel : Panel
     private void OnEnable()
     {
         ResetWinPanel();
-        // _pauseButtonTween = pauseButton.transform.DOScale(1.1f, 0.5f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
     }
 
     private void OnPauseButtonClicked()
     {
         _pauseButtonTween?.Kill();
-        // pauseButton.interactable = false;
-        
         _levelService.PauseGame();
     }
 
     private void ResetWinPanel()
     {
-        // pauseButton.interactable = true;
-        // _pauseButtonTween?.Kill();
         pauseButton.transform.localScale = Vector3.one;
     }
 }

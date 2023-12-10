@@ -22,8 +22,6 @@ public class ObjectPoolService : Service, IObjectPoolService
 
     public GameObject Spawn(Pools.Types poolType, Vector3? position = null, Quaternion? rotation = null, Transform parent = null)
     {
-        Debug.Log($"Attempting to spawn object of type {poolType}");
-
         if (_objectPools == null)
         {
             Debug.LogError("Object pools not initialized.");

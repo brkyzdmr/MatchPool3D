@@ -57,8 +57,6 @@ public class ObjectMergeSystem : ReactiveSystem<GameEntity>
 
                 if (thisObject.Type == otherObject.Type && thisObject.Level == otherObject.Level)
                 {
-                    _contexts.game.ReplaceDebugLog(collisionData.RelativeVelocity.magnitude.ToString());
-
                     MergeObjects(entity, collisionData.OtherEntity);
                 }
             }

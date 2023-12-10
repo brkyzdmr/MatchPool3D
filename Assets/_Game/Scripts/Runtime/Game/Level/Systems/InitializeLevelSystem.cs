@@ -49,8 +49,6 @@ public sealed class InitializeLevelSystem : ReactiveSystem<GameEntity>, IInitial
         {
             mergableObject.isDestroyed = true;
         }
-        
-        _contexts.game.ReplaceDebugLog("Level Loaded!");
 
         _contexts.game.isLevelReady = false;
         _contexts.game.isLevelEnd = false;

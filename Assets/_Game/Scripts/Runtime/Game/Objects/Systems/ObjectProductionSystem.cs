@@ -12,23 +12,23 @@ public class ObjectProductionSystem : IInitializeSystem, IExecuteSystem
     private TimerEntity _productionTimer;
     private readonly Contexts _contexts;
     private readonly GameContext _context;
-    private const float TimerInterval = 2f;
-    private readonly ILevelService _levelService;
     private readonly IObjectService _objectService;
-    private int _lastProducedObjectIndex = -1; 
-    
+    private readonly IGameService _gameService;
+    private int _lastProducedObjectIndex = -1;
+
     public ObjectProductionSystem(Contexts contexts)
     {
         _contexts = contexts;
         _timerContext = contexts.timer;
-        _levelService = Services.GetService<ILevelService>();
         _objectService = Services.GetService<IObjectService>();
+        _gameService = Services.GetService<IGameService>();
     }
 
     public void Initialize()
     {
         _productionTimer = _timerContext.CreateEntity();
-        _productionTimer.AddTimer(TimerInterval);
+        _productionTimer.AddTimer(_gameService.GameConfig.GameConfig.timerCountdownTime);
+        _productionTimer.ReplaceTimerSpeed(_gameService.GameConfig.GameConfig.timerSpeedFactor);
         _productionTimer.isTimerRunning = true;
     }
 
@@ -89,7 +89,9 @@ public class ObjectProductionSystem : IInitializeSystem, IExecuteSystem
 
     private void ResetProductionTimer()
     {
-        _productionTimer.ReplaceTimer(TimerInterval);
+        _productionTimer.ReplaceTimer(_gameService.GameConfig.GameConfig.timerCountdownTime);
+        // _productionTimer.ReplaceTimerSpeed(_gameService.GameConfig.GameConfig.timerSpeedFactor);
+
         _productionTimer.isTimerRunning = true;
         _lastProducedObjectIndex = -1; 
     }

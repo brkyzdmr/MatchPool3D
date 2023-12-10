@@ -8,21 +8,27 @@
 //------------------------------------------------------------------------------
 public static class TimerComponentsLookup {
 
-    public const int DestroyWhenTimerExpires = 0;
-    public const int Timer = 1;
-    public const int TimerRunning = 2;
+    public const int AnyTimerSpeedListener = 0;
+    public const int DestroyWhenTimerExpires = 1;
+    public const int Timer = 2;
+    public const int TimerRunning = 3;
+    public const int TimerSpeed = 4;
 
-    public const int TotalComponents = 3;
+    public const int TotalComponents = 5;
 
     public static readonly string[] componentNames = {
+        "AnyTimerSpeedListener",
         "DestroyWhenTimerExpires",
         "Timer",
-        "TimerRunning"
+        "TimerRunning",
+        "TimerSpeed"
     };
 
     public static readonly System.Type[] componentTypes = {
+        typeof(AnyTimerSpeedListenerComponent),
         typeof(DestroyWhenTimerExpiresComponent),
         typeof(TimerComponent),
-        typeof(TimerRunningComponent)
+        typeof(TimerRunningComponent),
+        typeof(TimerSpeedComponent)
     };
 }

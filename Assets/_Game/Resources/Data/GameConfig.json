@@ -8,5 +8,9 @@
   "objectsMaxSpeed": 10,
   "mergeVelocityThreshold": 8,
   "objectsMass": 5,
-  "objectsBounciness": 0.5
+  "objectsBounciness": 0.5,
+  
+  "timerCountdownTime": 3,
+  "timerSpeedFactor": 1,
+  "timerSpeedFactorMax": 5
 }

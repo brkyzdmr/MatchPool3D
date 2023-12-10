@@ -13,8 +13,8 @@ public sealed class TickCurrentTimeSystem : IExecuteSystem, IInitializeSystem
     public TickCurrentTimeSystem(Contexts contexts)
     {
         _contexts = contexts;
-        _lastTick = Time.realtimeSinceStartupAsDouble;
         _timeService = Services.GetService<ITimeService>();
+        _lastTick = _timeService.RealtimeSinceStartup;
     }
 
     public void Initialize()
@@ -26,10 +26,10 @@ public sealed class TickCurrentTimeSystem : IExecuteSystem, IInitializeSystem
     {
         if (_timeService.IsTimePaused) { return; }
         
-        if (Time.realtimeSinceStartupAsDouble - 1.0f >= _lastTick)
+        if (_timeService.RealtimeSinceStartup - 1.0f >= _lastTick)
         {
             _contexts.game.ReplaceCurrentTime(CalculateTotalSeconds());
-            _lastTick = Time.realtimeSinceStartupAsDouble;
+            _lastTick = _timeService.RealtimeSinceStartup;
             
             if (_lastTickEntity != null && !_lastTickEntity.isDestroyed)
             {

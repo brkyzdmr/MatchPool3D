@@ -2,12 +2,16 @@
 
 public interface ITimeService
 {
-    DateTime Now { get; }
-    DateTime UtcNow { get; }
-    float DeltaTime { get; }
-    float TimeScale { get; set; }
-    bool IsTimePaused { get; }
-    void PauseTime();
-    void ResumeTime();
-    string FormatTimeDuration(float timeInSeconds);
+    public float TimerSpeedFactor { get; }
+    public float TimerSpeedFactorMax { get; }
+    public DateTime Now { get; }
+    public DateTime UtcNow { get; }
+    public float DeltaTime { get; }
+    public double RealtimeSinceStartup { get; }
+    public float TimeScale { get; set; }
+    public bool IsTimePaused { get; }
+    public void PauseTime();
+    public void ResumeTime();
+    public string FormatTimeDuration(float timeInSeconds);
+    public void SetTimerSpeedFactor(float value);
 }

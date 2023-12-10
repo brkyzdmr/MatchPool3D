@@ -10,11 +10,16 @@ public class TimeService : Service, ITimeService
 
     private DateTime _cachedNow;
     private DateTime _cachedUtcNow;
-    
+    private readonly Contexts _contexts;
+
     public TimeService(Contexts contexts) : base(contexts)
     {
+        _contexts = contexts;
         _timeProvider = new UnityTimeProvider();
     }
+
+    public float TimerSpeedFactor => _contexts.config.gameConfig.value.GameConfig.timerSpeedFactor;
+    public float TimerSpeedFactorMax => _contexts.config.gameConfig.value.GameConfig.timerSpeedFactorMax;
 
     public DateTime Now
     {
@@ -54,6 +59,8 @@ public class TimeService : Service, ITimeService
 
     public float DeltaTime => _timeProvider.DeltaTime;
 
+    public double RealtimeSinceStartup => _timeProvider.RealtimeSinceStartup;
+
     public float TimeScale
     {
         get => _timeProvider.TimeScale;
@@ -79,5 +86,10 @@ public class TimeService : Service, ITimeService
         int minutes = (int)timeInSeconds / 60;
         int seconds = (int)timeInSeconds % 60;
         return $"{minutes:00}:{seconds:00}";
+    }
+
+    public void SetTimerSpeedFactor(float value)
+    {
+        _contexts.timer.ReplaceTimerSpeed(value);
     }
 }

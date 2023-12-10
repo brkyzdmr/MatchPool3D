@@ -11,4 +11,8 @@ public class GameConfigData
     public float mergeVelocityThreshold;
     public float objectsMass;
     public float objectsBounciness;
+
+    public float timerCountdownTime;
+    public float timerSpeedFactor;
+    public float timerSpeedFactorMax;
 }

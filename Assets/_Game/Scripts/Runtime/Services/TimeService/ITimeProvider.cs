@@ -2,8 +2,9 @@ using System;
 
 public interface ITimeProvider
 {
-    DateTime Now { get; }
-    DateTime UtcNow { get; }
-    float DeltaTime { get; }
-    float TimeScale { get; set; }
+    public DateTime Now { get; }
+    public DateTime UtcNow { get; }
+    public float DeltaTime { get; }
+    public double RealtimeSinceStartup { get; }
+    public float TimeScale { get; set; }
 }

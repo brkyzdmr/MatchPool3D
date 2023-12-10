@@ -3,13 +3,16 @@ using UnityEngine;
 
 public sealed class TimerSystem : IExecuteSystem
 {
-    private readonly TimerContext timer;
-    private readonly IGroup<TimerEntity> runningTimers;
+    private readonly Contexts _contexts;
+    private readonly IGroup<TimerEntity> _runningTimers;
+    private readonly ITimeService _timeService;
 
     public TimerSystem(Contexts contexts)
     {
-        timer = contexts.timer;
-        runningTimers = timer.GetGroup(
+        _contexts = contexts;
+        _timeService = Services.GetService<ITimeService>();
+
+        _runningTimers = _contexts.timer.GetGroup(
             TimerMatcher.AllOf(
                 TimerMatcher.Timer,
                 TimerMatcher.TimerRunning
@@ -19,10 +22,11 @@ public sealed class TimerSystem : IExecuteSystem
 
     public void Execute()
     {
-        var delta = Time.deltaTime;
-        foreach (var e in runningTimers.GetEntities())
+        var delta = _timeService.DeltaTime;
+
+        foreach (var e in _runningTimers.GetEntities())
         {
-            e.timer.Remaining -= delta;
+            e.timer.Remaining -= delta * _contexts.timer.timerSpeed.Value;
 
             if (e.timer.Remaining <= 0.0f)
             {
@@ -35,10 +39,5 @@ public sealed class TimerSystem : IExecuteSystem
                 }
             }
         }
-    }
-
-    public void ChangeRemainingTime(TimerEntity e, float newTime)
-    {
-        e.timer.Remaining = newTime;
     }
 }

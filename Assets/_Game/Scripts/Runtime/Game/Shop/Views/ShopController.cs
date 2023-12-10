@@ -52,6 +52,12 @@ public class ShopController : MonoBehaviour, IAnyItemPurchasedListener
         shopItemUI.SetAction(() => BuyItem(shopItemEntity.shopItem.Type, shopItemEntity.shopItem.Price));
 
         _shopItems[shopItemEntity.shopItem.Type] = shopItemUI;
+        var isItemBought = _objectService.IsObjectInAvailableObjects(shopItemEntity.shopItem.Type);
+
+        if (isItemBought)
+        {
+            shopItemUI.ItemBought();
+        }
     }
 
     private void BuyItem(string itemType, int price)

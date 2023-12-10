@@ -30,7 +30,9 @@ public class PurchaseSystem : ReactiveSystem<GameEntity>
             var totalGold = _contexts.game.totalGold.Value;
             var price = e.purchaseAction.Price;
 
-            if (totalGold >= price)
+           var isObjectBought = _objectService.IsObjectInAvailableObjects(itemType);
+            
+            if (totalGold >= price && !isObjectBought)
             {
                 _contexts.game.ReplaceTotalGold(_contexts.game.totalGold.Value - price);
                 _contexts.game.isGoldEarned = true;

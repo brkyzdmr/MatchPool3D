@@ -51,6 +51,19 @@ public class ObjectService : Service, IObjectService
         _contexts.game.ReplaceAvailableObjects(availableObjectsBitmask);
     }
 
+    public bool IsObjectInAvailableObjects(string objectType)
+    {
+        var objectIndex = _objectsConfig.Config.objects.FindIndex(o => o.type == objectType);
+        
+        if (objectIndex == -1)
+            throw new KeyNotFoundException($"Object type {objectType} not found in config.");
+        
+        int availableObjectsBitmask = _contexts.game.availableObjects.Value;
+        bool isAvailable = (availableObjectsBitmask & (1 << objectIndex)) != 0;
+
+        return isAvailable;
+    }
+
     public string GetObjectPath(ObjectsConfigData.ObjectData objectData, int level)
     {
         return objectData.levels[level];

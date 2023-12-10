@@ -9,4 +9,5 @@ public interface IObjectService
     public string GetObjectPath(ObjectsConfigData.ObjectData objectData, int level);
     public string GetObjectPath(string type, int level);
     public Sprite GetObjectSpriteByType(string type);
+    public bool IsObjectInAvailableObjects(string objectType);
 }

@@ -38,30 +38,39 @@ public class ObjectService : Service, IObjectService
 
     public void SetAvailableObjectByType(string objectType, bool isAvailable)
     {
-        var objectIndex = _objectsConfig.Config.objects.FindIndex(o => o.type == objectType);
-
-        if (objectIndex == -1)
-            throw new KeyNotFoundException($"Object type {objectType} not found in config.");
-
+        var objectIndex = FindObjectIndexByType(objectType);
         int availableObjectsBitmask = _contexts.game.availableObjects.Value;
-        availableObjectsBitmask = isAvailable
-            ? availableObjectsBitmask | (1 << objectIndex) // Set the bit at the object's index to 1
-            : availableObjectsBitmask & ~(1 << objectIndex); // Set the bit at the object's index to 0
 
+        availableObjectsBitmask = UpdateBitmask(availableObjectsBitmask, objectIndex, isAvailable);
         _contexts.game.ReplaceAvailableObjects(availableObjectsBitmask);
     }
 
     public bool IsObjectInAvailableObjects(string objectType)
     {
+        var objectIndex = FindObjectIndexByType(objectType);
+        int availableObjectsBitmask = _contexts.game.availableObjects.Value;
+
+        return IsBitSet(availableObjectsBitmask, objectIndex);
+    }
+
+    private int FindObjectIndexByType(string objectType)
+    {
         var objectIndex = _objectsConfig.Config.objects.FindIndex(o => o.type == objectType);
-        
+
         if (objectIndex == -1)
             throw new KeyNotFoundException($"Object type {objectType} not found in config.");
-        
-        int availableObjectsBitmask = _contexts.game.availableObjects.Value;
-        bool isAvailable = (availableObjectsBitmask & (1 << objectIndex)) != 0;
 
-        return isAvailable;
+        return objectIndex;
+    }
+
+    private int UpdateBitmask(int bitmask, int index, bool setBit)
+    {
+        return setBit ? bitmask | (1 << index) : bitmask & ~(1 << index);
+    }
+
+    private bool IsBitSet(int bitmask, int index)
+    {
+        return (bitmask & (1 << index)) != 0;
     }
 
     public string GetObjectPath(ObjectsConfigData.ObjectData objectData, int level)

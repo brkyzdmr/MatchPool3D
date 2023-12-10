@@ -5,7 +5,8 @@ public class Pools : MonoBehaviour
 {
     public enum Types
     {
-        Example = 5,
+        MergeExplosionParticle = 1,
+        GoldExplosionParticle = 2
     }
 
     public static string GetTypeToString(Types poolType)

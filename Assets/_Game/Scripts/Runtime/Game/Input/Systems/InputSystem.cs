@@ -1,5 +1,6 @@
 ﻿using System.Numerics;
 using Entitas;
+using MoreMountains.NiceVibrations;
 using UnityEngine;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
@@ -20,11 +21,15 @@ public sealed class InputSystem : IExecuteSystem
     private float _selectedObjectY;
 
     private Vector2 _previousFramePosition;
+    private readonly IVibrationService _vibrationService;
+    private Camera _mainCamera;
 
     public InputSystem(Contexts contexts)
     {
         _contexts = contexts;
         _inputService = Services.GetService<IInputService>();
+        _vibrationService = Services.GetService<IVibrationService>();
+        _mainCamera = Camera.main;
     }
 
     public void Execute()
@@ -62,7 +67,7 @@ public sealed class InputSystem : IExecuteSystem
 
     private void TrySelectObject(Vector2 screenPosition)
     {
-        if (Physics.Raycast(Camera.main.ScreenPointToRay(screenPosition), out RaycastHit hit))
+        if (Physics.Raycast(_mainCamera.ScreenPointToRay(screenPosition), out RaycastHit hit))
         {
             _selectedObjectView = hit.collider.transform.GetComponentInParent<ObjectView>();
             
@@ -76,6 +81,7 @@ public sealed class InputSystem : IExecuteSystem
                 _selectedObjectY = position.y + 1;
                 _selectedEntity.ReplaceRigidbody(true, Vector3.zero);
                 _isDragging = true;
+                _vibrationService.PlayHaptic(HapticTypes.SoftImpact);
             }
         }
     }
@@ -84,7 +90,7 @@ public sealed class InputSystem : IExecuteSystem
     {
         if (_isDragging && _selectedEntity != null && _selectedEntity.isEnabled)
         {
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(screenPosition), out RaycastHit hit, 1000))
+            if (Physics.Raycast(_mainCamera.ScreenPointToRay(screenPosition), out RaycastHit hit, 1000))
             {
                 var newPosition = new Vector3(hit.point.x, _selectedObjectY, hit.point.z);
                 _selectedEntity.ReplacePosition(newPosition);

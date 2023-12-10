@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using MoreMountains.NiceVibrations;
 using TMPro;
 using UnityEngine;
 
@@ -12,10 +13,12 @@ public class TotalGoldController : MonoBehaviour, IAnyGoldEarnedListener, IAnyLe
     private Contexts _contexts;
     private GameEntity _listener;
     private Tween _scaleTween;
+    private IVibrationService _vibrationService;
 
     void Start()
     {
         _contexts = Contexts.sharedInstance;
+        _vibrationService = Services.GetService<IVibrationService>();
         _listener = _contexts.game.CreateEntity();
         _listener.AddAnyGoldEarnedListener(this);
         _listener.AddAnyLevelEndListener(this);
@@ -58,6 +61,7 @@ public class TotalGoldController : MonoBehaviour, IAnyGoldEarnedListener, IAnyLe
 
         for (int i = 0; i < remainingTimeSeconds; i++)
         {
+            _vibrationService.PlayHaptic(HapticTypes.SoftImpact);
             yield return new WaitForSecondsRealtime(currentDelay);
             _contexts.game.ReplaceTotalGold(_contexts.game.totalGold.Value + goldPerSecond);
             _contexts.game.isGoldEarned = true;

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Entitas;
+using MoreMountains.NiceVibrations;
 using UnityEngine;
 
 public class ObjectMergeSystem : ReactiveSystem<GameEntity>
@@ -8,6 +9,8 @@ public class ObjectMergeSystem : ReactiveSystem<GameEntity>
     private ILevelService _levelService;
     private IObjectService _objectService;
     private IGameService _gameService;
+    private readonly IVibrationService _vibrationService;
+    private readonly IParticleService _particleService;
 
     public ObjectMergeSystem(Contexts contexts) : base(contexts.game)
     {
@@ -16,6 +19,8 @@ public class ObjectMergeSystem : ReactiveSystem<GameEntity>
         _levelService = Services.GetService<ILevelService>();
         _objectService = Services.GetService<IObjectService>();
         _gameService = Services.GetService<IGameService>();
+        _vibrationService = Services.GetService<IVibrationService>();
+        _particleService = Services.GetService<IParticleService>();
     }
 
     protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
@@ -68,7 +73,7 @@ public class ObjectMergeSystem : ReactiveSystem<GameEntity>
         var goldPerStandardMerge = _gameService.GameConfig.GameConfig.goldPerStandardMerge;
         var goldPerFinalMerge = _gameService.GameConfig.GameConfig.goldPerFinalMerge;
         
-        if (nextLevel <= maxLevel)
+        if (nextLevel <= maxLevel) // normal merge
         {
             var path = _objectService.GetObjectPath(entity1.@object.Type, nextLevel);
             var mergedEntity = _contexts.game.CreateObject(entity1.@object.Type, nextLevel, path,
@@ -77,10 +82,16 @@ public class ObjectMergeSystem : ReactiveSystem<GameEntity>
             mergedEntity.ReplaceRigidbody(false,  entity1.collision.RelativeVelocity * 2);
             _contexts.game.ReplaceRemainingObjectsCount(_contexts.game.remainingObjectsCount.Value + 1);
             _contexts.game.ReplaceTotalGold(totalGold + goldPerStandardMerge);
+            _vibrationService.PlayHaptic(HapticTypes.LightImpact);
+            
+            _particleService.PlayMergeParticle(entity1.collision.CollisionPoint);
+
         }
-        else
+        else // final merge
         {
             _contexts.game.ReplaceTotalGold(totalGold + goldPerFinalMerge);
+            _vibrationService.PlayHaptic(HapticTypes.MediumImpact);
+            _particleService.PlayGoldExplosionParticle(entity1.collision.CollisionPoint);
         }
         
         entity1.isDestroyed = true;

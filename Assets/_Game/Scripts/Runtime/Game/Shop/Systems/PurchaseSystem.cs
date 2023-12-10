@@ -1,17 +1,20 @@
 ﻿using System.Collections.Generic;
 using Entitas;
+using MoreMountains.NiceVibrations;
 
 public class PurchaseSystem : ReactiveSystem<GameEntity> 
 {
     private readonly Contexts _contexts;
     private readonly ILevelService _levelService;
     private readonly IObjectService _objectService;
+    private readonly IVibrationService _vibrationService;
 
     public PurchaseSystem(Contexts contexts) : base(contexts.game) 
     {
         _contexts = contexts;
         _objectService = Services.GetService<IObjectService>();
         _levelService = Services.GetService<ILevelService>();
+        _vibrationService = Services.GetService<IVibrationService>();
     }
 
     protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context) => 
@@ -33,6 +36,7 @@ public class PurchaseSystem : ReactiveSystem<GameEntity>
                 _contexts.game.isGoldEarned = true;
                 _objectService.SetAvailableObjectByType(itemType, true);
                 _contexts.game.ReplaceItemPurchased(itemType);
+                _vibrationService.PlayHaptic(HapticTypes.MediumImpact);
             }
             
             e.isDestroyed = true; 

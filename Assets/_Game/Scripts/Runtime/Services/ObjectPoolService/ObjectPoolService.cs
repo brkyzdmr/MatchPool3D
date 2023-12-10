@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Udo.PoolManager;
 using UnityEngine;
 
 public class ObjectPoolService : Service, IObjectPoolService
@@ -23,9 +22,17 @@ public class ObjectPoolService : Service, IObjectPoolService
 
     public GameObject Spawn(Pools.Types poolType, Vector3? position = null, Quaternion? rotation = null, Transform parent = null)
     {
+        Debug.Log($"Attempting to spawn object of type {poolType}");
+
+        if (_objectPools == null)
+        {
+            Debug.LogError("Object pools not initialized.");
+            return null;
+        }
+
         if (!_objectPools.TryGetValue(poolType, out var pool))
         {
-            Debug.LogError($"Pool Type {poolType} not found.");
+            Debug.LogError($"Pool Type {poolType} not found. Available pools: {string.Join(", ", _objectPools.Keys)}");
             return null;
         }
 
@@ -44,6 +51,7 @@ public class ObjectPoolService : Service, IObjectPoolService
 
         return obj;
     }
+
 
     public void Despawn(Pools.Types poolType, GameObject obj)
     {

@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using System;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -29,10 +30,21 @@ public class WinPanel : Panel, IAnyGoldRushEndListener
         nextLevelButton.interactable = false;
     }
 
+    private void OnEnable()
+    {
+        DOVirtual.DelayedCall(1.5f, () => EnableNextLevelButton());
+    }
+
     private void OnDisable()
     {
         ResetWinPanel();
     }
+
+    public void OnAnyGoldRushEnd(GameEntity entity)
+    {
+        EnableNextLevelButton();
+    }
+    
 
     private void OnNextLevelButtonClicked()
     {
@@ -50,7 +62,7 @@ public class WinPanel : Panel, IAnyGoldRushEndListener
         _canvas.sortingOrder = _canvasDefaultSortingOrder;
     }
 
-    public void OnAnyGoldRushEnd(GameEntity entity)
+    private void EnableNextLevelButton()
     {
         DOVirtual.DelayedCall(0.5f, () =>
         {

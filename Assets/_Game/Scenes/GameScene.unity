@@ -1019,7 +1019,7 @@ GameObject:
   - component: {fileID: 473971869}
   - component: {fileID: 473971870}
   m_Layer: 0
-  m_Name: ObjectPoolContoller
+  m_Name: ObjectPoolInitializer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1052,7 +1052,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c34b3c6ba3944997976e13ec76ab788c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pools: []
+  _pools:
+  - prefab: {fileID: 837331779496573645, guid: 7836da4978ad95a41b19ddbc4ec524a2, type: 3}
+    maximumInstances: 5
+    poolType: 1
+  - prefab: {fileID: 906675872717525588, guid: 25f2b2a03b6c6414dafe7abf7d8ee236, type: 3}
+    maximumInstances: 3
+    poolType: 2
 --- !u!1001 &509078114
 PrefabInstance:
   m_ObjectHideFlags: 0

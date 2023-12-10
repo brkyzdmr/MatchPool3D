@@ -11,7 +11,7 @@
     {
       "name": "Level 1",
       "type": "standard",
-      "duration": 90,
+      "duration": 50,
       "maxObjectLevel": 1,
       "maxProducedObjectLevel": 1,
       "maxProducedObjectCount": 22
@@ -19,10 +19,42 @@
     {
       "name": "Level 2",
       "type": "standard",
-      "duration": 90,
+      "duration": 50,
       "maxObjectLevel": 1,
       "maxProducedObjectLevel": 1,
       "maxProducedObjectCount": 26
+    },
+    {
+      "name": "Level 3",
+      "type": "standard",
+      "duration": 60,
+      "maxObjectLevel": 2,
+      "maxProducedObjectLevel": 2,
+      "maxProducedObjectCount": 28
+    },
+    {
+      "name": "Level 4",
+      "type": "standard",
+      "duration": 60,
+      "maxObjectLevel": 2,
+      "maxProducedObjectLevel": 2,
+      "maxProducedObjectCount": 30
+    },
+    {
+      "name": "Level 5",
+      "type": "standard",
+      "duration": 60,
+      "maxObjectLevel": 2,
+      "maxProducedObjectLevel": 2,
+      "maxProducedObjectCount": 32
+    },
+    {
+      "name": "Level 6",
+      "type": "standard",
+      "duration": 60,
+      "maxObjectLevel": 2,
+      "maxProducedObjectLevel": 2,
+      "maxProducedObjectCount": 34
     }
   ]
 }

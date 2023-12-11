@@ -10,7 +10,7 @@
   "objectsMass": 5,
   "objectsBounciness": 0.5,
   
-  "timerCountdownTime": 3,
+  "timerCountdownTime": 5,
   "timerSpeedFactor": 1,
   "timerSpeedFactorMax": 5
 }

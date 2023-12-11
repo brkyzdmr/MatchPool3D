@@ -60,8 +60,8 @@ public class TotalGoldController : MonoBehaviour, IAnyGoldEarnedListener, IAnyLe
         var goldPerSecond = Services.GetService<IGameService>().GameConfig.GameConfig.goldPerLevelSecondsLeft;
         _contexts.game.isGoldRushStart = true;
 
-        float decayFactor = Mathf.Pow(0.5f, 1.0f / (remainingTimeSeconds - 1));
-        float currentDelay = 0.1f;
+        float decayFactor = Mathf.Pow(0.5f, 1.5f / (remainingTimeSeconds - 1));
+        float currentDelay = 0.05f;
 
         for (int i = 0; i < remainingTimeSeconds; i++)
         {

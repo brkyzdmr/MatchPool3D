@@ -64,7 +64,7 @@ public class WinPanel : Panel, IAnyGoldRushEndListener
 
     private void EnableNextLevelButton()
     {
-        DOVirtual.DelayedCall(0.5f, () =>
+        DOVirtual.DelayedCall(1f, () =>
         {
             _canvas.sortingOrder = 20;
             nextLevelButton.interactable = true;

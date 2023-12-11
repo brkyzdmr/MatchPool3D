@@ -4,7 +4,7 @@
       "type": "fruits",
       "shop": {
         "name": "Garden Fruits",
-        "sprite": "Sprites/Objects/Balls/Ball_Green",
+        "sprite": "Sprites/Objects/fruits",
         "price": 0
       },
       "levels": [
@@ -20,7 +20,7 @@
       "type": "vegetables",
       "shop": {
         "name": "Garden Vegetables",
-        "sprite": "Sprites/Objects/Balls/Ball_Blue",
+        "sprite": "Sprites/Objects/vegetables",
         "price": 2000
       },
       "levels": [
@@ -36,7 +36,7 @@
       "type": "chocolates",
       "shop": {
         "name": "Chocolates",
-        "sprite": "Sprites/Objects/Balls/Ball_Blue",
+        "sprite": "Sprites/Objects/chocolates",
         "price": 7000
       },
       "levels": [
@@ -52,7 +52,7 @@
       "type": "grains",
       "shop": {
         "name": "Grains",
-        "sprite": "Sprites/Objects/Balls/Ball_Blue",
+        "sprite": "Sprites/Objects/grains",
         "price": 12000
       },
       "levels": [
@@ -68,7 +68,7 @@
       "type": "sweets",
       "shop": {
         "name": "Sweets",
-        "sprite": "Sprites/Objects/Balls/Ball_Blue",
+        "sprite": "Sprites/Objects/sweets",
         "price": 21000
       },
       "levels": [

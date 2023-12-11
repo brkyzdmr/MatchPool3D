@@ -30,6 +30,7 @@ public class FailCheckSystem : ReactiveSystem<GameEntity>
         {
             _levelService.SetLevelStatus(LevelStatus.Fail);
             _contexts.game.isLevelReady = false;
+            _contexts.game.isLevelRestart = true;
             _contexts.game.isLevelEnd = true;
             _timeService.PauseTime();
             _vibrationService.PlayHaptic(HapticTypes.Failure);

@@ -4,7 +4,6 @@
     {
         // Game Features
         Add(new UtilsFeature(contexts));
-        Add(new SaveFeature(contexts));
         Add(new TimeFeature(contexts));
         Add(new LevelFeature(contexts));
         Add(new InputFeature(contexts));

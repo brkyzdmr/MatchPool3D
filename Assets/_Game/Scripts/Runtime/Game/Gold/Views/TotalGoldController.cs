@@ -14,11 +14,14 @@ public class TotalGoldController : MonoBehaviour, IAnyGoldEarnedListener, IAnyLe
     private GameEntity _listener;
     private Tween _scaleTween;
     private IVibrationService _vibrationService;
+    private ISaveService _saveService;
 
     void Start()
     {
         _contexts = Contexts.sharedInstance;
         _vibrationService = Services.GetService<IVibrationService>();
+        _saveService = Services.GetService<ISaveService>();
+        
         _listener = _contexts.game.CreateEntity();
         _listener.AddAnyGoldEarnedListener(this);
         _listener.AddAnyLevelEndListener(this);
@@ -71,6 +74,7 @@ public class TotalGoldController : MonoBehaviour, IAnyGoldEarnedListener, IAnyLe
         }
 
         _contexts.game.isGoldRushEnd = true;
+        _saveService.Save();
     }
 
     public void OnAnyLevelReady(GameEntity entity)

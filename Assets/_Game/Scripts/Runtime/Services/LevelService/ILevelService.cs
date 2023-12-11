@@ -2,7 +2,7 @@
 {
     public bool IsLevelCompleted();
     public void SetLevelStatus(LevelStatus status);
-    public void RefreshData();
+    public void SetupLevel();
 
     public void ResumeGame();
     public void PauseGame();

@@ -26,7 +26,7 @@ public class LevelService : Service, ILevelService
         _contexts.game.ReplaceLevelStatus(status);
     }
 
-    public void RefreshData()
+    private void RefreshData()
     {
         if (_contexts.game.currentLevelIndex.Value < LevelsConfig.Levels.levels.Count)
         {
@@ -36,6 +36,22 @@ public class LevelService : Service, ILevelService
         {
             LoadRandomLevel();
         }
+    }
+    
+    public void SetupLevel()
+    {
+        RefreshData();
+
+        _contexts.game.ReplaceCreatedObjectsCount(0);
+        _contexts.game.ReplaceRemainingObjectsCount(0);
+        
+        _contexts.input.isInputBlock = true;
+        _contexts.game.createdObjectsCount.Value = 0;
+        
+        _contexts.game.isLevelReady = true;
+        _contexts.input.isInputBlock = false;
+
+        _contexts.game.ReplaceLevelStatus(LevelStatus.Continue);
     }
 
     private void LoadLevelData(int levelIndex)
@@ -88,7 +104,6 @@ public class LevelService : Service, ILevelService
 
     public void NextLevel()
     {
-        _contexts.game.ReplaceCurrentLevelIndex(_contexts.game.currentLevelIndex.Value + 1);
         RestartGame();
     }
 }

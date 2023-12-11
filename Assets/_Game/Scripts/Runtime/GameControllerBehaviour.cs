@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using UnityEngine;
 
@@ -5,6 +6,7 @@ public class GameControllerBehaviour : MonoBehaviour
 {
     private Contexts _contexts;
     private GameController _gameController;
+    private ISaveService _saveService;
 
     void Awake()
     {
@@ -13,6 +15,8 @@ public class GameControllerBehaviour : MonoBehaviour
         LoadConfigurations();
         CreateServices();
         Configure();
+
+        _saveService = Services.GetService<ISaveService>();
     }
 
     public void Start()
@@ -22,17 +26,9 @@ public class GameControllerBehaviour : MonoBehaviour
 
     public void Update() => _gameController.Execute();
 
-    private void OnApplicationFocus(bool hasFocus)
-    {
-        if (!hasFocus)
-        {
-            SaveGameData();
-        }
-    }
-
     private void OnApplicationQuit()
     {
-        SaveGameData();
+        _saveService.Save();
     }
 
     private void LoadConfigurations()
@@ -63,11 +59,5 @@ public class GameControllerBehaviour : MonoBehaviour
     {
         DOTween.SetTweensCapacity(500, 50);
         _gameController = new GameController(_contexts);
-    }
-    
-
-    private void SaveGameData()
-    {
-        _contexts.game.isSave = true;
     }
 }

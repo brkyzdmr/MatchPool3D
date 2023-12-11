@@ -20,7 +20,6 @@ public sealed class GameEventSystems : Feature {
         Add(new AnyLevelReadyEventSystem(contexts)); // priority: 0
         Add(new AnyLevelRestartEventSystem(contexts)); // priority: 0
         Add(new AnyLevelStatusEventSystem(contexts)); // priority: 0
-        Add(new AnyLoadEventSystem(contexts)); // priority: 0
         Add(new ObjectEventSystem(contexts)); // priority: 0
         Add(new PositionEventSystem(contexts)); // priority: 0
         Add(new AnyPurchaseActionEventSystem(contexts)); // priority: 0
@@ -29,7 +28,6 @@ public sealed class GameEventSystems : Feature {
         Add(new AnyRemainingObjectsCountEventSystem(contexts)); // priority: 0
         Add(new RigidbodyEventSystem(contexts)); // priority: 0
         Add(new RotationEventSystem(contexts)); // priority: 0
-        Add(new AnySaveEventSystem(contexts)); // priority: 0
         Add(new ScaleEventSystem(contexts)); // priority: 0
         Add(new AnyTimeTickEventSystem(contexts)); // priority: 0
     }

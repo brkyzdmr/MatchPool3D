@@ -8,6 +8,7 @@ public class PurchaseSystem : ReactiveSystem<GameEntity>
     private readonly ILevelService _levelService;
     private readonly IObjectService _objectService;
     private readonly IVibrationService _vibrationService;
+    private readonly ISaveService _saveService;
 
     public PurchaseSystem(Contexts contexts) : base(contexts.game) 
     {
@@ -15,6 +16,7 @@ public class PurchaseSystem : ReactiveSystem<GameEntity>
         _objectService = Services.GetService<IObjectService>();
         _levelService = Services.GetService<ILevelService>();
         _vibrationService = Services.GetService<IVibrationService>();
+        _saveService = Services.GetService<ISaveService>();
     }
 
     protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context) => 
@@ -39,6 +41,7 @@ public class PurchaseSystem : ReactiveSystem<GameEntity>
                 _objectService.SetAvailableObjectByType(itemType, true);
                 _contexts.game.ReplaceItemPurchased(itemType);
                 _vibrationService.PlayHaptic(HapticTypes.MediumImpact);
+                _saveService.Save();
             }
             
             e.isDestroyed = true; 

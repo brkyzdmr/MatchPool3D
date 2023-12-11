@@ -15,8 +15,6 @@ public class GameControllerBehaviour : MonoBehaviour
         LoadConfigurations();
         CreateServices();
         Configure();
-
-        _saveService = Services.GetService<ISaveService>();
     }
 
     public void Start()
@@ -25,11 +23,7 @@ public class GameControllerBehaviour : MonoBehaviour
     }
 
     public void Update() => _gameController.Execute();
-
-    private void OnApplicationQuit()
-    {
-        _saveService.Save();
-    }
+    
 
     private void LoadConfigurations()
     {

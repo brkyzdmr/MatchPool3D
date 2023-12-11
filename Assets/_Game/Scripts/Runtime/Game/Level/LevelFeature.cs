@@ -4,8 +4,8 @@ public sealed class LevelFeature : Feature
     {
         Add(new InitializeLevelSystem(contexts));
         Add(new LevelEndSystem(contexts));
-        Add(new LevelLoadSystem(contexts));
         Add(new LevelRestartSystem(contexts));
+        Add(new LevelLoadSystem(contexts));
         Add(new WinCheckSystem(contexts));
         Add(new FailCheckSystem(contexts));
     }

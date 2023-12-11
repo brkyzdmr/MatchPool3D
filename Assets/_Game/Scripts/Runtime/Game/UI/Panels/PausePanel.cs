@@ -25,12 +25,10 @@ public class PausePanel : Panel
     public void OnEnable()
     {
         ResetPausePanel();
-        // _continueButtonTween = continueButton.transform.DOScale(1.1f, 0.5f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
     }
 
     private void OnContinueButtonClicked()
     {
-        // _continueButtonTween?.Kill();
         continueButton.interactable = false;
         
         _levelService.ResumeGame();
@@ -38,7 +36,6 @@ public class PausePanel : Panel
 
     private void OnRestartButtonClicked()
     {
-        // _continueButtonTween?.Kill();
         restartButton.interactable = false;
         
         _levelService.RestartGame();
@@ -53,7 +50,5 @@ public class PausePanel : Panel
     {
         continueButton.interactable = true;
         restartButton.interactable = true;
-        // _continueButtonTween?.Kill();
-        // continueButton.transform.localScale = Vector3.one;
     }
 }

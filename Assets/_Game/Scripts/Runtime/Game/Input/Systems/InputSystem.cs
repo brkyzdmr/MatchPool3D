@@ -78,7 +78,7 @@ public sealed class InputSystem : IExecuteSystem
                 var position = _selectedObjectView.transform.position;
                 _selectedEntity = _selectedObjectView.LinkedEntity;
                 _selectedEntity.ReplacePosition(position);
-                _selectedObjectY = position.y + 0.1f;
+                _selectedObjectY = position.y + 0.2f;
                 _selectedEntity.ReplaceRigidbody(true, Vector3.zero);
                 _isDragging = true;
                 _vibrationService.PlayHaptic(HapticTypes.SoftImpact);

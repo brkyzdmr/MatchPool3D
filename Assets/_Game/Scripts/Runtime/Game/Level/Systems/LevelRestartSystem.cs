@@ -32,6 +32,8 @@ public class LevelRestartSystem : ReactiveSystem<GameEntity>
         
         Debug.Log("LevelRestartSystem: " + _contexts.game.isLevelRestart);
         
+        _saveService.Load();
+        
         _contexts.game.isLevelReady = false;
         _contexts.game.isLevelEnd = false;
         _contexts.game.isLevelRestart = false;

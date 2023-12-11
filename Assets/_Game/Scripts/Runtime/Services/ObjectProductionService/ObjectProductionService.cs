@@ -75,24 +75,35 @@ public class ObjectProductionService : Service, IObjectProductionService
         for (int level = 1; level <= maxLevel; level++)
         {
             previousLevelCounts.Add(objectList.FirstOrDefault(item => item.Item1 == objectData && item.Item2 == level - 1).Item3);
-
-            Debug.Log(string.Join(", ", previousLevelCounts));
-            var restPreviousLevelCount = 0;
-
-            for (int previousLevel = 0; previousLevel < previousLevelCounts.Count; previousLevel++)
-            {
-                restPreviousLevelCount += (int)(previousLevelCounts[previousLevel] / Math.Pow(2, previousLevelCounts.Count - previousLevel));
-            }
             
+            var restPreviousLevelCount = CalculateRestPreviousLevelCount(previousLevelCounts);
             previousCounts.Add(restPreviousLevelCount);
+            Debug.Log(string.Join(", ", previousLevelCounts)); // 10, 3, 3
+            Debug.Log("Rest: " + string.Join(", ", restPreviousLevelCount));
             
-            int currentLevelCount = CalculateLevelObjectCount(level, maxLevel, objectsCount, previousCounts, random);
+            int currentLevelCount = CalculateLevelObjectCount(level, maxLevel, objectsCount, restPreviousLevelCount, random);
             AddObjectToList(objectList, objectData, level, currentLevelCount);
             objectsCount -= currentLevelCount;
         }
     }
+    
+    private int CalculateRestPreviousLevelCount(List<int> previousLevelCounts)
+    {
+        int length = previousLevelCounts.Count;
 
-    private int CalculateLevelObjectCount(int currentLevel, int maxLevel, int remainingCount, List<int> previousCounts, Random random)
+        if (length == 1)
+        {
+            return previousLevelCounts[0] / 2;
+        }
+        else
+        {
+            List<int> sublist = previousLevelCounts.GetRange(0, length - 1);
+            int sumOfSublist = CalculateRestPreviousLevelCount(sublist);
+            return (sumOfSublist + previousLevelCounts[length - 1]) / 2;
+        }
+    }
+
+    private int CalculateLevelObjectCount(int currentLevel, int maxLevel, int remainingCount, int previousCounts, Random random)
     {
         int count = currentLevel == maxLevel ? remainingCount : (int)(remainingCount / (random.NextDouble() * (3 - 1.8) + 1.8));
         
@@ -101,9 +112,9 @@ public class ObjectProductionService : Service, IObjectProductionService
         return count;
     }
     
-    private int AdjustCountBasedOnPreviousSum(List<int> previousCounts, int currentCount)
+    private int AdjustCountBasedOnPreviousSum(int previousCounts, int currentCount)
     {
-        if (previousCounts.Sum() % 2 == 0)
+        if (previousCounts % 2 == 0)
         {
             return currentCount % 2 == 0 ? currentCount : currentCount + 1;
         }

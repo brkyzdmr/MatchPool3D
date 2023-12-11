@@ -62,7 +62,7 @@ public class LevelService : Service, ILevelService
     
     private void LoadRandomLevel()
     {
-        var standardLevels = LevelsConfig.Levels.levels.Where(level => level.type == "standard").ToList();
+        var standardLevels = LevelsConfig.Levels.levels.Where(level => level.type == "random").ToList();
         var randomLevel = standardLevels[Random.Range(0, standardLevels.Count)];
         // var actualIndexOfRandomLevel = LevelsConfig.Levels.levels.IndexOf(randomLevel);
         

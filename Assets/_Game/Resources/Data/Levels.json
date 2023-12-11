@@ -55,6 +55,150 @@
       "maxObjectLevel": 2,
       "maxProducedObjectLevel": 2,
       "maxProducedObjectCount": 34
+    },
+    {
+      "name": "Level 7",
+      "type": "standard",
+      "duration": 70,
+      "maxObjectLevel": 3,
+      "maxProducedObjectLevel": 3,
+      "maxProducedObjectCount": 36
+    },
+    {
+      "name": "Level 8",
+      "type": "standard",
+      "duration": 70,
+      "maxObjectLevel": 3,
+      "maxProducedObjectLevel": 3,
+      "maxProducedObjectCount": 38
+    },
+    {
+      "name": "Level 9",
+      "type": "standard",
+      "duration": 70,
+      "maxObjectLevel": 3,
+      "maxProducedObjectLevel": 3,
+      "maxProducedObjectCount": 40
+    },
+    {
+      "name": "Level 10",
+      "type": "standard",
+      "duration": 90,
+      "maxObjectLevel": 4,
+      "maxProducedObjectLevel": 4,
+      "maxProducedObjectCount": 40
+    },
+    {
+      "name": "Level 11",
+      "type": "standard",
+      "duration": 90,
+      "maxObjectLevel": 4,
+      "maxProducedObjectLevel": 4,
+      "maxProducedObjectCount": 42
+    },
+    {
+      "name": "Level 12",
+      "type": "standard",
+      "duration": 90,
+      "maxObjectLevel": 4,
+      "maxProducedObjectLevel": 4,
+      "maxProducedObjectCount": 42
+    },
+    {
+      "name": "Level 13",
+      "type": "standard",
+      "duration": 90,
+      "maxObjectLevel": 4,
+      "maxProducedObjectLevel": 4,
+      "maxProducedObjectCount": 40
+    },
+    {
+      "name": "Level 14",
+      "type": "standard",
+      "duration": 90,
+      "maxObjectLevel": 4,
+      "maxProducedObjectLevel": 4,
+      "maxProducedObjectCount": 42
+    },
+    {
+      "name": "Level 15",
+      "type": "random",
+      "duration": 120,
+      "maxObjectLevel": 4,
+      "maxProducedObjectLevel": 4,
+      "maxProducedObjectCount": 40
+    },
+    {
+      "name": "Level 16",
+      "type": "random",
+      "duration": 120,
+      "maxObjectLevel": 5,
+      "maxProducedObjectLevel": 5,
+      "maxProducedObjectCount": 44
+    },
+    {
+      "name": "Level 17",
+      "type": "random",
+      "duration": 120,
+      "maxObjectLevel": 4,
+      "maxProducedObjectLevel": 4,
+      "maxProducedObjectCount": 46
+    },
+    {
+      "name": "Level 18",
+      "type": "random",
+      "duration": 120,
+      "maxObjectLevel": 5,
+      "maxProducedObjectLevel": 5,
+      "maxProducedObjectCount": 44
+    },
+    {
+      "name": "Level 19",
+      "type": "random",
+      "duration": 120,
+      "maxObjectLevel": 5,
+      "maxProducedObjectLevel": 5,
+      "maxProducedObjectCount": 50
+    },
+    {
+      "name": "Level 20",
+      "type": "random",
+      "duration": 120,
+      "maxObjectLevel": 5,
+      "maxProducedObjectLevel": 5,
+      "maxProducedObjectCount": 44
+    },
+    {
+      "name": "Level 21",
+      "type": "random",
+      "duration": 120,
+      "maxObjectLevel": 5,
+      "maxProducedObjectLevel": 5,
+      "maxProducedObjectCount": 48
+    },
+    {
+      "name": "Level 22",
+      "type": "random",
+      "duration": 150,
+      "maxObjectLevel": 5,
+      "maxProducedObjectLevel": 5,
+      "maxProducedObjectCount": 70
+    },
+    {
+      "name": "Level 23",
+      "type": "random",
+      "duration": 150,
+      "maxObjectLevel": 5,
+      "maxProducedObjectLevel": 5,
+      "maxProducedObjectCount": 72
+    },
+    {
+      "name": "Level 24",
+      "type": "random",
+      "duration": 150,
+      "maxObjectLevel": 5,
+      "maxProducedObjectLevel": 5,
+      "maxProducedObjectCount": 74
     }
   ]
 }

@@ -14,7 +14,7 @@
       "duration": 50,
       "maxObjectLevel": 1,
       "maxProducedObjectLevel": 1,
-      "maxProducedObjectCount": 22
+      "maxProducedObjectCount": 16
     },
     {
       "name": "Level 2",
@@ -22,7 +22,7 @@
       "duration": 50,
       "maxObjectLevel": 1,
       "maxProducedObjectLevel": 1,
-      "maxProducedObjectCount": 26
+      "maxProducedObjectCount": 18
     },
     {
       "name": "Level 3",
@@ -30,7 +30,7 @@
       "duration": 60,
       "maxObjectLevel": 2,
       "maxProducedObjectLevel": 2,
-      "maxProducedObjectCount": 28
+      "maxProducedObjectCount": 18
     },
     {
       "name": "Level 4",
@@ -38,23 +38,23 @@
       "duration": 60,
       "maxObjectLevel": 2,
       "maxProducedObjectLevel": 2,
-      "maxProducedObjectCount": 30
+      "maxProducedObjectCount": 20
     },
     {
       "name": "Level 5",
       "type": "standard",
-      "duration": 60,
+      "duration": 70,
       "maxObjectLevel": 2,
       "maxProducedObjectLevel": 2,
-      "maxProducedObjectCount": 32
+      "maxProducedObjectCount": 20
     },
     {
       "name": "Level 6",
       "type": "standard",
-      "duration": 60,
+      "duration": 70,
       "maxObjectLevel": 2,
       "maxProducedObjectLevel": 2,
-      "maxProducedObjectCount": 34
+      "maxProducedObjectCount": 22
     },
     {
       "name": "Level 7",
@@ -62,23 +62,23 @@
       "duration": 70,
       "maxObjectLevel": 3,
       "maxProducedObjectLevel": 3,
-      "maxProducedObjectCount": 36
+      "maxProducedObjectCount": 20
     },
     {
       "name": "Level 8",
       "type": "standard",
-      "duration": 70,
+      "duration": 80,
       "maxObjectLevel": 3,
       "maxProducedObjectLevel": 3,
-      "maxProducedObjectCount": 38
+      "maxProducedObjectCount": 22
     },
     {
       "name": "Level 9",
       "type": "standard",
-      "duration": 70,
+      "duration": 90,
       "maxObjectLevel": 3,
       "maxProducedObjectLevel": 3,
-      "maxProducedObjectCount": 40
+      "maxProducedObjectCount": 24
     },
     {
       "name": "Level 10",
@@ -86,84 +86,84 @@
       "duration": 90,
       "maxObjectLevel": 4,
       "maxProducedObjectLevel": 4,
-      "maxProducedObjectCount": 40
+      "maxProducedObjectCount": 24
     },
     {
       "name": "Level 11",
       "type": "standard",
-      "duration": 90,
+      "duration": 110,
       "maxObjectLevel": 4,
       "maxProducedObjectLevel": 4,
-      "maxProducedObjectCount": 42
+      "maxProducedObjectCount": 26
     },
     {
       "name": "Level 12",
       "type": "standard",
-      "duration": 90,
+      "duration": 110,
       "maxObjectLevel": 4,
       "maxProducedObjectLevel": 4,
-      "maxProducedObjectCount": 42
+      "maxProducedObjectCount": 28
     },
     {
       "name": "Level 13",
       "type": "standard",
-      "duration": 90,
+      "duration": 110,
       "maxObjectLevel": 4,
       "maxProducedObjectLevel": 4,
-      "maxProducedObjectCount": 40
+      "maxProducedObjectCount": 30
     },
     {
       "name": "Level 14",
       "type": "standard",
-      "duration": 90,
+      "duration": 130,
       "maxObjectLevel": 4,
       "maxProducedObjectLevel": 4,
-      "maxProducedObjectCount": 42
+      "maxProducedObjectCount": 36
     },
     {
       "name": "Level 15",
       "type": "random",
-      "duration": 120,
+      "duration": 130,
+      "maxObjectLevel": 4,
+      "maxProducedObjectLevel": 4,
+      "maxProducedObjectCount": 38
+    },
+    {
+      "name": "Level 16",
+      "type": "random",
+      "duration": 140,
+      "maxObjectLevel": 5,
+      "maxProducedObjectLevel": 5,
+      "maxProducedObjectCount": 36
+    },
+    {
+      "name": "Level 17",
+      "type": "random",
+      "duration": 140,
       "maxObjectLevel": 4,
       "maxProducedObjectLevel": 4,
       "maxProducedObjectCount": 40
     },
     {
-      "name": "Level 16",
-      "type": "random",
-      "duration": 120,
-      "maxObjectLevel": 5,
-      "maxProducedObjectLevel": 5,
-      "maxProducedObjectCount": 44
-    },
-    {
-      "name": "Level 17",
-      "type": "random",
-      "duration": 120,
-      "maxObjectLevel": 4,
-      "maxProducedObjectLevel": 4,
-      "maxProducedObjectCount": 46
-    },
-    {
       "name": "Level 18",
       "type": "random",
-      "duration": 120,
+      "duration": 140,
       "maxObjectLevel": 5,
       "maxProducedObjectLevel": 5,
-      "maxProducedObjectCount": 44
+      "maxProducedObjectCount": 42
     },
     {
       "name": "Level 19",
       "type": "random",
-      "duration": 120,
+      "duration": 160,
       "maxObjectLevel": 5,
       "maxProducedObjectLevel": 5,
-      "maxProducedObjectCount": 50
+      "maxProducedObjectCount": 44
     },
     {
       "name": "Level 20",
       "type": "random",
-      "duration": 120,
+      "duration": 160,
       "maxObjectLevel": 5,
       "maxProducedObjectLevel": 5,
       "maxProducedObjectCount": 44
@@ -171,15 +171,15 @@
     {
       "name": "Level 21",
       "type": "random",
-      "duration": 120,
+      "duration": 170,
       "maxObjectLevel": 5,
       "maxProducedObjectLevel": 5,
-      "maxProducedObjectCount": 48
+      "maxProducedObjectCount": 46
     },
     {
       "name": "Level 22",
       "type": "random",
-      "duration": 150,
+      "duration": 240,
       "maxObjectLevel": 5,
       "maxProducedObjectLevel": 5,
       "maxProducedObjectCount": 70
@@ -187,7 +187,7 @@
     {
       "name": "Level 23",
       "type": "random",
-      "duration": 150,
+      "duration": 240,
       "maxObjectLevel": 5,
       "maxProducedObjectLevel": 5,
       "maxProducedObjectCount": 72
@@ -195,7 +195,7 @@
     {
       "name": "Level 24",
       "type": "random",
-      "duration": 150,
+      "duration": 240,
       "maxObjectLevel": 5,
       "maxProducedObjectLevel": 5,
       "maxProducedObjectCount": 74

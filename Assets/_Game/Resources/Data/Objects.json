@@ -21,7 +21,7 @@
       "shop": {
         "name": "Garden Vegetables",
         "sprite": "Sprites/Objects/vegetables",
-        "price": 4000
+        "price": 2000
       },
       "levels": [
         "Prefabs/Objects/Garden/Vegetables/V_Garlic_0",
@@ -37,7 +37,7 @@
       "shop": {
         "name": "Chocolates",
         "sprite": "Sprites/Objects/chocolates",
-        "price": 9000
+        "price": 5000
       },
       "levels": [
         "Prefabs/Objects/Candy/Chocolates/C_Chocmilk_0",
@@ -53,7 +53,7 @@
       "shop": {
         "name": "Grains",
         "sprite": "Sprites/Objects/grains",
-        "price": 18000
+        "price": 7000
       },
       "levels": [
         "Prefabs/Objects/Candy/Grains/G_Loaf_0",
@@ -69,7 +69,7 @@
       "shop": {
         "name": "Sweets",
         "sprite": "Sprites/Objects/sweets",
-        "price": 24000
+        "price": 9000
       },
       "levels": [
         "Prefabs/Objects/Candy/Chocolates/S_Gummy_0",

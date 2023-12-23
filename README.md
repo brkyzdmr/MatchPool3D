@@ -1,12 +1,28 @@
 # MatchPool3D
-
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+<a name="readme-top"></a>
 
 <p align="left">
 <img src="Project\EntitasArchitecture.png" width="650px"</img><br>
-</p>
 
 It is a simple Match3D game which developed using Entity Componet System Architecture with [Entitas Framework](https://github.com/sschmid/Entitas). This project serves as a demonstration for implementing ECS/Entitas, Dependency Injection, Unity Physics, and JSON configuration data. The architecture of this project has a similar approach as directed in the [original project guidelines](https://github.com/sschmid/Entitas/wiki/How-I-build-games-with-Entitas-%28FNGGames%29).
+</p>
+
+## Table of Contents
+- [MatchPool3D](#matchpool3d)
+  - [Table of Contents](#table-of-contents)
+  - [Description](#description)
+    - [Duration](#duration)
+    - [Workflow](#workflow)
+  - [Game Config](#game-config)
+  - [Level System](#level-system)
+    - [Object Production Algorithm](#object-production-algorithm)
+  - [Shop System](#shop-system)
+  - [Controls](#controls)
+  - [Technologies](#technologies)
+  - [Plugins](#plugins)
+  - [Art Packages](#art-packages)
+
 
 
 ## Description
@@ -129,14 +145,16 @@ It requires single touch inputs, multiple touches does not supported in this ver
 ECS, Entitas Framework, URP, Odin Serializer, Unity 2021.3.15f1
 
 ## Plugins
-[OmniShade Pro - Mobile Optimized Shader](https://assetstore.unity.com/packages/vfx/shaders/omnishade-pro-mobile-optimized-shader-213594)
-[Odin Inspector and Serializer](https://assetstore.unity.com/packages/tools/utilities/odin-inspector-and-serializer-89041)
-[DoTween Pro](https://assetstore.unity.com/packages/tools/visual-scripting/dotween-pro-32416)
-[Flexalon](https://assetstore.unity.com/packages/tools/utilities/flexalon-pro-3d-ui-layouts-230509)
-NiceVibrations
-TextMesh Pro
+- [OmniShade Pro - Mobile Optimized Shader](https://assetstore.unity.com/packages/vfx/shaders/omnishade-pro-mobile-optimized-shader-213594)
+- [Odin Inspector and Serializer](https://assetstore.unity.com/packages/tools/utilities/odin-inspector-and-serializer-89041)
+- [DoTween Pro](https://assetstore.unity.com/packages/tools/visual-scripting/dotween-pro-32416)
+- [Flexalon](https://assetstore.unity.com/packages/tools/utilities/flexalon-pro-3d-ui-layouts-230509)
+- NiceVibrations
+- TextMesh Pro
 
 ## Art Packages
-[Environment Mega Pack - Animation Assets](https://assetstore.unity.com/packages/3d/environments/environment-mega-pack-animation-assets-167658)
-[GUI Pro - Simple Casual](https://assetstore.unity.com/packages/2d/gui/icons/gui-pro-simple-casual-203399)
-[Epic Toon FX](https://assetstore.unity.com/packages/vfx/particles/epic-toon-fx-57772) - I developed particles using this as basement
+- [Environment Mega Pack - Animation Assets](https://assetstore.unity.com/packages/3d/environments/environment-mega-pack-animation-assets-167658)
+- [GUI Pro - Simple Casual](https://assetstore.unity.com/packages/2d/gui/icons/gui-pro-simple-casual-203399)
+- [Epic Toon FX](https://assetstore.unity.com/packages/vfx/particles/epic-toon-fx-57772) - I developed particles using this as basement
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>

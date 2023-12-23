@@ -144,7 +144,7 @@ There are 5 types of objects in the game. It can be bought through shop. The lev
 It requires single touch inputs, multiple touches does not supported in this version. Objects can be merged by swiping, and timer can be speed up by tapping.
 
 ## Technologies
-ECS, Entitas Framework, URP, Odin Serializer, Unity 2021.3.15f1
+ECS, Entitas 13.1, URP, Odin Serializer, Unity 2021.3.15f1
 
 ## Plugins
 - [OmniShade Pro - Mobile Optimized Shader](https://assetstore.unity.com/packages/vfx/shaders/omnishade-pro-mobile-optimized-shader-213594)

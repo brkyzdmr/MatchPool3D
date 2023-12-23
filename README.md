@@ -8,6 +8,7 @@
 It is a simple Match3D game which developed using Entity Componet System Architecture with [Entitas Framework](https://github.com/sschmid/Entitas). This project serves as a demonstration for implementing ECS/Entitas, Dependency Injection, Unity Physics, and JSON configuration data. The architecture of this project has a similar approach as directed in the [original project guidelines](https://github.com/sschmid/Entitas/wiki/How-I-build-games-with-Entitas-%28FNGGames%29).
 </p>
 
+
 ## Table of Contents
 - [MatchPool3D](#matchpool3d)
   - [Table of Contents](#table-of-contents)
@@ -24,9 +25,10 @@ It is a simple Match3D game which developed using Entity Componet System Archite
   - [Art Packages](#art-packages)
 
 
-
 ## Description
 Objects will drop at fixed intervals, starting with a 5-second gap. Pressing the timer button reduces the drop time and to a minimum of 1 second. When matching identical objects, they merge to form the next level object. If the maximum level has been reached, no new object will be formed. The objective is to match every possible pair to progress through the level.
+
+https://github.com/brkyzdmr/MatchPool3D/assets/18557060/b42af7b9-a648-47a9-bf10-23da2be5891a
 
 ### Duration
 It tooks 8-9 work days to complete. 
